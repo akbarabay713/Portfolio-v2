@@ -2,799 +2,306 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* ─── Light Mode Tokens ──────────────────────────────────────────────────── */
+
 :root {
-  --background: 255 255 255;
-  --foreground: 17 24 39;
+  --bg-base:      #f8f8fa;
+  --bg-surface:   #ffffff;
+  --bg-elevated:  #f0f0f4;
+  --bg-overlay:   #e8e8ee;
 
-  --card: 255 255 255;
-  --card-foreground: 17 24 39;
+  --accent:        #7c3aed;
+  --accent-light:  #a78bfa;
+  --accent-dim:    rgba(124, 58, 237, 0.08);
+  --accent-glow:   rgba(124, 58, 237, 0.15);
 
-  --border: 229 231 235;
+  --text-primary:   #111118;
+  --text-secondary: #555568;
+  --text-muted:     #9494a8;
 
-  --muted: 107 114 128;
+  --border-subtle: rgba(0, 0, 0, 0.06);
+  --border-soft:   rgba(0, 0, 0, 0.10);
+
+  --shadow-card: 0 0 0 1px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.06);
+  --shadow-glow: 0 0 40px rgba(124, 58, 237, 0.1);
 
   --dock: 255 255 255 / 0.6;
 }
 
+/* ─── Dark Mode Tokens ───────────────────────────────────────────────────── */
+
 .dark {
-  --background: 0 0 0;
+  --bg-base:      #0a0a0f;
+  --bg-surface:   #111118;
+  --bg-elevated:  #18181f;
+  --bg-overlay:   #1e1e28;
 
-  --foreground: 255 255 255;
+  --accent:        #7c3aed;
+  --accent-light:  #a78bfa;
+  --accent-dim:    rgba(124, 58, 237, 0.15);
+  --accent-glow:   rgba(124, 58, 237, 0.35);
 
-  --card: 10 10 10;
+  --text-primary:   #f4f4f6;
+  --text-secondary: #9494a8;
+  --text-muted:     #555568;
 
-  --card-foreground: 255 255 255;
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-soft:   rgba(255, 255, 255, 0.10);
 
-  --border: 255 255 255 / 0.1;
-
-  --muted: 156 163 175;
+  --shadow-card: 0 0 0 1px rgba(255,255,255,0.05), 0 8px 32px rgba(0,0,0,0.4);
+  --shadow-glow: 0 0 40px rgba(124, 58, 237, 0.2);
 
   --dock: 0 0 0 / 0.4;
 }
 
+/* ─── Typography ─────────────────────────────────────────────────────────── */
+
 :root {
-  /* Font Family */
-  --Proxima-Nova-Condensed: "Proxima Nova Condensed";
-  --Proxima-Nova: "Proxima Nova";
+  --Proxima-Nova-Condensed: "Inter", sans-serif;
+  --Proxima-Nova: "Inter", sans-serif;
 
-  /* Typography – H1 */
-  --h1-font-size: 72px;
-  --h1-line-height: 90px;
-  --h1-letter-spacing: -0.02em;
-  --h1-text-decoration: none;
-  --h1-text-transform: none;
-  --h1-font-family: var(--Proxima-Nova-Condensed), sans-serif;
+  --h1-font-size: 72px;  --h1-line-height: 90px;  --h1-letter-spacing: -0.03em; --h1-font-family: "Inter", sans-serif;
+  --h2-font-size: 60px;  --h2-line-height: 72px;  --h2-letter-spacing: -0.02em; --h2-font-family: "Inter", sans-serif;
+  --h3-font-size: 48px;  --h3-line-height: 60px;  --h3-letter-spacing: -0.02em; --h3-font-family: "Inter", sans-serif;
+  --h4-font-size: 36px;  --h4-line-height: 44px;  --h4-letter-spacing: -0.02em; --h4-font-family: "Inter", sans-serif;
+  --h5-font-size: 30px;  --h5-line-height: 38px;  --h5-letter-spacing: -0.02em; --h5-font-family: "Inter", sans-serif;
+  --h6-font-size: 24px;  --h6-line-height: 32px;  --h6-letter-spacing: -0.02em; --h6-font-family: "Inter", sans-serif;
 
-  /* Typography – H2 */
-  --h2-font-size: 60px;
-  --h2-line-height: 72px;
-  --h2-letter-spacing: -0.02em;
-  --h2-text-decoration: none;
-  --h2-text-transform: none;
-  --h2-font-family: var(--Proxima-Nova-Condensed), sans-serif;
+  --xl-font-size: 20px; --xl-line-height: 30px; --xl-font-family: "Inter", sans-serif;
+  --lg-font-size: 18px; --lg-line-height: 28px; --lg-font-family: "Inter", sans-serif;
+  --md-font-size: 16px; --md-line-height: 24px; --md-font-family: "Inter", sans-serif;
+  --sm-font-size: 14px; --sm-line-height: 20px; --sm-font-family: "Inter", sans-serif;
+  --xs-font-size: 13px; --xs-line-height: 20px; --xs-font-family: "Inter", sans-serif;
 
-  /* Typography – H3 */
-  --h3-font-size: 48px;
-  --h3-line-height: 60px;
-  --h3-letter-spacing: -0.02em;
-  --h3-text-decoration: none;
-  --h3-text-transform: none;
-  --h3-font-family: var(--Proxima-Nova-Condensed), sans-serif;
-
-  /* Typography – H4 */
-  --h4-font-size: 36px;
-  --h4-line-height: 44px;
-  --h4-letter-spacing: -0.02em;
-  --h4-text-decoration: none;
-  --h4-text-transform: none;
-  --h4-font-family: var(--Proxima-Nova-Condensed), sans-serif;
-
-  /* Typography – H5 */
-  --h5-font-size: 30px;
-  --h5-line-height: 38px;
-  --h5-letter-spacing: -0.02em;
-  --h5-text-decoration: none;
-  --h5-text-transform: none;
-  --h5-font-family: var(--Proxima-Nova-Condensed), sans-serif;
-
-  /* Typography – H6 */
-  --h6-font-size: 24px;
-  --h6-line-height: 32px;
-  --h6-letter-spacing: -0.02em;
-  --h6-text-decoration: none;
-  --h6-text-transform: none;
-  --h6-font-family: var(--Proxima-Nova-Condensed), sans-serif;
-
-  /* Typography – XL */
-  --xl-font-size: 20px;
-  --xl-line-height: 30px;
-  --xl-text-decoration: none;
-  --xl-text-transform: none;
-  --xl-font-family: var(--Proxima-Nova), sans-serif;
-
-  /* Typography – LG */
-  --lg-font-size: 18px;
-  --lg-line-height: 28px;
-  --lg-text-decoration: none;
-  --lg-text-transform: none;
-  --lg-font-family: var(--Proxima-Nova), sans-serif;
-
-  /* Typography – MD */
-  --md-font-size: 16px;
-  --md-line-height: 24px;
-  --md-text-decoration: none;
-  --md-text-transform: none;
-  --md-font-family: var(--Proxima-Nova), sans-serif;
-
-  /* Typography – SM */
-  --sm-font-size: 14px;
-  --sm-line-height: 20px;
-  --sm-text-decoration: none;
-  --sm-text-transform: none;
-  --sm-font-family: var(--Proxima-Nova), sans-serif;
-
-  /* Typography – XS */
-  --xs-font-size: 14px;
-  --xs-line-height: 20px;
-  --xs-text-decoration: none;
-  --xs-text-transform: none;
-  --xs-font-family: var(--Proxima-Nova), sans-serif;
-
-  /* Typography – Button SM */
-  --btn-sm-font-size: 14px;
-  --btn-sm-font-family: var(--Proxima-Nova-Condensed), sans-serif;
-
-  /* Typography – Button MD */
-  --btn-md-font-size: 16px;
-  --btn-md-font-family: var(--Proxima-Nova-Condensed), sans-serif;
-
-  /* Typography – Title Small */
-  --title-sm-font-size: 14px;
-  --title-sm-font-family: var(--Proxima-Nova-Condensed), sans-serif;
-
-  /* Typography – Title Medium */
-  --title-md-font-size: 16px;
-  --title-md-font-family: var(--Proxima-Nova-Condensed), sans-serif;
+  --btn-sm-font-size: 14px; --btn-sm-font-family: "Inter", sans-serif;
+  --btn-md-font-size: 16px; --btn-md-font-family: "Inter", sans-serif;
+  --title-sm-font-size: 14px; --title-sm-font-family: "Inter", sans-serif;
+  --title-md-font-size: 16px; --title-md-font-family: "Inter", sans-serif;
 }
+
+/* ─── Base ───────────────────────────────────────────────────────────────── */
 
 html {
-  color-scheme: light;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-html.dark {
-  color-scheme: dark;
+html { color-scheme: light; }
+html.dark { color-scheme: dark; }
+
+body {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  min-height: 100dvh;
+  position: relative;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+/* Noise grain overlay (dark mode only) */
+.dark body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+  opacity: 0.6;
+}
+
+/* Ambient violet glow (dark mode only) */
+.dark body::after {
+  content: "";
+  position: fixed;
+  top: -20vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80vw;
+  height: 60vh;
+  background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+main, section, header, footer, nav {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────── */
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-base); }
+::-webkit-scrollbar-thumb { background: var(--border-soft); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* ─── Selection ──────────────────────────────────────────────────────────── */
+
+::selection { background: var(--accent); color: #fff; }
+
+/* ─── Color Theme ────────────────────────────────────────────────────────── */
 
 @theme {
-  /* Base Color */
   --color-base-white: #ffffff;
   --color-base-black: #000000;
-  --color-primary-25: #f9f7ff;
-  --color-primary-50: #f0edfa;
-  --color-primary-100: #c1bad4;
-  --color-primary-200: #b1a8c8;
-  --color-primary-300: #9084b0;
-  --color-primary-400: #706199;
-  --color-primary-500-base: #503d81;
-  --color-primary-600: #403167;
-  --color-primary-700: #30254d;
-  --color-primary-800: #201834;
-  --color-primary-900: #181227;
-  --color-gray-25: #fcfcfd;
-  --color-gray-50: #f9fafb;
-  --color-gray-100: #f2f4f7;
-  --color-gray-200: #eaecf0;
-  --color-gray-300: #d0d5dd;
-  --color-gray-400: #98a2b3;
+
+  --color-primary-25:       #f5f3ff;
+  --color-primary-50:       #ede9fe;
+  --color-primary-100:      #ddd6fe;
+  --color-primary-200:      #c4b5fd;
+  --color-primary-300:      #a78bfa;
+  --color-primary-400:      #8b5cf6;
+  --color-primary-500-base: #7c3aed;
+  --color-primary-600:      #6d28d9;
+  --color-primary-700:      #5b21b6;
+  --color-primary-800:      #4c1d95;
+  --color-primary-900:      #2e1065;
+
+  --color-gray-25:       #fcfcfd;
+  --color-gray-50:       #f9fafb;
+  --color-gray-100:      #f2f4f7;
+  --color-gray-200:      #eaecf0;
+  --color-gray-300:      #d0d5dd;
+  --color-gray-400:      #98a2b3;
   --color-gray-500-base: #667085;
-  --color-gray-600: #475467;
-  --color-gray-700: #344054;
-  --color-gray-800: #1d2939;
-  --color-gray-900: #101828;
-  --color-warning-25: #fffcf5;
-  --color-warning-50: #fffaeb;
-  --color-warning-100: #fef0c7;
-  --color-warning-200: #fedf89;
-  --color-warning-300: #fec84b;
-  --color-warning-400: #fdb022;
+  --color-gray-600:      #475467;
+  --color-gray-700:      #344054;
+  --color-gray-800:      #1d2939;
+  --color-gray-900:      #101828;
+
+  --color-warning-25:       #fffcf5;
+  --color-warning-50:       #fffaeb;
+  --color-warning-100:      #fef0c7;
   --color-warning-500-base: #f79009;
-  --color-warning-600: #dc6803;
-  --color-warning-700: #b54708;
-  --color-warning-800: #93370d;
-  --color-warning-900: #7a2e0e;
-  --color-done-25: #f6fef9;
-  --color-done-50: #ecfdf3;
-  --color-done-100: #d1fadf;
-  --color-done-200: #a6f4c5;
-  --color-done-300: #6ce9a6;
-  --color-done-400: #32d583;
+  --color-warning-600:      #dc6803;
+
+  --color-done-25:       #f6fef9;
+  --color-done-50:       #ecfdf3;
   --color-done-500-base: #12b76a;
-  --color-done-600: #039855;
-  --color-done-700: #027a48;
-  --color-done-800: #05603a;
-  --color-done-900: #054f31;
-  --color-error-danger-25: #fffbfa;
-  --color-error-danger-50: #fef3f2;
-  --color-error-danger-100: #fee4e2;
-  --color-error-danger-200: #fecdca;
-  --color-error-danger-300: #fda29b;
-  --color-error-danger-400: #f97066;
+  --color-done-600:      #039855;
+
+  --color-error-danger-25:       #fffbfa;
+  --color-error-danger-50:       #fef3f2;
+  --color-error-danger-100:      #fee4e2;
   --color-error-danger-500-base: #f04438;
-  --color-error-danger-600: #d92d20;
-  --color-error-danger-700: #b42318;
-  --color-error-danger-800: #912018;
-  --color-error-danger-900: #7a271a;
+  --color-error-danger-600:      #d92d20;
 }
+
+/* ─── Utilities ──────────────────────────────────────────────────────────── */
 
 @layer utilities {
-  /* Heading H1 */
-  .heading-h-1-regular {
-    font-size: var(--h1-font-size);
-    font-family: var(--h1-font-family);
-    font-style: normal;
-    line-height: var(--h1-line-height);
-    letter-spacing: var(--h1-letter-spacing);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 400; /* regular */
+  .gradient-text {
+    background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 50%, #6d28d9 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
-  .heading-h-1-medium {
-    font-size: var(--h1-font-size);
-    font-family: var(--h1-font-family);
-    font-style: normal;
-    line-height: var(--h1-line-height);
-    letter-spacing: var(--h1-letter-spacing);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 500; /* medium */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-card);
   }
 
-  .heading-h-1-semibold {
-    font-size: var(--h1-font-size);
-    font-family: var(--h1-font-family);
-    font-style: normal;
-    line-height: var(--h1-line-height);
-    letter-spacing: var(--h1-letter-spacing);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 600; /* semibold */
+  .accent-glow {
+    box-shadow: 0 0 0 1px var(--accent), 0 0 24px var(--accent-glow);
   }
 
-  .heading-h-1-bold {
-    font-size: var(--h1-font-size);
-    font-family: var(--h1-font-family);
-    font-style: normal;
-    line-height: var(--h1-line-height);
-    letter-spacing: var(--h1-letter-spacing);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 700; /* bold */
-  }
+  /* ── Headings ─────────────────────────────────────────────────────────── */
+  .heading-h-1-regular  { font-size:var(--h1-font-size); font-family:var(--h1-font-family); line-height:var(--h1-line-height); letter-spacing:var(--h1-letter-spacing); font-weight:400; }
+  .heading-h-1-medium   { font-size:var(--h1-font-size); font-family:var(--h1-font-family); line-height:var(--h1-line-height); letter-spacing:var(--h1-letter-spacing); font-weight:500; }
+  .heading-h-1-semibold { font-size:var(--h1-font-size); font-family:var(--h1-font-family); line-height:var(--h1-line-height); letter-spacing:var(--h1-letter-spacing); font-weight:600; }
+  .heading-h-1-bold     { font-size:var(--h1-font-size); font-family:var(--h1-font-family); line-height:var(--h1-line-height); letter-spacing:var(--h1-letter-spacing); font-weight:700; }
 
-  /* Heading H2 */
-  .heading-h-2-regular {
-    font-size: var(--h2-font-size);
-    font-family: var(--h2-font-family);
-    font-style: normal;
-    line-height: var(--h2-line-height);
-    letter-spacing: var(--h2-letter-spacing);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 400; /* regular */
-  }
+  .heading-h-2-regular  { font-size:var(--h2-font-size); font-family:var(--h2-font-family); line-height:var(--h2-line-height); letter-spacing:var(--h2-letter-spacing); font-weight:400; }
+  .heading-h-2-medium   { font-size:var(--h2-font-size); font-family:var(--h2-font-family); line-height:var(--h2-line-height); letter-spacing:var(--h2-letter-spacing); font-weight:500; }
+  .heading-h-2-semibold { font-size:var(--h2-font-size); font-family:var(--h2-font-family); line-height:var(--h2-line-height); letter-spacing:var(--h2-letter-spacing); font-weight:600; }
+  .heading-h-2-bold     { font-size:var(--h2-font-size); font-family:var(--h2-font-family); line-height:var(--h2-line-height); letter-spacing:var(--h2-letter-spacing); font-weight:700; }
 
-  .heading-h-2-medium {
-    font-size: var(--h2-font-size);
-    font-family: var(--h2-font-family);
-    font-style: normal;
-    line-height: var(--h2-line-height);
-    letter-spacing: var(--h2-letter-spacing);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 500; /* medium */
-  }
+  .heading-h-3-regular  { font-size:var(--h3-font-size); font-family:var(--h3-font-family); line-height:var(--h3-line-height); letter-spacing:var(--h3-letter-spacing); font-weight:400; }
+  .heading-h-3-medium   { font-size:var(--h3-font-size); font-family:var(--h3-font-family); line-height:var(--h3-line-height); letter-spacing:var(--h3-letter-spacing); font-weight:500; }
+  .heading-h-3-semibold { font-size:var(--h3-font-size); font-family:var(--h3-font-family); line-height:var(--h3-line-height); letter-spacing:var(--h3-letter-spacing); font-weight:600; }
+  .heading-h-3-bold     { font-size:var(--h3-font-size); font-family:var(--h3-font-family); line-height:var(--h3-line-height); letter-spacing:var(--h3-letter-spacing); font-weight:700; }
 
-  .heading-h-2-semibold {
-    font-size: var(--h2-font-size);
-    font-family: var(--h2-font-family);
-    font-style: normal;
-    line-height: var(--h2-line-height);
-    letter-spacing: var(--h2-letter-spacing);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 600; /* semibold */
-  }
+  .heading-h-4-regular  { font-size:var(--h4-font-size); font-family:var(--h4-font-family); line-height:var(--h4-line-height); letter-spacing:var(--h4-letter-spacing); font-weight:400; }
+  .heading-h-4-medium   { font-size:var(--h4-font-size); font-family:var(--h4-font-family); line-height:var(--h4-line-height); letter-spacing:var(--h4-letter-spacing); font-weight:500; }
+  .heading-h-4-semibold { font-size:var(--h4-font-size); font-family:var(--h4-font-family); line-height:var(--h4-line-height); letter-spacing:var(--h4-letter-spacing); font-weight:600; }
+  .heading-h-4-bold     { font-size:var(--h4-font-size); font-family:var(--h4-font-family); line-height:var(--h4-line-height); letter-spacing:var(--h4-letter-spacing); font-weight:700; }
 
-  .heading-h-2-bold {
-    font-size: var(--h2-font-size);
-    font-family: var(--h2-font-family);
-    font-style: normal;
-    line-height: var(--h2-line-height);
-    letter-spacing: var(--h2-letter-spacing);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 700; /* bold */
-  }
+  .heading-h-5-regular  { font-size:var(--h5-font-size); font-family:var(--h5-font-family); line-height:var(--h5-line-height); letter-spacing:var(--h5-letter-spacing); font-weight:400; }
+  .heading-h-5-medium   { font-size:var(--h5-font-size); font-family:var(--h5-font-family); line-height:var(--h5-line-height); letter-spacing:var(--h5-letter-spacing); font-weight:500; }
+  .heading-h-5-semibold { font-size:var(--h5-font-size); font-family:var(--h5-font-family); line-height:var(--h5-line-height); letter-spacing:var(--h5-letter-spacing); font-weight:600; }
+  .heading-h-5-bold     { font-size:var(--h5-font-size); font-family:var(--h5-font-family); line-height:var(--h5-line-height); letter-spacing:var(--h5-letter-spacing); font-weight:700; }
 
-  /* Heading H3 */
-  .heading-h-3-regular {
-    font-size: var(--h3-font-size);
-    font-family: var(--h3-font-family);
-    font-style: normal;
-    line-height: var(--h3-line-height);
-    letter-spacing: var(--h3-letter-spacing);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 400; /* regular */
-  }
+  .heading-h-6-regular  { font-size:var(--h6-font-size); font-family:var(--h6-font-family); line-height:var(--h6-line-height); letter-spacing:var(--h6-letter-spacing); font-weight:400; }
+  .heading-h-6-medium   { font-size:var(--h6-font-size); font-family:var(--h6-font-family); line-height:var(--h6-line-height); letter-spacing:var(--h6-letter-spacing); font-weight:500; }
+  .heading-h-6-semibold { font-size:var(--h6-font-size); font-family:var(--h6-font-family); line-height:var(--h6-line-height); letter-spacing:var(--h6-letter-spacing); font-weight:600; }
+  .heading-h-6-bold     { font-size:var(--h6-font-size); font-family:var(--h6-font-family); line-height:var(--h6-line-height); letter-spacing:var(--h6-letter-spacing); font-weight:700; }
 
-  .heading-h-3-medium {
-    font-size: var(--h3-font-size);
-    font-family: var(--h3-font-family);
-    font-style: normal;
-    line-height: var(--h3-line-height);
-    letter-spacing: var(--h3-letter-spacing);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 500; /* medium */
-  }
+  /* ── Body ─────────────────────────────────────────────────────────────── */
+  .body-text-xl-regular  { font-size:var(--xl-font-size); font-family:var(--xl-font-family); line-height:var(--xl-line-height); font-weight:400; }
+  .body-text-xl-medium   { font-size:var(--xl-font-size); font-family:var(--xl-font-family); line-height:var(--xl-line-height); font-weight:500; }
+  .body-text-xl-semibold { font-size:var(--xl-font-size); font-family:var(--xl-font-family); line-height:var(--xl-line-height); font-weight:600; }
+  .body-text-xl-bold     { font-size:var(--xl-font-size); font-family:var(--xl-font-family); line-height:var(--xl-line-height); font-weight:700; }
 
-  .heading-h-3-semibold {
-    font-size: var(--h3-font-size);
-    font-family: var(--h3-font-family);
-    font-style: normal;
-    line-height: var(--h3-line-height);
-    letter-spacing: var(--h3-letter-spacing);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 600; /* semibold */
-  }
+  .body-text-lg-regular  { font-size:var(--lg-font-size); font-family:var(--lg-font-family); line-height:var(--lg-line-height); font-weight:400; }
+  .body-text-lg-medium   { font-size:var(--lg-font-size); font-family:var(--lg-font-family); line-height:var(--lg-line-height); font-weight:500; }
+  .body-text-lg-semibold { font-size:var(--lg-font-size); font-family:var(--lg-font-family); line-height:var(--lg-line-height); font-weight:600; }
+  .body-text-lg-bold     { font-size:var(--lg-font-size); font-family:var(--lg-font-family); line-height:var(--lg-line-height); font-weight:700; }
 
-  .heading-h-3-bold {
-    font-size: var(--h3-font-size);
-    font-family: var(--h3-font-family);
-    font-style: normal;
-    line-height: var(--h3-line-height);
-    letter-spacing: var(--h3-letter-spacing);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 700; /* bold */
-  }
+  .body-text-md-regular  { font-size:var(--md-font-size); font-family:var(--md-font-family); line-height:var(--md-line-height); font-weight:400; }
+  .body-text-md-medium   { font-size:var(--md-font-size); font-family:var(--md-font-family); line-height:var(--md-line-height); font-weight:500; }
+  .body-text-md-semibold { font-size:var(--md-font-size); font-family:var(--md-font-family); line-height:var(--md-line-height); font-weight:600; }
+  .body-text-md-bold     { font-size:var(--md-font-size); font-family:var(--md-font-family); line-height:var(--md-line-height); font-weight:700; }
 
-  /* Heading H4 */
-  .heading-h-4-regular {
-    font-size: var(--h4-font-size);
-    font-family: var(--h4-font-family);
-    font-style: normal;
-    line-height: var(--h4-line-height);
-    letter-spacing: var(--h4-letter-spacing);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 400; /* regular */
-  }
+  .body-text-sm-regular  { font-size:var(--sm-font-size); font-family:var(--sm-font-family); line-height:var(--sm-line-height); font-weight:400; }
+  .body-text-sm-medium   { font-size:var(--sm-font-size); font-family:var(--sm-font-family); line-height:var(--sm-line-height); font-weight:500; }
+  .body-text-sm-semibold { font-size:var(--sm-font-size); font-family:var(--sm-font-family); line-height:var(--sm-line-height); font-weight:600; }
+  .body-text-sm-bold     { font-size:var(--sm-font-size); font-family:var(--sm-font-family); line-height:var(--sm-line-height); font-weight:700; }
 
-  .heading-h-4-medium {
-    font-size: var(--h4-font-size);
-    font-family: var(--h4-font-family);
-    font-style: normal;
-    line-height: var(--h4-line-height);
-    letter-spacing: var(--h4-letter-spacing);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 500; /* medium */
-  }
+  .body-text-xs-regular  { font-size:var(--xs-font-size); font-family:var(--xs-font-family); line-height:var(--xs-line-height); font-weight:400; }
+  .body-text-xs-medium   { font-size:var(--xs-font-size); font-family:var(--xs-font-family); line-height:var(--xs-line-height); font-weight:500; }
+  .body-text-xs-semibold { font-size:var(--xs-font-size); font-family:var(--xs-font-family); line-height:var(--xs-line-height); font-weight:600; }
+  .body-text-xs-bold     { font-size:var(--xs-font-size); font-family:var(--xs-font-family); line-height:var(--xs-line-height); font-weight:700; }
 
-  .heading-h-4-semibold {
-    font-size: var(--h4-font-size);
-    font-family: var(--h4-font-family);
-    font-style: normal;
-    line-height: var(--h4-line-height);
-    letter-spacing: var(--h4-letter-spacing);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 600; /* semibold */
-  }
-
-  .heading-h-4-bold {
-    font-size: var(--h4-font-size);
-    font-family: var(--h4-font-family);
-    font-style: normal;
-    line-height: var(--h4-line-height);
-    letter-spacing: var(--h4-letter-spacing);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 700; /* bold */
-  }
-
-  /* Heading H5 */
-  .heading-h-5-regular {
-    font-size: var(--h5-font-size);
-    font-family: var(--h5-font-family);
-    font-style: normal;
-    line-height: var(--h5-line-height);
-    letter-spacing: var(--h5-letter-spacing);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 400; /* regular */
-  }
-
-  .heading-h-5-medium {
-    font-size: var(--h5-font-size);
-    font-family: var(--h5-font-family);
-    font-style: normal;
-    line-height: var(--h5-line-height);
-    letter-spacing: var(--h5-letter-spacing);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 500; /* medium */
-  }
-
-  .heading-h-5-semibold {
-    font-size: var(--h5-font-size);
-    font-family: var(--h5-font-family);
-    font-style: normal;
-    line-height: var(--h5-line-height);
-    letter-spacing: var(--h5-letter-spacing);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 600; /* semibold */
-  }
-
-  .heading-h-5-bold {
-    font-size: var(--h5-font-size);
-    font-family: var(--h5-font-family);
-    font-style: normal;
-    line-height: var(--h5-line-height);
-    letter-spacing: var(--h5-letter-spacing);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 700; /* bold */
-  }
-
-  /* Heading H6 */
-  .heading-h-6-regular {
-    font-size: var(--h6-font-size);
-    font-family: var(--h6-font-family);
-    font-style: normal;
-    line-height: var(--h6-line-height);
-    letter-spacing: var(--h6-letter-spacing);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 500; /* regular */
-  }
-
-  .heading-h-6-medium {
-    font-size: var(--h6-font-size);
-    font-family: var(--h6-font-family);
-    font-style: normal;
-    line-height: var(--h6-line-height);
-    letter-spacing: var(--h6-letter-spacing);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 500; /* medium */
-  }
-
-  .heading-h-6-semibold {
-    font-size: var(--h6-font-size);
-    font-family: var(--h6-font-family);
-    font-style: normal;
-    line-height: var(--h6-line-height);
-    letter-spacing: var(--h6-letter-spacing);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 600; /* semibold */
-  }
-
-  .heading-h-6-bold {
-    font-size: var(--h6-font-size);
-    font-family: var(--h6-font-family);
-    font-style: normal;
-    line-height: var(--h6-line-height);
-    letter-spacing: var(--h6-letter-spacing);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 700; /* bold */
-  }
-
-  /* Body XL */
-  .body-text-xl-regular {
-    font-size: var(--xl-font-size);
-    font-family: var(--xl-font-family);
-    font-style: normal;
-    line-height: var(--xl-line-height);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 500; /* regular */
-  }
-
-  .body-text-xl-medium {
-    font-size: var(--xl-font-size);
-    font-family: var(--xl-font-family);
-    font-style: normal;
-    line-height: var(--xl-line-height);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 500; /* medium */
-  }
-
-  .body-text-xl-semibold {
-    font-size: var(--xl-font-size);
-    font-family: var(--xl-font-family);
-    font-style: normal;
-    line-height: var(--xl-line-height);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 600; /* semibold */
-  }
-
-  .body-text-xl-bold {
-    font-size: var(--xl-font-size);
-    font-family: var(--xl-font-family);
-    font-style: normal;
-    line-height: var(--xl-line-height);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 700; /* bold */
-  }
-
-  /* Body LG */
-  .body-text-lg-regular {
-    font-size: var(--lg-font-size);
-    font-family: var(--lg-font-family);
-    font-style: normal;
-    line-height: var(--lg-line-height);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 500; /* regular */
-  }
-
-  .body-text-lg-medium {
-    font-size: var(--lg-font-size);
-    font-family: var(--lg-font-family);
-    font-style: normal;
-    line-height: var(--lg-line-height);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 500; /* medium */
-  }
-
-  .body-text-lg-semibold {
-    font-size: var(--lg-font-size);
-    font-family: var(--lg-font-family);
-    font-style: normal;
-    line-height: var(--lg-line-height);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 600; /* semibold */
-  }
-
-  .body-text-lg-bold {
-    font-size: var(--lg-font-size);
-    font-family: var(--lg-font-family);
-    font-style: normal;
-    line-height: var(--lg-line-height);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 700; /* bold */
-  }
-
-  /* Body MD */
-  .body-text-md-regular {
-    font-size: var(--md-font-size);
-    font-family: var(--md-font-family);
-    font-style: normal;
-    line-height: var(--md-line-height);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 500; /* regular */
-  }
-
-  .body-text-md-medium {
-    font-size: var(--md-font-size);
-    font-family: var(--md-font-family);
-    font-style: normal;
-    line-height: var(--md-line-height);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 500; /* medium */
-  }
-
-  .body-text-md-semibold {
-    font-size: var(--md-font-size);
-    font-family: var(--md-font-family);
-    font-style: normal;
-    line-height: var(--md-line-height);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 600; /* semibold */
-  }
-
-  .body-text-md-bold {
-    font-size: var(--md-font-size);
-    font-family: var(--md-font-family);
-    font-style: normal;
-    line-height: var(--md-line-height);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 700; /* bold */
-  }
-
-  /* Body SM */
-  .body-text-sm-regular {
-    font-size: var(--sm-font-size);
-    font-family: var(--sm-font-family);
-    font-style: normal;
-    line-height: var(--sm-line-height);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 500; /* regular */
-  }
-
-  .body-text-sm-medium {
-    font-size: var(--sm-font-size);
-    font-family: var(--sm-font-family);
-    font-style: normal;
-    line-height: var(--sm-line-height);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 500; /* medium */
-  }
-
-  .body-text-sm-semibold {
-    font-size: var(--sm-font-size);
-    font-family: var(--sm-font-family);
-    font-style: normal;
-    line-height: var(--sm-line-height);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 600; /* semibold */
-  }
-
-  .body-text-sm-bold {
-    font-size: var(--sm-font-size);
-    font-family: var(--sm-font-family);
-    font-style: normal;
-    line-height: var(--sm-line-height);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 700; /* bold */
-  }
-
-  /* Body XS */
-  .body-text-xs-regular {
-    font-size: var(--xs-font-size);
-    font-family: var(--xs-font-family);
-    font-style: normal;
-    line-height: var(--xs-line-height);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 500; /* regular */
-  }
-
-  .body-text-xs-medium {
-    font-size: var(--xs-font-size);
-    font-family: var(--xs-font-family);
-    font-style: normal;
-    line-height: var(--xs-line-height);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 500; /* medium */
-  }
-
-  .body-text-xs-semibold {
-    font-size: var(--xs-font-size);
-    font-family: var(--xs-font-family);
-    font-style: normal;
-    line-height: var(--xs-line-height);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 600; /* semibold */
-  }
-
-  .body-text-xs-bold {
-    font-size: var(--xs-font-size);
-    font-family: var(--xs-font-family);
-    font-style: normal;
-    line-height: var(--xs-line-height);
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 700; /* bold */
-  }
-
-  .text-button-small {
-    font-size: var(--btn-sm-font-size);
-    font-family: var(--btn-sm-font-family);
-    font-style: normal;
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 600;
-  }
-
-  .text-button-medium {
-    font-size: var(--btn-md-font-size);
-    font-family: var(--btn-md-font-family);
-    font-style: normal;
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 500;
-  }
-
-  .text-title-small {
-    font-size: var(--title-sm-font-size);
-    font-family: var(--title-sm-font-family);
-    font-style: normal;
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 500;
-    letter-spacing: 1.12px;
-  }
-
-  .text-title-medium {
-    font-size: var(--title-md-font-size);
-    font-family: var(--title-md-font-family);
-    font-style: normal;
-    text-decoration: none;
-    text-transform: none;
-    font-weight: 500;
-  }
+  .text-button-small  { font-size:var(--btn-sm-font-size); font-family:var(--btn-sm-font-family); font-weight:600; }
+  .text-button-medium { font-size:var(--btn-md-font-size); font-family:var(--btn-md-font-family); font-weight:500; }
+  .text-title-small   { font-size:var(--title-sm-font-size); font-family:var(--title-sm-font-family); font-weight:500; letter-spacing:1.12px; }
+  .text-title-medium  { font-size:var(--title-md-font-size); font-family:var(--title-md-font-family); font-weight:500; }
 }
 
-/******** Chrome, Safari, Opera and Edge Chromium styles ********/
-/* slider track */
-input[type="range"]::-webkit-slider-runnable-track {
-  background-color: var(--color-primary-500-base);
-  border-radius: 0.5rem;
-  height: 2px;
-}
+/* ─── Range Input ────────────────────────────────────────────────────────── */
 
-/* slider thumb */
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none; /* Override default look */
-  appearance: none;
-  margin-top: -3.5px; /* Centers thumb on the track */
-  background-color: var(--color-base-white);
-  border-radius: 0.5rem;
-  height: 8px;
-  width: 8px;
-  outline: 2px solid var(--color-primary-500-base);
-}
+input[type="range"]::-webkit-slider-runnable-track { background-color:var(--color-primary-500-base); border-radius:0.5rem; height:2px; }
+input[type="range"]::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; margin-top:-3.5px; background-color:var(--color-base-white); border-radius:0.5rem; height:8px; width:8px; outline:2px solid var(--color-primary-500-base); }
+input[type="range"]::-moz-range-track { background-color:var(--color-primary-500-base); border-radius:0.5rem; height:2px; }
+input[type="range"]::-moz-range-thumb { background-color:var(--color-base-white); border-radius:0.5rem; height:8px; width:8px; border:2px solid var(--color-primary-500-base); box-sizing:border-box; cursor:pointer; }
 
-/*********** Firefox styles ***********/
-/* Firefox track */
-input[type="range"]::-moz-range-track {
-  background-color: var(--color-primary-500-base);
-  border-radius: 0.5rem;
-  height: 2px;
-}
-
-/* Firefox thumb */
-input[type="range"]::-moz-range-thumb {
-  background-color: var(--color-base-white);
-  border-radius: 0.5rem;
-  height: 8px;
-  width: 8px;
-  border: 2px solid var(--color-primary-500-base);
-  box-sizing: border-box;
-  cursor: pointer;
-}
-
-.scrollbar::-webkit-scrollbar-track {
-  width: 2px;
-  border-radius: 0.5rem;
-  background-color: var(--color-base-white);
-  border: none;
-  margin-right: 0.5rem;
-}
-
-.scrollbar::-webkit-scrollbar {
-  width: 2px;
-  background-color: var(--color-base-white);
-  margin-right: 0.5rem;
-  margin-top: 0.5rem;
-  border: none;
-}
-
-.scrollbar::-webkit-scrollbar-thumb {
-  border-radius: 0.5rem;
-  background-color: var(--color-primary-500-base);
-  border: none;
-  background-clip: padding-box;
-}
+/* ─── Keyframes ──────────────────────────────────────────────────────────── */
 
 @keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .animate-fade-up {
   opacity: 0;
   animation: fade-up 0.5s ease forwards;
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(124,58,237,0.15) 50%, transparent 100%);
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
 }

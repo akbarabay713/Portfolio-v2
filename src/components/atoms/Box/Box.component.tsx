@@ -13,7 +13,7 @@ const Raw = React.forwardRef(function Box(
   props: BoxOwnProps,
   ref: React.Ref<Element>,
 ) {
-  const Element = (props.as || defaultElement) as any;
+  const Element = (props.as || defaultElement) as React.ElementType;
   return <Element ref={ref} {...props} as={undefined} />;
 });
 Raw.displayName = "Raw";

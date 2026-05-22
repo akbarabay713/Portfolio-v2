@@ -1,36 +1,44 @@
 import Body from "@/components/atoms/Body";
 import Box from "@/components/atoms/Box";
-import Heading from "@/components/atoms/Heading/Heading.component";
 import { cn } from "@/lib/utils.lib";
+import React from "react";
 
+type bodyVariant = "md" | "xl" | "lg" | "sm" | "xs";
 interface TitleProps {
   text: string;
   subtext?: string;
   hasDivider?: boolean;
-  className?: string;
+  textVariant?: bodyVariant;
+  textClass?: string;
+  subtextClass?: string;
+  as?: React.ElementType;
 }
 const Title = ({
   text,
   subtext,
   hasDivider = false,
-  className,
+  textVariant = "md",
+  textClass,
+  subtextClass,
+  as = "p",
 }: TitleProps) => {
   return (
     <Box>
-      <Heading
-        variant="h1"
-        weight="semibold"
-        className={cn(className, "text-2xl")}
-      >
-        {text}
-      </Heading>
+      <Box className="flex gap-1">
+        {hasDivider && <Box className="bg-done-700 w-px h-auto"></Box>}
+        <Body
+          as={as}
+          variant={textVariant}
+          weight="semibold"
+          className={cn(textClass, "text-2xl")}
+        >
+          {text}
+        </Body>
+      </Box>
 
       {subtext && (
-        <Body variant="lg" className="mt-4 max-w-2xl">
-          I’m a fullstack developer with a passion for building modern web
-          experiences that are fast, intuitive, and thoughtfully designed.
-          Focused on frontend development, clean UI, smooth interactions, and
-          creating products people genuinely enjoy using.
+        <Body variant="lg" className={cn(subtextClass, " max-w-2xl")}>
+          {subtext}
         </Body>
       )}
     </Box>

@@ -1,18 +1,19 @@
 "use client";
 
-import Body from "@/components/atoms/Body";
-import Heading from "@/components/atoms/Heading";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
-
-const Home = () => {
+import { ArrowRight } from "lucide-react";
+import { IcGithub, IcLinkedin } from "@/components/atoms/Icons/SocialIcons";
+import { fadeUpVariants } from "@/constants";
+import profileImg from "@/assets/images/akbarr.webp";
+export default function Home() {
   const [text] = useTypewriter({
     words: [
-      "Hey, I’m Akbar 👋",
+      "Hey, I'm Akbar 👋",
       "I build things for the web",
-      "Fullstack Developer & Problem Solver",
+      "Fullstack Developer",
     ],
     loop: true,
     delaySpeed: 2500,
@@ -21,91 +22,136 @@ const Home = () => {
   });
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen text-center px-6">
+    <main className="relative flex flex-col items-center justify-center min-h-screen text-center px-6 overflow-hidden">
       {/* Avatar */}
       <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial="initial"
+        animate="animate"
+        variants={fadeUpVariants}
         transition={{ duration: 0.6 }}
-        className="mb-10"
+        className="mb-8"
       >
-        <Image
-          src="/images/avatar.png"
-          alt="Akbar"
-          width={120}
-          height={120}
-          className="rounded-full border border-neutral-200 shadow-sm"
-        />
+        <div className="relative">
+          <div className="absolute inset-0 rounded-full bg-violet-500/20 blur-2xl scale-150" />
+          <Image
+            src={profileImg}
+            alt="Akbar"
+            width={108}
+            height={108}
+            className="relative rounded-full border border-gray-200 dark:border-white/10 shadow-xl ring-2 ring-violet-500/30"
+          />
+        </div>
       </motion.div>
 
+      {/* Status pill */}
       <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial="initial"
+        animate="animate"
+        variants={fadeUpVariants}
+        transition={{ duration: 0.6, delay: 0.05 }}
+        className="mb-6"
+      >
+        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 text-xs font-medium text-violet-600 dark:text-violet-300 tracking-wide">
+          <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+          Available for opportunities
+        </span>
+      </motion.div>
+
+      {/* Typewriter heading */}
+      <motion.div
+        initial="initial"
+        animate="animate"
+        variants={fadeUpVariants}
         transition={{ duration: 0.6, delay: 0.15 }}
-        className="max-w-4xl mb-8"
+        className="max-w-4xl mb-6"
       >
-        <Heading variant="h1" weight="semibold" className="text-4xl!">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight">
           {text}
-          <Cursor cursorColor="green" />
-        </Heading>
+          <Cursor cursorColor="#8b5cf6" />
+        </h1>
       </motion.div>
 
-      {/* Professional Intro */}
-      {/* <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.3 }}
-        className="max-w-2xl mb-14"
-      >
-        <Body
-          variant="lg"
-          weight="regular"
-          className="text-neutral-600 leading-8 text-lg md:text-xl"
-        >
-          I enjoy building modern web experiences that are fast, intuitive, and
-          thoughtfully designed.
-        </Body>
-
-        <Body
-          variant="lg"
-          weight="regular"
-          className="text-neutral-500 leading-8 text-lg md:text-xl mt-4"
-        >
-          Focused on frontend development, clean UI, smooth interactions, and
-          creating products people genuinely enjoy using.
-        </Body>
-      </motion.div> */}
-
-      {/* CTA Links */}
+      {/* Subtitle */}
       <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.45 }}
-        className="flex flex-wrap items-center justify-center gap-6"
+        initial="initial"
+        animate="animate"
+        variants={fadeUpVariants}
+        transition={{ duration: 0.6, delay: 0.25 }}
+        className="max-w-xl mb-12"
       >
-        <Link
-          href="/about"
-          className="px-5 py-2 rounded-full border border-neutral-200 hover:border-neutral-400 hover:bg-neutral-50 transition-all duration-300"
-        >
-          More About Me
-        </Link>
+        <p className="text-base md:text-lg text-gray-500 dark:text-white/50 leading-relaxed">
+          I craft fast, intuitive, and beautifully designed web experiences —
+          focused on clean code and products people love to use.
+        </p>
+      </motion.div>
 
+      {/* CTAs */}
+      <motion.div
+        initial="initial"
+        animate="animate"
+        variants={fadeUpVariants}
+        transition={{ duration: 0.6, delay: 0.35 }}
+        className="flex flex-wrap items-center justify-center gap-4 mb-16"
+      >
         <Link
           href="/projects"
-          className="px-5 py-2 rounded-full border border-neutral-200 hover:border-neutral-400 hover:bg-neutral-50 transition-all duration-300"
+          className="group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-violet-600 hover:bg-violet-500 text-white font-semibold text-sm transition-all duration-300 shadow-lg shadow-violet-600/25 hover:shadow-violet-500/40"
         >
-          What I’ve Built
+          View my work
+          <ArrowRight
+            size={16}
+            className="transition-transform group-hover:translate-x-0.5"
+          />
         </Link>
-
         <Link
           href="/contact"
-          className="px-5 py-2 rounded-full bg-neutral-900 text-white hover:bg-neutral-700 transition-all duration-300"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 hover:bg-gray-50 dark:hover:bg-white/10 text-gray-700 dark:text-white/80 hover:text-gray-900 dark:hover:text-white font-semibold text-sm transition-all duration-300"
         >
-          Let’s Talk
+          Let&apos;s talk
         </Link>
+      </motion.div>
+
+      {/* Social links */}
+      <motion.div
+        initial="initial"
+        animate="animate"
+        variants={fadeUpVariants}
+        transition={{ duration: 0.6, delay: 0.45 }}
+        className="flex items-center gap-5"
+      >
+        <a
+          href="https://github.com/akbarabay713"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-400 dark:text-white/40 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
+          aria-label="GitHub"
+        >
+          <IcGithub width={24} height={24} />
+        </a>
+        <div className="w-px h-4 bg-gray-200 dark:bg-white/10" />
+        <a
+          href="https://www.linkedin.com/in/akbarabu/?locale=en_US"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-400 dark:text-white/40 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
+          aria-label="LinkedIn"
+        >
+          <IcLinkedin width={20} height={20} />
+        </a>
+      </motion.div>
+
+      {/* Keyboard shortcut hint */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 1 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+      >
+        <kbd className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-[11px] font-mono text-gray-400 dark:text-gray-500">
+          ⌘K{" "}
+          <span className="text-gray-300 dark:text-gray-600">to navigate</span>
+        </kbd>
       </motion.div>
     </main>
   );
-};
-
-export default Home;
+}

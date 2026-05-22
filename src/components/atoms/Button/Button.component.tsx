@@ -99,7 +99,7 @@ type PropsToOmit<E extends React.ElementType, P> = keyof (AsProp<E> & P);
 
 type PolymorphicComponentProps<
   E extends React.ElementType,
-  Props = {},
+  Props = object,
 > = React.PropsWithChildren<Props & AsProp<E>> &
   Omit<React.ComponentPropsWithoutRef<E>, PropsToOmit<E, Props>>;
 
@@ -129,7 +129,7 @@ type ButtonComponent = <E extends React.ElementType = "button">(
 /* -------------------------------------------------------------------------- */
 
 const ButtonBase = React.forwardRef(
-  (props: ButtonProps, ref: React.ForwardedRef<any>) => {
+  (props: ButtonProps, ref: React.ForwardedRef<HTMLElement>) => {
     const {
       as,
       children,
@@ -146,7 +146,7 @@ const ButtonBase = React.forwardRef(
 
     return (
       <Component
-        ref={ref}
+        ref={ref as any}
         className={cn(
           buttonVariants({
             className,

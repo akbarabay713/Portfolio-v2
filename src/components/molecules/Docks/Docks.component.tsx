@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { motion, useMotionValue } from "framer-motion";
-import { Code2, Mail, Moon, Pencil, Send, Sun, UserRound } from "lucide-react";
+import { Code2, Mail, Moon, Pencil, Sun, UserRound } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import Box from "@/components/atoms/Box";
@@ -18,8 +18,10 @@ const Dock = () => {
 
   const [mounted, setMounted] = useState(false);
 
+  // Defer mount flag to next tick to avoid synchronous setState inside effect
   useEffect(() => {
-    setMounted(true);
+    const id = setTimeout(() => setMounted(true), 0);
+    return () => clearTimeout(id);
   }, []);
 
   const toggleTheme = () => {

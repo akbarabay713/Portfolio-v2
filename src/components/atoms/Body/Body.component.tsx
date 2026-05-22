@@ -149,7 +149,7 @@ export interface BodyProps
 
 const PrimitiveBody = forwardRef<Element, BoxRF<BodyProps>>((props, ref) => {
   const {
-    as: Element = "p" as any,
+    as: Element = "p" as React.ElementType,
     children,
     className,
     variant,

@@ -1,9 +1,17 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Docks from "@/components/molecules/Docks/Docks.component";
 // import Footer from "@/components/layouts/Footer.component";
-import { proximaNovaCondesedFont, proximaNovaFont } from "@/lib/fonts.lib";
+import PageTransition from "@/components/layouts/PageTransition.component";
+import CommandPalette from "@/components/organisms/CommandPalette/CommandPalette.component";
 import ThemeProvider from "@/Providers/Theme-provider";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Akbar | Software Developer",
@@ -18,12 +26,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${proximaNovaCondesedFont.variable} ${proximaNovaFont.variable} antialiased`}
-      >
+      <body className={`${inter.variable} ${inter.className} antialiased`}>
         <ThemeProvider>
           <Docks />
-          {children}
+          <CommandPalette />
+          <PageTransition>{children}</PageTransition>
           {/* <Footer /> */}
         </ThemeProvider>
       </body>

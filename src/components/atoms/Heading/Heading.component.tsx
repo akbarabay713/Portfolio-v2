@@ -174,7 +174,7 @@ export interface HeadingProps
 const PrimitiveHeading = forwardRef<Element, BoxRF<HeadingProps>>(
   (props, ref) => {
     const {
-      as: Element = "h1" as any,
+      as: Element = "h1" as React.ElementType,
       children,
       className,
       variant,
