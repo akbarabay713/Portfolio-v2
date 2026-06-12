@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
+import { navItems, socialLinks, contactEmail } from "@/constants";
 
 interface CommandItem {
   id: string;
@@ -124,20 +125,31 @@ export function useCommandItems(): CommandItem[] {
   const router = useRouter();
 
   return useMemo(() => {
-    const pages: CommandItem[] = [
-      { id: "nav-home",     label: "Home",     category: "Navigation", action: () => router.push("/") },
-      { id: "nav-about",    label: "About",    category: "Navigation", action: () => router.push("/about") },
-      { id: "nav-projects", label: "Projects", category: "Navigation", action: () => router.push("/projects") },
-      { id: "nav-blog",     label: "Blog",     category: "Navigation", action: () => router.push("/blog") },
-      { id: "nav-contact",  label: "Contact",  category: "Navigation", action: () => router.push("/contact") },
+    const pages: CommandItem[] = navItems.map((item) => ({
+      id: `nav-${item.href}`,
+      label: item.label,
+      category: "Navigation",
+      action: () => router.push(item.href),
+    }));
+
+    const social: CommandItem[] = socialLinks.map((link) => ({
+      id: `social-${link.label.toLowerCase()}`,
+      label: link.label,
+      category: "Social",
+      action: () => window.open(link.href, "_blank", "noopener,noreferrer"),
+    }));
+
+    const actions: CommandItem[] = [
+      {
+        id: "action-email",
+        label: "Send an email",
+        category: "Actions",
+        action: () => {
+          window.location.href = `mailto:${contactEmail}`;
+        },
+      },
     ];
 
-    const social: CommandItem[] = [
-      { id: "social-github",   label: "GitHub",   category: "Social", action: () => window.open("https://github.com/pmint05", "_blank") },
-      { id: "social-linkedin", label: "LinkedIn", category: "Social", action: () => window.open("https://www.linkedin.com/in/pmint05/", "_blank") },
-      { id: "social-x",        label: "X / Twitter", category: "Social", action: () => window.open("https://x.com/pmint05", "_blank") },
-    ];
-
-    return [...pages, ...social];
+    return [...pages, ...social, ...actions];
   }, [router]);
 }

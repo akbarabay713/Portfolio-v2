@@ -3,7 +3,16 @@
 import { useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, ArrowRight, CornerDownLeft } from "lucide-react";
+
+import Input from "@/components/atoms/Input";
 import { useCommandPalette, useCommandItems } from "@/hooks/useCommandPalette";
+import { cn } from "@/lib/utils.lib";
+
+const Kbd = ({ children }: { children: React.ReactNode }) => (
+  <kbd className="inline-flex items-center gap-1 rounded border border-line bg-elevated px-1.5 py-0.5 font-mono text-[10px] text-faint">
+    {children}
+  </kbd>
+);
 
 const CommandPalette = () => {
   const items = useCommandItems();
@@ -21,27 +30,20 @@ const CommandPalette = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
 
-  // Auto-focus input on open
   useEffect(() => {
-    if (isOpen) {
-      setTimeout(() => inputRef.current?.focus(), 50);
-    }
+    if (isOpen) setTimeout(() => inputRef.current?.focus(), 50);
   }, [isOpen]);
 
-  // Scroll selected item into view
   useEffect(() => {
     if (!listRef.current) return;
-    const selected = listRef.current.querySelector("[data-selected='true']");
-    if (selected) {
-      selected.scrollIntoView({ block: "nearest" });
-    }
+    listRef.current
+      .querySelector("[data-selected='true']")
+      ?.scrollIntoView({ block: "nearest" });
   }, [selectedIndex]);
 
-  // Group items by category
   const grouped = filteredItems.reduce<Record<string, typeof filteredItems>>(
     (acc, item) => {
-      if (!acc[item.category]) acc[item.category] = [];
-      acc[item.category].push(item);
+      (acc[item.category] ??= []).push(item);
       return acc;
     },
     {},
@@ -53,57 +55,57 @@ const CommandPalette = () => {
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.15 }}
-            className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm"
+            className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm"
             onClick={close}
           />
 
-          {/* Modal */}
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Command palette"
             initial={{ opacity: 0, scale: 0.96, y: -10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: -10 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="fixed top-[20%] left-1/2 -translate-x-1/2 z-50 w-[90vw] max-w-lg"
+            className="fixed left-1/2 top-[20%] z-50 w-[90vw] max-w-lg -translate-x-1/2"
           >
-            <div className="bg-white dark:bg-[#111118] border border-gray-200 dark:border-white/10 rounded-2xl shadow-2xl overflow-hidden">
-              {/* Search input */}
-              <div className="flex items-center gap-3 px-4 py-3 border-b border-gray-100 dark:border-white/5">
-                <Search size={18} className="text-gray-400 dark:text-gray-500 shrink-0" />
-                <input
+            <div className="overflow-hidden rounded-xl border border-line bg-surface shadow-dialog">
+              {/* Search */}
+              <div className="relative border-b border-line p-3">
+                <Search
+                  size={18}
+                  className="pointer-events-none absolute left-7 top-1/2 -translate-y-1/2 text-faint"
+                />
+                <Input
                   ref={inputRef}
-                  type="text"
-                  placeholder="Search pages, links..."
+                  type="search"
+                  placeholder="Search pages, links, actions…"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  className="flex-1 bg-transparent text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 outline-none"
                 />
-                <kbd className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-[10px] font-mono text-gray-400 dark:text-gray-500">
-                  ESC
-                </kbd>
               </div>
 
               {/* Results */}
-              <div ref={listRef} className="max-h-[320px] overflow-y-auto p-2">
+              <div ref={listRef} className="max-h-80 overflow-y-auto p-2">
                 {filteredItems.length === 0 ? (
-                  <div className="py-8 text-center text-sm text-gray-400 dark:text-gray-500">
+                  <div className="py-8 text-center text-sm text-faint">
                     No results found
                   </div>
                 ) : (
                   Object.entries(grouped).map(([category, categoryItems]) => (
                     <div key={category} className="mb-2 last:mb-0">
-                      <p className="text-[11px] font-medium text-gray-400 dark:text-gray-500 uppercase tracking-wider px-3 py-1.5">
+                      <p className="px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-faint">
                         {category}
                       </p>
                       {categoryItems.map((item) => {
                         flatIndex++;
-                        const isSelected = flatIndex === selectedIndex;
                         const currentIndex = flatIndex;
+                        const isSelected = currentIndex === selectedIndex;
                         return (
                           <button
                             key={item.id}
@@ -113,15 +115,16 @@ const CommandPalette = () => {
                               setSelectedIndex(currentIndex);
                               executeSelected();
                             }}
-                            className={`w-full flex items-center justify-between gap-3 px-3 py-2.5 rounded-xl text-sm transition-colors ${
+                            className={cn(
+                              "flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors",
                               isSelected
-                                ? "bg-violet-500/10 text-violet-600 dark:text-violet-300"
-                                : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5"
-                            }`}
+                                ? "bg-accent-dim text-accent"
+                                : "text-muted hover:bg-elevated",
+                            )}
                           >
-                            <span className="font-medium">{item.label}</span>
+                            <span className="font-semibold">{item.label}</span>
                             {isSelected && (
-                              <ArrowRight size={14} className="text-violet-500 shrink-0" />
+                              <ArrowRight size={14} className="shrink-0 text-accent" />
                             )}
                           </button>
                         );
@@ -131,21 +134,18 @@ const CommandPalette = () => {
                 )}
               </div>
 
-              {/* Footer hints */}
-              <div className="flex items-center justify-between px-4 py-2.5 border-t border-gray-100 dark:border-white/5 text-[11px] text-gray-400 dark:text-gray-500">
+              {/* Footer */}
+              <div className="flex items-center justify-between border-t border-line px-4 py-2.5 text-[11px] text-faint">
                 <div className="flex items-center gap-3">
                   <span className="flex items-center gap-1">
-                    <kbd className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 font-mono">↑↓</kbd>
-                    Navigate
+                    <Kbd>↑↓</Kbd> Navigate
                   </span>
                   <span className="flex items-center gap-1">
-                    <CornerDownLeft size={12} />
-                    Select
+                    <CornerDownLeft size={12} /> Select
                   </span>
                 </div>
                 <span className="flex items-center gap-1">
-                  <kbd className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 font-mono">ESC</kbd>
-                  Close
+                  <Kbd>ESC</Kbd> Close
                 </span>
               </div>
             </div>

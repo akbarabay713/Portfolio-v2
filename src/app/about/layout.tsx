@@ -1,10 +1,19 @@
 import type { Metadata } from "next";
 
+const description =
+  "Learn about Akbar's background, skills, tech stack, and professional experience as a fullstack software developer.";
+
 export const metadata: Metadata = {
-  title: "About | Akbar — Software Developer",
-  description: "Learn about Akbar's background, skills, tech stack, and professional experience in software development.",
+  title: "About",
+  description,
+  alternates: { canonical: "/about" },
+  openGraph: { title: "About | Akbar", description, url: "/about" },
 };
 
-export default function AboutLayout({ children }: { children: React.ReactNode }) {
+export default function AboutLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return children;
 }

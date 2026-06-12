@@ -1,29 +1,30 @@
 "use client";
 
 import Link from "next/link";
-import { navItems, socialLinks } from "@/constants";
+import { navItems, socialLinks, siteConfig } from "@/constants";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative z-10 border-t border-gray-200 dark:border-white/5 pb-28">
-      <div className="max-w-5xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+    <footer className="relative z-10 border-t border-line pb-28">
+      <div className="mx-auto max-w-5xl px-4 py-12">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           {/* Brand */}
           <div>
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
-              Akbar<span className="text-violet-500">.</span>
+            <h3 className="mb-2 text-lg font-bold text-content">
+              {siteConfig.name}
+              <span className="text-accent">.</span>
             </h3>
-            <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed max-w-xs">
-              Software developer crafting modern web experiences with clean code
-              and thoughtful design.
+            <p className="max-w-xs text-sm leading-relaxed text-muted">
+              {siteConfig.jobTitle} crafting modern web experiences with clean
+              code and thoughtful design.
             </p>
           </div>
 
-          {/* Quick Links */}
+          {/* Pages */}
           <div>
-            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-4 uppercase tracking-wider">
+            <h4 className="mb-4 text-sm font-bold uppercase tracking-wider text-content">
               Pages
             </h4>
             <ul className="space-y-2">
@@ -31,7 +32,7 @@ const Footer = () => {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-gray-500 dark:text-gray-400 hover:text-violet-500 dark:hover:text-violet-400 transition-colors"
+                    className="text-sm text-muted transition-colors hover:text-accent"
                   >
                     {item.label}
                   </Link>
@@ -40,9 +41,9 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Social */}
+          {/* Connect */}
           <div>
-            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-4 uppercase tracking-wider">
+            <h4 className="mb-4 text-sm font-bold uppercase tracking-wider text-content">
               Connect
             </h4>
             <div className="flex flex-wrap gap-3">
@@ -53,7 +54,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-[#111118] border border-gray-200 dark:border-white/5 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-violet-500 dark:hover:text-violet-400 hover:border-violet-500/30 transition-all"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-elevated text-muted transition-colors hover:bg-card-hover hover:text-accent"
                 >
                   <social.icon width={18} height={18} />
                 </a>
@@ -62,14 +63,11 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-10 pt-6 border-t border-gray-100 dark:border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-gray-400 dark:text-gray-500">
-            &copy; {currentYear} Akbar. All rights reserved.
+        <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-line pt-6 sm:flex-row">
+          <p className="text-xs text-faint">
+            &copy; {currentYear} {siteConfig.name}. All rights reserved.
           </p>
-          <p className="text-xs text-gray-400 dark:text-gray-500">
-            Built with Next.js &bull; Designed with ♥
-          </p>
+          <p className="text-xs text-faint">Built with Next.js &bull; Designed with ♥</p>
         </div>
       </div>
     </footer>

@@ -2,111 +2,73 @@
 
 import { useMemo, useState, useEffect } from "react";
 import { motion, useMotionValue } from "framer-motion";
-import { Code2, Mail, Moon, Pencil, Sun, UserRound } from "lucide-react";
+import { Code2, Mail, Moon, Pencil, Sun, UserRound, Home } from "lucide-react";
 import { useTheme } from "next-themes";
+import { usePathname } from "next/navigation";
 
 import Box from "@/components/atoms/Box";
 import DockItem from "@/components/atoms/Dock";
-import { DockItemProps } from "@/components/atoms/Dock/Dock.component";
 import IcGithub from "@/components/atoms/Icons/IcGithub";
 import IcLinkedin from "@/components/atoms/Icons/IcLinkedin";
+import { siteConfig } from "@/constants";
+
+interface NavDock {
+  tooltip: string;
+  icon: React.ReactNode;
+  href: string;
+}
 
 const Dock = () => {
   const mouseX = useMotionValue<number>(Infinity);
-
-  const { theme, setTheme } = useTheme();
-
+  const pathname = usePathname();
+  const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  // Defer mount flag to next tick to avoid synchronous setState inside effect
+  // Defer mount flag to avoid hydration mismatch on the theme toggle.
   useEffect(() => {
     const id = setTimeout(() => setMounted(true), 0);
     return () => clearTimeout(id);
   }, []);
 
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
+  const isDark = resolvedTheme === "dark";
+  const toggleTheme = () => setTheme(isDark ? "light" : "dark");
 
-  const navigationItems: Omit<DockItemProps, "mouseX">[] = useMemo(
+  const navigationItems: NavDock[] = useMemo(
     () => [
-      {
-        tooltip: "Root",
-        icon: <span className="text-lg">~/</span>,
-        href: "/",
-      },
-      {
-        tooltip: "About",
-        icon: <UserRound size={18} className="text-black dark:text-white" />,
-        href: "/about",
-      },
-      {
-        tooltip: "Projects",
-        icon: <Code2 size={18} className="text-black dark:text-white" />,
-        href: "/projects",
-      },
-      {
-        tooltip: "Blog",
-        icon: <Pencil size={18} className="text-black dark:text-white" />,
-        href: "/blog",
-      },
-      {
-        tooltip: "Contact",
-        icon: <Mail size={18} className="text-black dark:text-white" />,
-        href: "/contact",
-      },
+      { tooltip: "Home", icon: <Home size={18} />, href: "/" },
+      { tooltip: "About", icon: <UserRound size={18} />, href: "/about" },
+      { tooltip: "Projects", icon: <Code2 size={18} />, href: "/projects" },
+      { tooltip: "Blog", icon: <Pencil size={18} />, href: "/blog" },
+      { tooltip: "Contact", icon: <Mail size={18} />, href: "/contact" },
     ],
     [],
   );
 
-  const socialItems: Omit<DockItemProps, "mouseX">[] = useMemo(
+  const socialItems: NavDock[] = useMemo(
     () => [
       {
         tooltip: "GitHub",
-        icon: (
-          <IcGithub
-            width={22}
-            height={22}
-            className="text-black dark:text-white"
-          />
-        ),
-        href: "https://github.com/akbarabay713",
+        icon: <IcGithub width={20} height={20} />,
+        href: siteConfig.links.github,
       },
       {
         tooltip: "LinkedIn",
-        icon: (
-          <IcLinkedin
-            width={22}
-            height={22}
-            className="text-black dark:text-white"
-          />
-        ),
-        href: "https://www.linkedin.com/in/akbarabu/",
+        icon: <IcLinkedin width={20} height={20} />,
+        href: siteConfig.links.linkedin,
       },
     ],
     [],
   );
 
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
+
   return (
-    <motion.div
-      onMouseMove={(event) => {
-        mouseX.set(event.pageX);
-      }}
-      onMouseLeave={() => {
-        mouseX.set(Infinity);
-      }}
-      className="
-        fixed bottom-4 left-1/2 z-50
-        flex items-end gap-2
-        -translate-x-1/2
-        rounded-full
-        border border-white/10
-   
-        px-3 py-2
-        backdrop-blur-2xl
-        shadow-[0_0_40px_rgba(0,0,0,0.12)]
-        dark:shadow-[0_0_40px_rgba(0,0,0,0.3)]
-      "
+    <motion.nav
+      aria-label="Primary"
+      onMouseMove={(event) => mouseX.set(event.pageX)}
+      onMouseLeave={() => mouseX.set(Infinity)}
+      className="fixed bottom-4 left-1/2 z-50 flex -translate-x-1/2 items-end gap-2 rounded-full border border-line bg-surface/80 px-3 py-2 shadow-dialog backdrop-blur-2xl"
     >
       {navigationItems.map((item) => (
         <DockItem
@@ -115,6 +77,7 @@ const Dock = () => {
           tooltip={item.tooltip}
           icon={item.icon}
           href={item.href}
+          active={isActive(item.href)}
         />
       ))}
 
@@ -135,23 +98,15 @@ const Dock = () => {
       {mounted && (
         <DockItem
           mouseX={mouseX}
-          tooltip={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-          icon={
-            theme === "dark" ? (
-              <Sun size={18} className="text-black dark:text-white" />
-            ) : (
-              <Moon size={18} className="text-black dark:text-white" />
-            )
-          }
+          tooltip={`Switch to ${isDark ? "light" : "dark"} mode`}
+          icon={isDark ? <Sun size={18} /> : <Moon size={18} />}
           onClick={toggleTheme}
         />
       )}
-    </motion.div>
+    </motion.nav>
   );
 };
 
-const Divider = () => {
-  return <Box className="mx-1 h-10 w-px bg-black/10 dark:bg-white/10" />;
-};
+const Divider = () => <Box className="mx-1 h-10 w-px bg-line" />;
 
 export default Dock;

@@ -1,115 +1,97 @@
 "use client";
 
-import Body from "@/components/atoms/Body";
-import Box from "@/components/atoms/Box/Box.component";
-import Button from "@/components/atoms/Button";
-import Heading from "@/components/atoms/Heading/Heading.component";
-import ExperienceTimeline from "@/components/molecules/ExperienceTimeline";
-import { bio, experiences, fadeUpVariants, techStack } from "@/constants";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { Download } from "lucide-react";
+
+import Button from "@/components/atoms/Button";
+import Tag from "@/components/atoms/Tag";
+import SectionHeader from "@/components/molecules/SectionHeader";
+import ExperienceTimeline from "@/components/molecules/ExperienceTimeline";
 import { TechIcon } from "@/components/atoms/Icons/TechIcon";
+import { bio, experiences, fadeUpVariants, techStack } from "@/constants";
 
 export default function AboutPage() {
   return (
-    <main id="about" className="py-16 px-4 max-w-5xl mx-auto">
-      <motion.div
-        initial="initial"
-        animate="animate"
-        variants={fadeUpVariants}
-        transition={{ duration: 0.6 }}
-      >
-        <Heading className="mb-12">
-          About me<span className="text-violet-500">.</span>
-        </Heading>
-      </motion.div>
+    <main className="mx-auto max-w-5xl px-4 py-16 pb-32">
+      <SectionHeader title="About me" />
 
       <motion.div
         initial="initial"
         animate="animate"
         variants={fadeUpVariants}
         transition={{ duration: 0.6, delay: 0.15 }}
+        className="mb-24 flex flex-col gap-8 md:flex-row lg:gap-16"
       >
-        <Box className="flex flex-col md:flex-row gap-8 lg:gap-16 mb-24">
-          <Box className="w-full md:w-[35%] flex flex-col gap-4">
-            <Box className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden bg-gray-100 dark:bg-[#111118] border border-gray-200 dark:border-white/5 shadow-lg">
-              <Image
-                src={bio.avatar}
-                alt={bio.name}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 35vw"
-              />
-            </Box>
-            <Button
-              as="a"
-              href={bio.resumeUrl}
-              className="w-full bg-gray-100 dark:bg-[#1A1A1A] hover:bg-gray-200 dark:hover:bg-[#2A2A2A] text-gray-900 dark:text-white border border-gray-200 dark:border-white/10 rounded-2xl py-6 flex items-center justify-center transition-colors"
-            >
-              Download my resume
-            </Button>
-          </Box>
+        {/* Avatar + resume */}
+        <div className="flex w-full flex-col gap-4 md:w-[35%]">
+          <div className="relative aspect-4/5 w-full overflow-hidden rounded-lg bg-surface shadow-card">
+            <Image
+              src={bio.avatar}
+              alt={`Portrait of ${bio.name}`}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 35vw"
+            />
+          </div>
+          <Button
+            as="a"
+            href={bio.resumeUrl}
+            variant="secondary"
+            shape="rounded"
+            size="lg"
+            startIcon={<Download size={18} />}
+          >
+            Download résumé
+          </Button>
+        </div>
 
-          <Box className="w-full md:w-[65%] flex flex-col">
-            <Body
-              className="text-xl md:text-2xl italic mb-4 text-gray-900 dark:text-gray-200 font-medium"
-              style={{ fontFamily: "'Dancing Script', 'Caveat', cursive" }}
-            >
-              {bio.greeting}
-            </Body>
+        {/* Bio + tech */}
+        <div className="flex w-full flex-col md:w-[65%]">
+          <p className="mb-4 text-xl font-medium text-content">
+            {bio.greeting}
+          </p>
 
-            <Box className="flex flex-col gap-2 text-gray-600 dark:text-gray-300 leading-loose mb-10 text-[15px]">
-              {bio.paragraphs.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </Box>
+          <div className="mb-10 flex flex-col gap-3 leading-relaxed text-muted">
+            {bio.paragraphs.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </div>
 
-            <Body className="text-base font-semibold text-gray-900 dark:text-gray-200 mb-6">
-              Tools &amp; Technologies I use
-            </Body>
+          <h2 className="mb-6 text-base font-bold text-content">
+            Tools &amp; technologies I use
+          </h2>
 
-            <Box className="grid grid-cols-1  gap-x-8 gap-y-8">
-              {techStack.map((category) => (
-                <Box key={category.label} className="flex flex-col gap-4">
-                  <Box className="flex items-center border-l-2 border-violet-500 pl-3">
-                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                      {category.label}
-                    </span>
-                  </Box>
-                  <Box className="flex flex-wrap gap-2">
-                    {category.items.map((tech) => (
-                      <span
-                        key={tech}
-                        className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gray-100 dark:bg-[#0d0d12] border border-gray-200 dark:border-white/5 text-xs font-semibold text-gray-500 dark:text-gray-400 transition-transform hover:scale-105 cursor-default"
-                      >
-                        <TechIcon name={tech} className="w-4 h-4" />
-                        {tech}
-                      </span>
-                    ))}
-                  </Box>
-                </Box>
-              ))}
-            </Box>
-          </Box>
-        </Box>
+          <div className="flex flex-col gap-8">
+            {techStack.map((category) => (
+              <div key={category.label} className="flex flex-col gap-4">
+                <span className="border-l-2 border-accent pl-3 text-sm font-semibold text-content">
+                  {category.label}
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  {category.items.map((tech) => (
+                    <Tag
+                      key={tech}
+                      className="cursor-default transition-transform hover:scale-105"
+                      startIcon={<TechIcon name={tech} className="h-4 w-4" />}
+                    >
+                      {tech}
+                    </Tag>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </motion.div>
+
+      <SectionHeader as="h2" title="Experience" />
 
       <motion.div
         initial="initial"
         animate="animate"
         variants={fadeUpVariants}
-        transition={{ duration: 0.6, delay: 0.3 }}
-      >
-        <Heading className="mb-12 mt-12">
-          Experience<span className="text-violet-500">.</span>
-        </Heading>
-      </motion.div>
-
-      <motion.div
-        initial="initial"
-        animate="animate"
-        variants={fadeUpVariants}
-        transition={{ duration: 0.6, delay: 0.45 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
       >
         <ExperienceTimeline experiences={experiences} />
       </motion.div>

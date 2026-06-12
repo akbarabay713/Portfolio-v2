@@ -5,9 +5,20 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
 import { ArrowRight } from "lucide-react";
+
+import Button from "@/components/atoms/Button";
+import StatusPill from "@/components/atoms/StatusPill";
 import { IcGithub, IcLinkedin } from "@/components/atoms/Icons/SocialIcons";
-import { fadeUpVariants } from "@/constants";
+import { fadeUpVariants, siteConfig } from "@/constants";
 import profileImg from "@/assets/images/akbarr.webp";
+
+const fade = (delay: number) => ({
+  initial: "initial" as const,
+  animate: "animate" as const,
+  variants: fadeUpVariants,
+  transition: { duration: 0.6, delay },
+});
+
 export default function Home() {
   const [text] = useTypewriter({
     words: [
@@ -22,64 +33,38 @@ export default function Home() {
   });
 
   return (
-    <main className="relative flex flex-col items-center justify-center min-h-screen text-center px-6 overflow-hidden">
+    <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 text-center">
       {/* Avatar */}
-      <motion.div
-        initial="initial"
-        animate="animate"
-        variants={fadeUpVariants}
-        transition={{ duration: 0.6 }}
-        className="mb-8"
-      >
-        <div className="relative">
-          <div className="absolute inset-0 rounded-full bg-violet-500/20 blur-2xl scale-150" />
+      <motion.div {...fade(0)} className="mb-8">
+        <div className="relative accent-glow rounded-full">
+          <div className="absolute inset-0 scale-150 rounded-full bg-accent/15 blur-2xl" />
           <Image
             src={profileImg}
-            alt="Akbar"
-            width={108}
-            height={108}
-            className="relative rounded-full border border-gray-200 dark:border-white/10 shadow-xl ring-2 ring-violet-500/30"
+            alt="Portrait of Akbar"
+            width={112}
+            height={112}
+            priority
+            className="relative rounded-full border border-line ring-2 ring-accent/30"
           />
         </div>
       </motion.div>
 
-      {/* Status pill */}
-      <motion.div
-        initial="initial"
-        animate="animate"
-        variants={fadeUpVariants}
-        transition={{ duration: 0.6, delay: 0.05 }}
-        className="mb-6"
-      >
-        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 text-xs font-medium text-violet-600 dark:text-violet-300 tracking-wide">
-          <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-          Available for opportunities
-        </span>
+      {/* Status */}
+      <motion.div {...fade(0.05)} className="mb-6">
+        <StatusPill>Available for opportunities</StatusPill>
       </motion.div>
 
       {/* Typewriter heading */}
-      <motion.div
-        initial="initial"
-        animate="animate"
-        variants={fadeUpVariants}
-        transition={{ duration: 0.6, delay: 0.15 }}
-        className="max-w-4xl mb-6"
-      >
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight">
+      <motion.div {...fade(0.15)} className="mb-6 max-w-4xl">
+        <h1 className="text-4xl font-bold leading-tight tracking-tight text-content sm:text-5xl md:text-6xl">
           {text}
-          <Cursor cursorColor="#8b5cf6" />
+          <Cursor cursorColor="var(--accent)" />
         </h1>
       </motion.div>
 
       {/* Subtitle */}
-      <motion.div
-        initial="initial"
-        animate="animate"
-        variants={fadeUpVariants}
-        transition={{ duration: 0.6, delay: 0.25 }}
-        className="max-w-xl mb-12"
-      >
-        <p className="text-base md:text-lg text-gray-500 dark:text-white/50 leading-relaxed">
+      <motion.div {...fade(0.25)} className="mb-12 max-w-xl">
+        <p className="text-base leading-relaxed text-muted md:text-lg">
           I craft fast, intuitive, and beautifully designed web experiences —
           focused on clean code and products people love to use.
         </p>
@@ -87,69 +72,61 @@ export default function Home() {
 
       {/* CTAs */}
       <motion.div
-        initial="initial"
-        animate="animate"
-        variants={fadeUpVariants}
-        transition={{ duration: 0.6, delay: 0.35 }}
-        className="flex flex-wrap items-center justify-center gap-4 mb-16"
+        {...fade(0.35)}
+        className="mb-16 flex flex-wrap items-center justify-center gap-4"
       >
-        <Link
+        <Button
+          as={Link}
           href="/projects"
-          className="group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-violet-600 hover:bg-violet-500 text-white font-semibold text-sm transition-all duration-300 shadow-lg shadow-violet-600/25 hover:shadow-violet-500/40"
+          variant="primary"
+          caps
+          className="group"
+          endIcon={
+            <ArrowRight
+              size={16}
+              className="transition-transform group-hover:translate-x-0.5"
+            />
+          }
         >
           View my work
-          <ArrowRight
-            size={16}
-            className="transition-transform group-hover:translate-x-0.5"
-          />
-        </Link>
-        <Link
-          href="/contact"
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 hover:bg-gray-50 dark:hover:bg-white/10 text-gray-700 dark:text-white/80 hover:text-gray-900 dark:hover:text-white font-semibold text-sm transition-all duration-300"
-        >
+        </Button>
+        <Button as={Link} href="/contact" variant="outline" caps>
           Let&apos;s talk
-        </Link>
+        </Button>
       </motion.div>
 
-      {/* Social links */}
-      <motion.div
-        initial="initial"
-        animate="animate"
-        variants={fadeUpVariants}
-        transition={{ duration: 0.6, delay: 0.45 }}
-        className="flex items-center gap-5"
-      >
+      {/* Socials */}
+      <motion.div {...fade(0.45)} className="flex items-center gap-5">
         <a
-          href="https://github.com/akbarabay713"
+          href={siteConfig.links.github}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-400 dark:text-white/40 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
+          className="text-faint transition-colors hover:text-content"
           aria-label="GitHub"
         >
           <IcGithub width={24} height={24} />
         </a>
-        <div className="w-px h-4 bg-gray-200 dark:bg-white/10" />
+        <div className="h-4 w-px bg-line-strong" />
         <a
-          href="https://www.linkedin.com/in/akbarabu/?locale=en_US"
+          href={siteConfig.links.linkedin}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-400 dark:text-white/40 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
+          className="text-faint transition-colors hover:text-content"
           aria-label="LinkedIn"
         >
           <IcLinkedin width={20} height={20} />
         </a>
       </motion.div>
 
-      {/* Keyboard shortcut hint */}
+      {/* Command palette hint */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="absolute bottom-24 left-1/2 hidden -translate-x-1/2 sm:block"
       >
-        <kbd className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-[11px] font-mono text-gray-400 dark:text-gray-500">
-          ⌘K{" "}
-          <span className="text-gray-300 dark:text-gray-600">to navigate</span>
+        <kbd className="inline-flex items-center gap-1.5 rounded-md border border-line bg-elevated px-3 py-1 font-mono text-[11px] text-faint">
+          ⌘K <span className="text-faint/70">to navigate</span>
         </kbd>
       </motion.div>
     </main>
