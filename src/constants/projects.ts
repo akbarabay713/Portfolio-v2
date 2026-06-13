@@ -2,6 +2,21 @@ import type { Project } from "@/types/portfolio.types";
 
 export const projects: Project[] = [
   {
+    title: "VitalsWatch",
+    description:
+      "VitalsWatch simulates a CI/CD pipeline that audits every commit for Core Web Vitals (LCP, INP, CLS), visualises performance trends across deployments, catches regressions before they reach production, isolates the file or dependency responsible, and translates technical lag into estimated business impact. No backend — a deterministic frontend simulation drives the whole app.",
+    tech: [
+      "JavaScript",
+      "Typescript",
+      "React.js",
+      "Vite",
+      "Tailwind CSS",
+      "Zustand",
+    ],
+    image: "/projects/vitalswatch.png",
+    live: "https://vitalswatch.vercel.app/",
+  },
+  {
     title: "Art Is Wine",
     description:
       "A Dutch corporate event booking platform where companies can organize wine-painting team-building experiences for their employees and clients.",
@@ -101,6 +116,7 @@ export const projects: Project[] = [
       "Laravel",
       "MySQL",
       "Tailwind CSS",
+      "Pinia",
     ],
     image: "/projects/ka.png",
     live: "https://kiriminaja.com/",
