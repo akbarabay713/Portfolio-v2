@@ -41,6 +41,7 @@ export default function AboutPage() {
             shape="rounded"
             size="lg"
             startIcon={<Download size={18} />}
+            target="_blank"
           >
             Download résumé
           </Button>

@@ -14,7 +14,8 @@ export const bio = {
     "I’ve worked with a variety of languages and frameworks, from PHP to JavaScript, and I’m always eager to expand my knowledge and skills. Collaboration is at the heart of my process I thrive in team environments where creativity and teamwork drive great results.",
     "When I’m not coding, you’ll find me exploring new tech, gadgets, or enjoying the outdoors. Let’s connect and create something amazing together!",
   ],
-  resumeUrl: "#",
+  resumeUrl:
+    "https://drive.google.com/file/d/1RCnn63Psw8MYcKf1elrDc-4UzV70huxa/view?usp=sharing",
 };
 
 export const techStack: TechCategory[] = [
