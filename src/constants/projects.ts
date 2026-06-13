@@ -15,6 +15,7 @@ export const projects: Project[] = [
     ],
     image: "/projects/vitalswatch.png",
     live: "https://vitalswatch.vercel.app/",
+    github: "https://github.com/akbarabay713/vitalswatch",
   },
   {
     title: "Art Is Wine",
