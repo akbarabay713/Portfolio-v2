@@ -10,19 +10,15 @@ const Footer = () => {
     <footer className="relative z-10 border-t border-line pb-28">
       <div className="mx-auto max-w-5xl px-4 py-12">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
-          {/* Brand */}
           <div>
             <h3 className="mb-2 text-lg font-bold text-content">
               {siteConfig.name}
-              <span className="text-accent">.</span>
             </h3>
             <p className="max-w-xs text-sm leading-relaxed text-muted">
-              {siteConfig.jobTitle} crafting modern web experiences with clean
-              code and thoughtful design.
+              {siteConfig.jobTitle} building web apps and sites with clean code.
             </p>
           </div>
 
-          {/* Pages */}
           <div>
             <h4 className="mb-4 text-sm font-bold uppercase tracking-wider text-content">
               Pages
@@ -32,7 +28,7 @@ const Footer = () => {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-muted transition-colors hover:text-accent"
+                    className="link-underline text-sm text-muted transition-colors hover:text-content"
                   >
                     {item.label}
                   </Link>
@@ -41,7 +37,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Connect */}
           <div>
             <h4 className="mb-4 text-sm font-bold uppercase tracking-wider text-content">
               Connect
@@ -67,7 +62,7 @@ const Footer = () => {
           <p className="text-xs text-faint">
             &copy; {currentYear} {siteConfig.name}. All rights reserved.
           </p>
-          <p className="text-xs text-faint">Built with Next.js &bull; Designed with ♥</p>
+          <p className="text-xs text-faint">Built with Next.js</p>
         </div>
       </div>
     </footer>

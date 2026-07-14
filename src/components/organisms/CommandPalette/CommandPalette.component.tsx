@@ -74,8 +74,7 @@ const CommandPalette = () => {
             transition={{ duration: 0.2, ease: "easeOut" }}
             className="fixed left-1/2 top-[20%] z-50 w-[90vw] max-w-lg -translate-x-1/2"
           >
-            <div className="overflow-hidden rounded-xl border border-line bg-surface shadow-dialog">
-              {/* Search */}
+            <div className="overflow-hidden rounded-xl border-2 border-outline bg-surface ink-shadow">
               <div className="relative border-b border-line p-3">
                 <Search
                   size={18}
@@ -90,7 +89,6 @@ const CommandPalette = () => {
                 />
               </div>
 
-              {/* Results */}
               <div ref={listRef} className="max-h-80 overflow-y-auto p-2">
                 {filteredItems.length === 0 ? (
                   <div className="py-8 text-center text-sm text-faint">
@@ -134,7 +132,6 @@ const CommandPalette = () => {
                 )}
               </div>
 
-              {/* Footer */}
               <div className="flex items-center justify-between border-t border-line px-4 py-2.5 text-[11px] text-faint">
                 <div className="flex items-center gap-3">
                   <span className="flex items-center gap-1">

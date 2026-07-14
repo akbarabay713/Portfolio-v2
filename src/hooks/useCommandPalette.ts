@@ -120,7 +120,6 @@ export function useCommandPalette(items: CommandItem[]): UseCommandPaletteReturn
   };
 }
 
-/** Build command items from portfolio data */
 export function useCommandItems(): CommandItem[] {
   const router = useRouter();
 

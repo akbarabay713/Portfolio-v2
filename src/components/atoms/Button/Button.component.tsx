@@ -16,15 +16,15 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          "bg-accent text-accent-contrast shadow-card hover:brightness-105 hover:scale-[1.03] active:scale-100",
+          "bg-accent text-accent-contrast ink-border ink-shadow hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_var(--outline)] active:translate-x-1 active:translate-y-1 active:shadow-none",
         secondary:
-          "bg-elevated text-content border border-line hover:bg-card-hover",
+          "bg-elevated text-content ink-border ink-shadow-sm hover:bg-card-hover active:translate-x-0.5 active:translate-y-0.5 active:shadow-none",
         outline:
-          "bg-transparent text-content border border-line-strong hover:border-content hover:scale-[1.02] active:scale-100",
+          "bg-card text-content ink-border ink-shadow-sm hover:bg-card-hover active:translate-x-0.5 active:translate-y-0.5 active:shadow-none",
         ghost:
           "bg-transparent text-muted hover:text-content hover:bg-elevated",
         danger:
-          "bg-negative text-white shadow-card hover:brightness-110",
+          "bg-negative text-white ink-border ink-shadow hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_var(--outline)] active:translate-x-1 active:translate-y-1 active:shadow-none",
       },
       size: {
         sm: "text-xs px-4 py-2",

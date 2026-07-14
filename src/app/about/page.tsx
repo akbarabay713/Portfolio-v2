@@ -9,7 +9,7 @@ import Tag from "@/components/atoms/Tag";
 import SectionHeader from "@/components/molecules/SectionHeader";
 import ExperienceTimeline from "@/components/molecules/ExperienceTimeline";
 import { TechIcon } from "@/components/atoms/Icons/TechIcon";
-import { bio, experiences, fadeUpVariants, techStack } from "@/constants";
+import { EASE_OUT, bio, experiences, fadeUpVariants, techStack } from "@/constants";
 
 export default function AboutPage() {
   return (
@@ -20,12 +20,11 @@ export default function AboutPage() {
         initial="initial"
         animate="animate"
         variants={fadeUpVariants}
-        transition={{ duration: 0.6, delay: 0.15 }}
+        transition={{ duration: 0.7, ease: EASE_OUT, delay: 0.15 }}
         className="mb-24 flex flex-col gap-8 md:flex-row lg:gap-16"
       >
-        {/* Avatar + resume */}
         <div className="flex w-full flex-col gap-4 md:w-[35%]">
-          <div className="relative aspect-4/5 w-full overflow-hidden rounded-lg bg-surface shadow-card">
+          <div className="relative aspect-4/5 w-full overflow-hidden rounded-lg ink-border ink-shadow bg-surface">
             <Image
               src={bio.avatar}
               alt={`Portrait of ${bio.name}`}
@@ -47,7 +46,6 @@ export default function AboutPage() {
           </Button>
         </div>
 
-        {/* Bio + tech */}
         <div className="flex w-full flex-col md:w-[65%]">
           <p className="mb-4 text-xl font-medium text-content">
             {bio.greeting}
@@ -92,7 +90,7 @@ export default function AboutPage() {
         initial="initial"
         animate="animate"
         variants={fadeUpVariants}
-        transition={{ duration: 0.6, delay: 0.2 }}
+        transition={{ duration: 0.7, ease: EASE_OUT, delay: 0.2 }}
       >
         <ExperienceTimeline experiences={experiences} />
       </motion.div>

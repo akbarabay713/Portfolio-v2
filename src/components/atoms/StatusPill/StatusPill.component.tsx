@@ -13,7 +13,7 @@ const StatusPill = ({
 }: StatusPillProps) => (
   <span
     className={cn(
-      "inline-flex items-center gap-2 rounded-full border border-line-strong bg-elevated px-4 py-1.5 text-xs font-semibold text-muted",
+      "inline-flex items-center gap-2 rounded-full border-2 border-outline bg-card px-4 py-1.5 text-xs font-bold text-content ink-shadow-sm",
       className,
     )}
     {...props}

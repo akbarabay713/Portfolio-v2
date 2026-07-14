@@ -15,9 +15,7 @@ export default function OpengraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          backgroundColor: "#121212",
-          backgroundImage:
-            "radial-gradient(900px 500px at 50% -10%, rgba(30,215,96,0.12), transparent 70%)",
+          backgroundColor: "#17151c",
           padding: "80px",
           fontFamily: "sans-serif",
         }}
@@ -35,12 +33,12 @@ export default function OpengraphImage() {
               width: "16px",
               height: "16px",
               borderRadius: "9999px",
-              backgroundColor: "#1ed760",
+              backgroundColor: "#6d8bff",
             }}
           />
           <span
             style={{
-              color: "#b3b3b3",
+              color: "#b6b0a2",
               fontSize: "26px",
               letterSpacing: "6px",
               textTransform: "uppercase",
@@ -54,7 +52,7 @@ export default function OpengraphImage() {
         <div
           style={{
             display: "flex",
-            color: "#ffffff",
+            color: "#f2ede1",
             fontSize: "128px",
             fontWeight: 800,
             letterSpacing: "-4px",
@@ -67,7 +65,7 @@ export default function OpengraphImage() {
         <div
           style={{
             display: "flex",
-            color: "#1ed760",
+            color: "#6d8bff",
             fontSize: "52px",
             fontWeight: 700,
             marginTop: "16px",
@@ -79,7 +77,7 @@ export default function OpengraphImage() {
         <div
           style={{
             display: "flex",
-            color: "#b3b3b3",
+            color: "#b6b0a2",
             fontSize: "30px",
             fontWeight: 400,
             marginTop: "32px",
@@ -87,7 +85,7 @@ export default function OpengraphImage() {
             lineHeight: 1.4,
           }}
         >
-          Fast, accessible, beautifully designed web experiences.
+          I build web apps and sites with React, Next.js, and PHP.
         </div>
       </div>
     ),

@@ -1,7 +1,5 @@
 import { StaticImageData } from "next/image";
 
-// ─── Project ─────────────────────────────────────────────────────────────────
-
 export interface Project {
   title: string;
   description: string;
@@ -11,8 +9,6 @@ export interface Project {
   github?: string;
 }
 
-// ─── Experience ───────────────────────────────────────────────────────────────
-
 export interface Experience {
   title: string;
   subtitle: string;
@@ -21,14 +17,10 @@ export interface Experience {
   description: string[];
 }
 
-// ─── Tech Stack ───────────────────────────────────────────────────────────────
-
 export interface TechCategory {
   label: string;
   items: string[];
 }
-
-// ─── Icon Props ──────────────────────────────────────────────────────────────
 
 export type IconComponent = React.ComponentType<{
   width?: string | number;
@@ -36,15 +28,11 @@ export type IconComponent = React.ComponentType<{
   className?: string;
 }>;
 
-// ─── Social Link ─────────────────────────────────────────────────────────────
-
 export interface SocialLink {
   label: string;
   href: string;
   icon: IconComponent;
 }
-
-// ─── Navigation ──────────────────────────────────────────────────────────────
 
 export interface NavItem {
   label: string;

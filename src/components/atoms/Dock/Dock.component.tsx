@@ -13,6 +13,8 @@ export type DockItemProps = {
   mouseX: MotionValue<number>;
   active?: boolean;
   onClick?: () => void;
+  baseSize?: number;
+  maxSize?: number;
 };
 
 const DockItem = ({
@@ -22,6 +24,8 @@ const DockItem = ({
   mouseX,
   active,
   onClick,
+  baseSize = 40,
+  maxSize = 60,
 }: DockItemProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -32,7 +36,7 @@ const DockItem = ({
   });
 
   // Magnify based on cursor proximity.
-  const width = useTransform(distance, [-150, 0, 150], [40, 60, 40]);
+  const width = useTransform(distance, [-150, 0, 150], [baseSize, maxSize, baseSize]);
   const smoothWidth = useSpring(width, {
     mass: 0.2,
     stiffness: 150,
@@ -45,18 +49,19 @@ const DockItem = ({
         ref={ref}
         style={{ width: smoothWidth, height: smoothWidth }}
         onClick={onClick}
+        whileTap={{ scale: 0.85 }}
         className={cn(
-          "flex cursor-pointer items-center justify-center rounded-full border transition-colors duration-200 will-change-transform",
+          "flex cursor-pointer items-center justify-center rounded-full border-2 transition-colors duration-200 will-change-transform",
           active
-            ? "border-accent/40 bg-accent-dim text-accent"
-            : "border-line bg-elevated text-muted hover:bg-card-hover hover:text-content",
+            ? "border-outline bg-accent text-accent-contrast"
+            : "border-outline bg-elevated text-muted hover:bg-card-hover hover:text-content",
         )}
       >
         {icon}
       </motion.div>
 
       {tooltip ? (
-        <div className="pointer-events-none absolute bottom-full mb-3 translate-y-2 whitespace-nowrap rounded-md border border-line bg-surface px-3 py-1.5 text-xs font-semibold text-content opacity-0 shadow-dialog transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100">
+        <div className="pointer-events-none absolute bottom-full mb-3 translate-y-2 whitespace-nowrap rounded-md border-2 border-outline bg-surface px-3 py-1.5 text-xs font-bold text-content opacity-0 ink-shadow-sm transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100">
           {tooltip}
         </div>
       ) : null}

@@ -6,24 +6,24 @@ import { Mail, ArrowUpRight } from "lucide-react";
 import Button from "@/components/atoms/Button";
 import Card from "@/components/atoms/Card";
 import SectionHeader from "@/components/molecules/SectionHeader";
-import { contactEmail, fadeUpVariants, socialLinks } from "@/constants";
+import { EASE_OUT, contactEmail, fadeUpVariants, socialLinks } from "@/constants";
 
 export default function ContactPage() {
   return (
     <main className="mx-auto max-w-3xl px-4 py-16 pb-32">
       <SectionHeader
         title="Get in touch"
-        subtitle="Have a project in mind, a role to fill, or just want to say hello? My inbox is always open."
+        subtitle="Got a project, a role, or just want to say hi? Feel free to reach out."
       />
 
       <motion.div
         initial="initial"
         animate="animate"
         variants={fadeUpVariants}
-        transition={{ duration: 0.6, delay: 0.2 }}
+        transition={{ duration: 0.7, ease: EASE_OUT, delay: 0.2 }}
       >
-        <Card className="flex flex-col items-center gap-8 p-8 shadow-card sm:p-12">
-          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-accent-dim">
+        <Card className="ink-border ink-shadow flex flex-col items-center gap-8 p-8 sm:p-12">
+          <div className="flex h-16 w-16 items-center justify-center rounded-full ink-border bg-accent-dim">
             <Mail size={28} className="text-accent" />
           </div>
 
@@ -56,7 +56,7 @@ export default function ContactPage() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center justify-between rounded-lg bg-elevated px-5 py-4 transition-colors hover:bg-card-hover"
+                className="group flex items-center justify-between rounded-lg ink-border bg-elevated px-5 py-4 transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:bg-card-hover hover:shadow-[3px_3px_0_0_var(--outline)]"
               >
                 <span className="flex items-center gap-3 font-semibold text-content">
                   <social.icon width={20} height={20} className="text-muted" />

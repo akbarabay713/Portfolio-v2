@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "Akbar",
   title: "Akbar — Software Developer",
   description:
-    "Akbar is a fullstack software developer crafting fast, accessible, and beautifully designed web experiences with React, Next.js, and modern web technologies.",
+    "Akbar is a fullstack developer who builds web apps and sites with React, Next.js, and PHP.",
   // Override per-deployment via NEXT_PUBLIC_SITE_URL.
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://akbar.dev",
   locale: "en_US",

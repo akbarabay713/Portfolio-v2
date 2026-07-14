@@ -8,11 +8,11 @@ import logoGD from "@/assets/images/gaia.png";
 export const bio = {
   name: "akbar",
   avatar: profileImg,
-  greeting: "Hi there, I'm Akbar 👋",
+  greeting: "Hey, I'm Akbar",
   paragraphs: [
-    "a software engineer passionate about crafting innovative solutions to make life easier. Whether it’s sleek web apps or robust backend systems, I enjoy bringing ideas to life through code.",
-    "I’ve worked with a variety of languages and frameworks, from PHP to JavaScript, and I’m always eager to expand my knowledge and skills. Collaboration is at the heart of my process I thrive in team environments where creativity and teamwork drive great results.",
-    "When I’m not coding, you’ll find me exploring new tech, gadgets, or enjoying the outdoors. Let’s connect and create something amazing together!",
+    "I'm a software engineer who builds things for the web — front-end apps and the backends behind them.",
+    "Most of my work is in JavaScript and TypeScript, plus a fair amount of PHP. I've spent time with React, Next.js, Vue, and Laravel, and I like working on a team and shipping things people actually use.",
+    "When I'm not coding I'm usually poking at some new tool or gadget, or getting outside for a bit.",
   ],
   resumeUrl:
     "https://drive.google.com/file/d/1RCnn63Psw8MYcKf1elrDc-4UzV70huxa/view?usp=sharing",
@@ -60,10 +60,10 @@ export const experiences: Experience[] = [
     date: "December 2024 - Present",
     image: logoMi,
     description: [
-      "Translated complex Figma designs into high-performance, SEO-optimized landing pages utilizing Next.js and WordPress, delivering responsive and seamless user experiences.",
-      "Engineered clean, maintainable, and reusable code adhering to component-based architecture principles in React and WordPress.",
-      "Maintained and enhanced client codebases, improving core functionality and performance throughout the software development lifecycle from product intake to successful delivery.",
-      "Partnered closely with European clients to analyze project requirements, scope deliverables, and engineer customized technical solutions.",
+      "Built responsive, SEO-friendly landing pages from Figma designs using Next.js and WordPress.",
+      "Wrote reusable, component-based React and WordPress code that was easy to maintain.",
+      "Maintained and improved existing client codebases, from first handoff through delivery.",
+      "Worked directly with European clients to scope the work and figure out the right approach.",
     ],
   },
   {
@@ -72,10 +72,10 @@ export const experiences: Experience[] = [
     date: "March 2025 - May 2026",
     image: logoGD,
     description: [
-      "Spearheaded the development of high-performance, SEO-optimized WordPress landing pages from Figma mockups, ensuring robust responsiveness and superior user experience.",
-      "Developed clean, scalable, and modular code utilizing component-based development paradigms within the WordPress ecosystem.",
-      "Optimized and maintained legacy client codebases, significantly enhancing system functionality, features, and performance from initial intake to final customer delivery.",
-      "Collaborated seamlessly with international stakeholders to elicit business requirements and architect tailored, high-quality digital solutions.",
+      "Built fast, SEO-focused WordPress landing pages from Figma mockups.",
+      "Wrote modular, reusable code within the WordPress ecosystem.",
+      "Cleaned up and maintained older client codebases, improving how they performed.",
+      "Worked with international clients to understand what they needed and build it.",
     ],
   },
   {
@@ -84,11 +84,11 @@ export const experiences: Experience[] = [
     date: "July 2023 - December 2024",
     image: logoKA,
     description: [
-      "Engineered Omnichannel integrations for Shopee within the KiriminAja dashboard, enabling streamlined operations and seamless experiences across multiple e-commerce platforms.",
-      "Key contributor in the architectural revamp of the KiriminAja and KiriminAja Plus dashboards, focusing on advanced UI/UX enhancements and critical backend performance optimizations.",
-      "Developed end-to-end fulfillment features for the KiriminAja Plus dashboard, automating the entire order processing lifecycle from warehouse reception and storage to final customer dispatch.",
-      "Authored detailed Technical Requirement Documents (TRD) to outline scope, architecture, and implementation strategies for upcoming product features.",
-      "Designed and deployed scalable code across both monolithic and microservices architectures, leveraging PHP as the primary backend technology.",
+      "Built Shopee omnichannel integrations into the KiriminAja dashboard so orders from different platforms could be handled in one place.",
+      "Helped rebuild the KiriminAja and KiriminAja Plus dashboards, working on both the UI and backend performance.",
+      "Built the fulfillment flow for KiriminAja Plus — from receiving stock in the warehouse to shipping orders out.",
+      "Wrote Technical Requirement Documents (TRDs) for upcoming features.",
+      "Worked across both monolith and microservices, mostly in PHP.",
     ],
   },
   {
@@ -97,9 +97,9 @@ export const experiences: Experience[] = [
     date: "July 2021 - September 2021",
     image: logoPu,
     description: [
-      "Designed and engineered a departmental profile website to effectively broadcast the organization's vision, mission, and public services.",
-      "Developed and launched a vital online registration platform for desludging services, streamlining public access and operations during the COVID-19 pandemic.",
-      "Managed and maintained core web platforms, ensuring high availability, robust security, and up-to-date dissemination of accurate public information.",
+      "Built a profile website for the department to share its services and public information.",
+      "Built an online registration system for desludging services, which helped keep things running during the COVID-19 pandemic.",
+      "Kept the department's web platforms running and up to date.",
     ],
   },
 ];

@@ -1,17 +1,28 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Bangers, Nunito } from "next/font/google";
 import "./globals.css";
 
 import Docks from "@/components/molecules/Docks/Docks.component";
-import Backdrop from "@/components/layouts/Backdrop.component";
+import ScrollProgress from "@/components/atoms/ScrollProgress";
+import ComicBackground from "@/components/layouts/ComicBackground.component";
+import ComicCursor from "@/components/atoms/ComicCursor";
+import ClickBurst from "@/components/atoms/ClickBurst";
 import PageTransition from "@/components/layouts/PageTransition.component";
 import CommandPalette from "@/components/organisms/CommandPalette/CommandPalette.component";
 import ThemeProvider from "@/Providers/Theme-provider";
 import { siteConfig } from "@/constants";
 
-const inter = Inter({
+// Rounded, friendly body type; chunky comic display for headings.
+const nunito = Nunito({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-nunito",
+  display: "swap",
+});
+
+const bangers = Bangers({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-bangers",
   display: "swap",
 });
 
@@ -61,13 +72,12 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#121212" },
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#17151c" },
+    { media: "(prefers-color-scheme: light)", color: "#fbf3e2" },
   ],
   colorScheme: "dark light",
 };
 
-/** Person structured data so search engines understand who this site is about. */
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -87,14 +97,17 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         suppressHydrationWarning
-        className={`${inter.variable} ${inter.className} antialiased`}
+        className={`${nunito.variable} ${bangers.variable} ${nunito.className} antialiased`}
       >
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
         <ThemeProvider>
-          <Backdrop />
+          <ComicBackground />
+          <ComicCursor />
+          <ClickBurst />
+          <ScrollProgress />
           <Docks />
           <CommandPalette />
           <PageTransition>{children}</PageTransition>

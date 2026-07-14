@@ -1,7 +1,7 @@
 import React from "react";
 import { IconsProps } from "@/types/global";
 
-// ─── GitHub ──────────────────────────────────────────────────────────────────
+// GitHub
 
 export const IcGithub = ({
   width = 24,
@@ -19,7 +19,7 @@ export const IcGithub = ({
   </svg>
 );
 
-// ─── LinkedIn ────────────────────────────────────────────────────────────────
+// LinkedIn
 
 export const IcLinkedin = ({
   width = 24,
@@ -37,7 +37,7 @@ export const IcLinkedin = ({
   </svg>
 );
 
-// ─── Facebook ────────────────────────────────────────────────────────────────
+// Facebook
 
 export const IcFacebook = ({
   width = 24,
@@ -55,7 +55,7 @@ export const IcFacebook = ({
   </svg>
 );
 
-// ─── X (Twitter) ─────────────────────────────────────────────────────────────
+// X (Twitter)
 
 export const IcX = ({ width = 24, height = 24, className }: IconsProps) => (
   <svg
@@ -69,7 +69,7 @@ export const IcX = ({ width = 24, height = 24, className }: IconsProps) => (
   </svg>
 );
 
-// ─── Telegram ────────────────────────────────────────────────────────────────
+// Telegram
 
 export const IcTelegram = ({
   width = 24,

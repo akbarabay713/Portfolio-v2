@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 
 import Button from "@/components/atoms/Button";
-import { fadeUpVariants } from "@/constants";
+import { EASE_OUT, fadeUpVariants } from "@/constants";
 
 export default function NotFound() {
   return (
@@ -14,7 +14,7 @@ export default function NotFound() {
         initial="initial"
         animate="animate"
         variants={fadeUpVariants}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.7, ease: EASE_OUT }}
       >
         <p className="select-none text-[120px] font-extrabold leading-none tracking-tighter text-content/5 sm:text-[180px]">
           404
@@ -25,7 +25,7 @@ export default function NotFound() {
         initial="initial"
         animate="animate"
         variants={fadeUpVariants}
-        transition={{ duration: 0.6, delay: 0.15 }}
+        transition={{ duration: 0.7, ease: EASE_OUT, delay: 0.15 }}
       >
         <h1 className="-mt-6 mb-2 text-2xl font-bold text-content">
           Page not found
@@ -39,7 +39,7 @@ export default function NotFound() {
         initial="initial"
         animate="animate"
         variants={fadeUpVariants}
-        transition={{ duration: 0.6, delay: 0.3 }}
+        transition={{ duration: 0.7, ease: EASE_OUT, delay: 0.3 }}
       >
         <Button
           as={Link}

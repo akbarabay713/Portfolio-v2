@@ -6,7 +6,7 @@ import { LayoutGrid, List } from "lucide-react";
 
 import SectionHeader from "@/components/molecules/SectionHeader";
 import ProjectCard from "@/components/molecules/ProjectCard";
-import { fadeUpVariants, projects } from "@/constants";
+import { EASE_OUT, fadeUpVariants, projects } from "@/constants";
 import { cn } from "@/lib/utils.lib";
 
 type ViewMode = "grid" | "list";
@@ -39,7 +39,7 @@ export default function ProjectsPage() {
         initial="initial"
         animate="animate"
         variants={fadeUpVariants}
-        transition={{ duration: 0.6, delay: 0.15 }}
+        transition={{ duration: 0.7, ease: EASE_OUT, delay: 0.15 }}
         className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
       >
         <div className="flex flex-wrap gap-2.5">
@@ -48,10 +48,10 @@ export default function ProjectsPage() {
               key={filter}
               onClick={() => setActiveFilter(filter)}
               className={cn(
-                "rounded-full px-4 py-2 text-sm font-semibold transition-colors",
+                "rounded-full ink-border px-4 py-2 text-sm font-bold transition-all active:scale-95",
                 activeFilter === filter
-                  ? "bg-accent text-accent-contrast"
-                  : "bg-elevated text-muted hover:bg-card-hover hover:text-content",
+                  ? "bg-accent text-accent-contrast ink-shadow-sm"
+                  : "bg-card text-muted hover:-translate-y-0.5 hover:text-content",
               )}
             >
               {filter}
@@ -59,7 +59,7 @@ export default function ProjectsPage() {
           ))}
         </div>
 
-        <div className="flex shrink-0 items-center gap-1 self-start rounded-full bg-elevated p-1 sm:self-auto">
+        <div className="flex shrink-0 items-center gap-1 self-start rounded-full ink-border bg-card p-1 sm:self-auto">
           {(["grid", "list"] as const).map((mode) => (
             <button
               key={mode}
@@ -67,7 +67,7 @@ export default function ProjectsPage() {
               aria-label={`${mode} view`}
               aria-pressed={viewMode === mode}
               className={cn(
-                "flex h-9 w-9 items-center justify-center rounded-full transition-colors",
+                "flex h-9 w-9 items-center justify-center rounded-full transition-all active:scale-90",
                 viewMode === mode
                   ? "bg-accent text-accent-contrast"
                   : "text-muted hover:text-content",
@@ -88,14 +88,19 @@ export default function ProjectsPage() {
         )}
       >
         <AnimatePresence mode="popLayout">
-          {filtered.map((project) => (
+          {filtered.map((project, index) => (
             <motion.div
               key={project.title}
               layout
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.96 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
+              initial={{ opacity: 0, scale: 0.85, y: 28 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.85 }}
+              transition={{
+                type: "spring",
+                stiffness: 280,
+                damping: 20,
+                delay: Math.min(index * 0.06, 0.4),
+              }}
             >
               <ProjectCard project={project} viewMode={viewMode} />
             </motion.div>

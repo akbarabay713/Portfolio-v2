@@ -6,76 +6,80 @@
    to Tailwind via `@theme inline` so utilities like `bg-surface` / `text-accent`
    resolve to the live variable instead of needing `dark:` variants everywhere. */
 
-/* ─── Dark theme (default) ─────────────────────────────────────────────────── */
+/* Dark theme (default) */
 
 :root,
 .dark {
-  --canvas:         #121212;
-  --surface:        #181818;
-  --elevated:       #1f1f1f;
-  --card:           #181818;
-  --card-hover:     #242424;
+  --canvas:         #17151c;
+  --surface:        #201d27;
+  --elevated:       #272430;
+  --card:           #201d27;
+  --card-hover:     #2c2837;
 
-  --accent:          #1ed760;
-  --accent-strong:   #1db954;
-  --accent-contrast: #000000;
-  --accent-dim:      rgba(30, 215, 96, 0.12);
+  --accent:          #6d8bff;
+  --accent-strong:   #8aa2ff;
+  --accent-contrast: #14121a;
+  --accent-dim:      rgba(109, 139, 255, 0.16);
 
-  --content:   #ffffff;
-  --muted:     #b3b3b3;
-  --faint:     #7c7c7c;
+  --content:   #f2ede1;
+  --muted:     #b6b0a2;
+  --faint:     #837c6e;
 
-  --line:        rgba(255, 255, 255, 0.08);
-  --line-strong: #4d4d4d;
-  --dot:         rgba(255, 255, 255, 0.06);
-  --aurora:      30, 215, 96;
-  --aurora-2:    83, 157, 245;
+  --line:        rgba(242, 237, 225, 0.14);
+  --line-strong: #f2ede1;
 
-  --negative: #f3727f;
-  --warning:  #ffa42b;
-  --info:     #539df5;
+  /* Comic ink: outline + hard "sticker" shadow color, and the marker highlight. */
+  --outline:   #f2ede1;
+  --highlight: #ffd23f;
+  --halftone:  rgba(242, 237, 225, 0.05);
 
-  --shadow-card:   rgba(0, 0, 0, 0.3) 0px 8px 8px;
-  --shadow-dialog: rgba(0, 0, 0, 0.5) 0px 8px 24px;
+  --negative: #ff6b6b;
+  --warning:  #ffcf4d;
+  --info:     #6d8bff;
+
+  --shadow-card:   rgba(0, 0, 0, 0.45) 0px 8px 20px;
+  --shadow-dialog: rgba(0, 0, 0, 0.55) 0px 12px 32px;
 
   color-scheme: dark;
 }
 
-/* ─── Light theme ──────────────────────────────────────────────────────────── */
+/* Light theme */
 
 .light {
-  --canvas:         #ffffff;
-  --surface:        #f7f7f8;
-  --elevated:       #f0f0f2;
+  --canvas:         #fbf3e2;
+  --surface:        #fff9ee;
+  --elevated:       #ffffff;
   --card:           #ffffff;
-  --card-hover:     #f3f3f5;
+  --card-hover:     #fff4d6;
 
-  --accent:          #169c46; /* darker green for AA contrast on light */
-  --accent-strong:   #117a37;
+  --accent:          #2f4bd6;
+  --accent-strong:   #2138b0;
   --accent-contrast: #ffffff;
-  --accent-dim:      rgba(22, 156, 70, 0.10);
+  --accent-dim:      rgba(47, 75, 214, 0.12);
 
-  --content:   #121212;
-  --muted:     #5b5b62;
-  --faint:     #8a8a92;
+  --content:   #16130f;
+  --muted:     #4a463f;
+  --faint:     #7c766b;
 
-  --line:        rgba(0, 0, 0, 0.08);
-  --line-strong: #d8d8dc;
-  --dot:         rgba(0, 0, 0, 0.07);
-  --aurora:      22, 156, 70;
-  --aurora-2:    31, 111, 214;
+  --line:        rgba(22, 19, 15, 0.14);
+  --line-strong: #16130f;
 
-  --negative: #d92d20;
-  --warning:  #b54708;
-  --info:     #1f6fd6;
+  /* Comic ink: outline + hard "sticker" shadow color, and the marker highlight. */
+  --outline:   #16130f;
+  --highlight: #ffd23f;
+  --halftone:  rgba(22, 19, 15, 0.06);
 
-  --shadow-card:   rgba(0, 0, 0, 0.08) 0px 4px 16px;
-  --shadow-dialog: rgba(0, 0, 0, 0.18) 0px 8px 24px;
+  --negative: #e5322b;
+  --warning:  #f0a500;
+  --info:     #2f4bd6;
+
+  --shadow-card:   rgba(22, 19, 15, 0.10) 0px 4px 16px;
+  --shadow-dialog: rgba(22, 19, 15, 0.18) 0px 10px 28px;
 
   color-scheme: light;
 }
 
-/* ─── Tailwind token bridge ────────────────────────────────────────────────── */
+/* Tailwind token bridge */
 
 @theme inline {
   --color-canvas:     var(--canvas);
@@ -95,6 +99,8 @@
 
   --color-line:        var(--line);
   --color-line-strong: var(--line-strong);
+  --color-outline:     var(--outline);
+  --color-highlight:   var(--highlight);
 
   --color-negative: var(--negative);
   --color-warning:  var(--warning);
@@ -106,13 +112,11 @@
   --shadow-card:   var(--shadow-card);
   --shadow-dialog: var(--shadow-dialog);
 
-  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
-
-  --animate-aurora-slow:   aurora-slow 22s ease-in-out infinite;
-  --animate-aurora-slower: aurora-slower 30s ease-in-out infinite;
+  --font-sans:    var(--font-nunito), system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-bangers), "Comic Sans MS", cursive;
 }
 
-/* ─── Base ───────────────────────────────────────────────────────────────── */
+/* Base */
 
 html {
   scroll-behavior: smooth;
@@ -121,7 +125,7 @@ html {
 }
 
 body {
-  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-nunito), system-ui, -apple-system, sans-serif;
   background-color: var(--canvas);
   color: var(--content);
   min-height: 100dvh;
@@ -130,40 +134,18 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Film grain overlay (dark mode only) */
-.dark body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 128px 128px;
-  opacity: 0.5;
-}
-
-/* Lift page content above the fixed noise/glow overlays. Scoped to @layer base
-   so Tailwind utilities (e.g. `fixed`, `z-50` on the dock nav) still win. */
-@layer base {
-  main, section, header, footer {
-    position: relative;
-    z-index: 1;
-  }
-}
-
-/* ─── Scrollbar ──────────────────────────────────────────────────────────── */
+/* Scrollbar */
 
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 99px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--faint); }
 
-/* ─── Selection ──────────────────────────────────────────────────────────── */
+/* Selection — comic yellow marker */
 
-::selection { background: var(--accent); color: var(--accent-contrast); }
+::selection { background: var(--highlight); color: #16130f; }
 
-/* ─── Focus visibility ───────────────────────────────────────────────────── */
+/* Focus visibility */
 
 @layer base {
   :focus-visible {
@@ -172,14 +154,9 @@ body {
   }
 }
 
-/* ─── Utilities ──────────────────────────────────────────────────────────── */
+/* Utilities */
 
 @layer utilities {
-  /* Soft glow behind the hero avatar */
-  .accent-glow {
-    box-shadow: 0 0 60px -10px var(--accent-dim);
-  }
-
   .inset-border {
     box-shadow: rgb(18, 18, 18) 0px 1px 0px, rgb(124, 124, 124) 0px 0px 0px 1px inset;
   }
@@ -190,20 +167,53 @@ body {
     font-weight: 700;
   }
 
-  .bg-dot-grid {
-    background-image: radial-gradient(var(--dot) 1px, transparent 1px);
-    background-size: 22px 22px;
+  /* Comic ink outline + hard offset "sticker" shadow. */
+  .ink-border {
+    border: 2px solid var(--outline);
+  }
+  .ink-shadow {
+    box-shadow: 4px 4px 0 0 var(--outline);
+  }
+  .ink-shadow-sm {
+    box-shadow: 3px 3px 0 0 var(--outline);
+  }
+
+  /* Ben-Day halftone dots — comic paper texture for the backdrop. */
+  .comic-halftone {
+    background-image: radial-gradient(var(--halftone) 1.6px, transparent 1.7px);
+    background-size: 15px 15px;
+  }
+
+  /* Jagged "explosion" burst shape for click bubbles. */
+  .comic-burst {
+    clip-path: polygon(
+      50% 0%, 58% 18%, 79% 8%, 74% 30%, 97% 30%, 79% 44%, 95% 62%, 72% 60%,
+      76% 84%, 56% 70%, 50% 98%, 44% 70%, 24% 84%, 28% 60%, 5% 62%, 21% 44%,
+      3% 30%, 26% 30%, 21% 8%, 42% 18%
+    );
+  }
+
+  /* Underline that grows from the left on hover. */
+  .link-underline {
+    background-image: linear-gradient(var(--accent), var(--accent));
+    background-size: 0% 2px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .link-underline:hover {
+    background-size: 100% 2px;
   }
 }
 
-/* ─── Range input (uses accent) ──────────────────────────────────────────── */
+/* Range input (uses accent) */
 
 input[type="range"]::-webkit-slider-runnable-track { background-color: var(--accent); border-radius: 0.5rem; height: 2px; }
 input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; margin-top: -3.5px; background-color: #fff; border-radius: 0.5rem; height: 8px; width: 8px; outline: 2px solid var(--accent); }
 input[type="range"]::-moz-range-track { background-color: var(--accent); border-radius: 0.5rem; height: 2px; }
 input[type="range"]::-moz-range-thumb { background-color: #fff; border-radius: 0.5rem; height: 8px; width: 8px; border: 2px solid var(--accent); box-sizing: border-box; cursor: pointer; }
 
-/* ─── Keyframes ──────────────────────────────────────────────────────────── */
+/* Keyframes */
 
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(20px); }
@@ -213,16 +223,6 @@ input[type="range"]::-moz-range-thumb { background-color: #fff; border-radius: 0
 .animate-fade-up {
   opacity: 0;
   animation: fade-up 0.5s ease forwards;
-}
-
-@keyframes aurora-slow {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50%      { transform: translate(6%, 5%) scale(1.15); }
-}
-
-@keyframes aurora-slower {
-  0%, 100% { transform: translate(0, 0) scale(1.1); }
-  50%      { transform: translate(-7%, -4%) scale(1); }
 }
 
 @media (prefers-reduced-motion: reduce) {
