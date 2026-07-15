@@ -1,0 +1,231 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import {
+  bio,
+  experiences,
+  projects,
+  settings,
+  siteConfig,
+  stats,
+  techStack,
+} from "@portfolio/content";
+
+import Reveal from "@/components/Reveal";
+import ExperienceSection from "@/components/ExperienceSection";
+import ProjectsGallery from "@/components/ProjectsGallery";
+import SplitHeading from "@/components/gsap/SplitHeading";
+import Marquee from "@/components/gsap/Marquee";
+import Magnetic from "@/components/gsap/Magnetic";
+import CountUp from "@/components/gsap/CountUp";
+import VelocitySkew from "@/components/gsap/VelocitySkew";
+import { scrollToAnchor } from "@/components/gsap/SmoothScroll";
+import { introDelay } from "@/components/gsap/Preloader";
+
+const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
+const SectionLabel = ({ children }: { children: React.ReactNode }) => (
+  <Reveal className="mb-12 flex items-center gap-3">
+    <span aria-hidden="true" className="text-2xl text-accent">
+      ✳
+    </span>
+    <span className="text-sm font-semibold uppercase tracking-[0.2em] text-muted">
+      {children}
+    </span>
+  </Reveal>
+);
+
+export default function Home() {
+  // Waits for the preloader curtain on first visit; zero once seen this session.
+  const INTRO = introDelay();
+
+  return (
+    <main className="mx-auto max-w-6xl px-6 sm:px-10 lg:px-16">
+      <VelocitySkew />
+      <section id="home" className="relative flex min-h-screen flex-col justify-center py-24">
+        <div>
+          <h1 className="font-display leading-[0.95]">
+            <SplitHeading
+              text="Fullstack"
+              delay={INTRO}
+              className="block text-6xl text-accent sm:text-8xl lg:text-9xl"
+            />
+            <SplitHeading
+              text="Developer"
+              delay={INTRO + 0.12}
+              className="block pl-4 text-6xl text-muted sm:pl-10 sm:text-8xl lg:text-9xl"
+            />
+          </h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: EASE, delay: INTRO + 0.2 }}
+            className="mt-10 max-w-lg leading-relaxed text-muted"
+          >
+            Hi! I&apos;m <span className="font-semibold text-content">{siteConfig.name}</span>.
+            A fullstack developer who builds fast, scalable, and responsive web
+            solutions with React, Next.js, and PHP.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: EASE, delay: INTRO + 0.35 }}
+            className="mt-10"
+          >
+            <Magnetic>
+              <a
+                href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToAnchor("#contact");
+                }}
+                className="font-display inline-block bg-accent px-9 py-4 text-lg tracking-wider text-accent-contrast"
+              >
+                Let&apos;s Talk
+              </a>
+            </Magnetic>
+            <p className="mt-4 flex items-center gap-2 text-sm text-muted">
+              <span className="h-2 w-2 rounded-full bg-accent" />
+              Available for opportunities
+            </p>
+          </motion.div>
+        </div>
+
+        {settings.sections.stats && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: INTRO + 0.5 }}
+            data-speed="0.9"
+            className="mt-20 flex flex-wrap gap-10 lg:absolute lg:bottom-24 lg:right-0 lg:mt-0 lg:flex-col lg:gap-8 lg:text-right"
+          >
+            {stats.map((stat, i) => (
+              <div key={stat.label}>
+                <CountUp
+                  value={stat.value}
+                  delay={INTRO + 0.6 + i * 0.15}
+                  className="font-display block text-4xl text-accent sm:text-5xl"
+                />
+                <p className="mt-1 text-sm text-muted">{stat.label}</p>
+              </div>
+            ))}
+          </motion.div>
+        )}
+      </section>
+      <Marquee
+        items={[
+          "Fullstack Developer",
+          "React",
+          "Next.js",
+          "TypeScript",
+          "Vue",
+          "Laravel",
+          "WordPress",
+        ]}
+      />
+
+      <section id="about" className="py-28">
+        <SectionLabel>About Me</SectionLabel>
+        <div className="grid gap-10 lg:grid-cols-[1fr_2fr]">
+          <SplitHeading
+            as="h2"
+            scroll
+            text="Who I Am"
+            className="font-display text-5xl text-ghost sm:text-6xl"
+          />
+          <div className="flex max-w-2xl flex-col gap-5">
+            {bio.paragraphs.map((paragraph, i) => (
+              <Reveal key={i} delay={0.1 * i}>
+                <p className="text-lg leading-relaxed text-muted">{paragraph}</p>
+              </Reveal>
+            ))}
+            <Reveal delay={0.3}>
+              <a
+                href={bio.resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 inline-flex items-center gap-2 font-semibold text-accent transition-colors hover:text-accent-strong"
+              >
+                Download résumé <ArrowUpRight size={18} />
+              </a>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+      <section id="skills" className="py-28">
+        <SectionLabel>My Skills</SectionLabel>
+        <div className="flex flex-col gap-20">
+          {techStack.map((category) => (
+            <div key={category.label} className="grid gap-8 lg:grid-cols-[1fr_2fr]">
+              <SplitHeading
+                as="h2"
+                scroll
+                text={category.label}
+                className="font-display text-5xl text-ghost sm:text-6xl"
+              />
+              <div className="flex flex-wrap content-start items-start gap-x-8 gap-y-4">
+                {category.items.map((item, i) => (
+                  <Reveal key={item} delay={0.03 * i}>
+                    <span className="text-lg font-medium text-muted transition-colors hover:text-accent">
+                      {item}
+                    </span>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+      {settings.sections.experience && (
+        <section id="experience" className="py-28">
+          <SectionLabel>My Experience</SectionLabel>
+          <ExperienceSection experiences={experiences} />
+        </section>
+      )}
+      <ProjectsGallery projects={projects} />
+      <section id="contact" className="flex flex-col justify-center py-40">
+        <SectionLabel>Get in Touch</SectionLabel>
+        <h2 className="font-display text-5xl leading-none text-content sm:text-7xl lg:text-8xl">
+          <SplitHeading scroll text="Let's work" />{" "}
+          <SplitHeading scroll delay={0.2} text="together" className="text-accent" />
+        </h2>
+        <Reveal delay={0.15}>
+          <a
+            href={`mailto:${siteConfig.email}`}
+            className="mt-10 inline-block text-xl font-semibold text-muted transition-colors hover:text-accent sm:text-2xl"
+          >
+            {siteConfig.email}
+          </a>
+        </Reveal>
+        <Reveal delay={0.25}>
+          <div className="mt-14 flex items-center justify-between border-t border-line pt-8">
+            <p className="text-sm text-faint">
+              © {new Date().getFullYear()} {siteConfig.name}
+            </p>
+            <div className="flex items-center gap-6 text-sm">
+              <a
+                href={siteConfig.links.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted transition-colors hover:text-accent"
+              >
+                GitHub
+              </a>
+              <a
+                href={siteConfig.links.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted transition-colors hover:text-accent"
+              >
+                LinkedIn
+              </a>
+            </div>
+          </div>
+        </Reveal>
+      </section>
+    </main>
+  );
+}

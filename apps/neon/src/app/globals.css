@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+:root {
+  --canvas:   #1a1a1a;
+  --surface:  #222222;
+  --elevated: #2a2a2a;
+
+  --accent:          #10df5c;
+  --accent-strong:   #0cc94f;
+  --accent-contrast: #0a0a0a;
+
+  --content: #f0f0f0;
+  --muted:   #a3a3a3;
+  --faint:   #5c5c5c;
+  --ghost:   #3a3a3a; /* huge background display text */
+
+  --line: rgba(240, 240, 240, 0.1);
+}
+
+@theme inline {
+  --color-canvas:   var(--canvas);
+  --color-surface:  var(--surface);
+  --color-elevated: var(--elevated);
+
+  --color-accent:          var(--accent);
+  --color-accent-strong:   var(--accent-strong);
+  --color-accent-contrast: var(--accent-contrast);
+
+  --color-content: var(--content);
+  --color-muted:   var(--muted);
+  --color-faint:   var(--faint);
+  --color-ghost:   var(--ghost);
+
+  --color-line: var(--line);
+
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  color-scheme: dark;
+}
+
+/* Match the reference's proportional feel on very large screens. */
+@media (min-width: 1920px) { html { font-size: 18px; } }
+@media (min-width: 2560px) { html { font-size: 20px; } }
+
+body {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  background-color: var(--canvas);
+  color: var(--content);
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--faint); border-radius: 99px; }
+
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-anton), Impact, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+  }
+
+  /* Vertical rail text (email on the left edge). */
+  .sideways {
+    writing-mode: vertical-rl;
+    letter-spacing: 0.2em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
