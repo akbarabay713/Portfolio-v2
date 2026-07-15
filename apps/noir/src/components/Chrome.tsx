@@ -57,6 +57,7 @@ const Chrome = () => {
               <a
                 key={link.href}
                 href={link.href}
+                aria-current={isActive ? "true" : undefined}
                 className={`flex items-center gap-1.5 transition-colors ${
                   isActive ? "text-text" : "text-faint hover:text-muted"
                 }`}

@@ -49,6 +49,12 @@ export default function RootLayout({
       <body
         className={`${geist.variable} ${geistMono.variable} ${instrument.variable} ${geist.className}`}
       >
+        <a
+          href="#home"
+          className="mono sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:border focus:border-line focus:bg-panel focus:px-4 focus:py-2 focus:text-xs focus:text-text"
+        >
+          Skip to content
+        </a>
         <TimeTheme />
         <RingCursor />
         <CornerBrackets />
