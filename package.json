@@ -12,6 +12,8 @@
     "build": "npm run build --workspaces --if-present",
     "build:comic": "npm run build --workspace apps/comic",
     "build:neon": "npm run build --workspace apps/neon",
-    "lint": "npm run lint --workspaces --if-present"
+    "lint": "npm run lint --workspaces --if-present",
+    "dev:noir": "npm run dev --workspace apps/noir",
+    "build:noir": "npm run build --workspace apps/noir"
   }
 }

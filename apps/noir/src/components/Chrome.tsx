@@ -1,0 +1,129 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import Clock from "@/components/Clock";
+import HelpOverlay from "@/components/HelpOverlay";
+
+const LINKS = [
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
+  { label: "Archive", href: "#archive" },
+  { label: "Studies", href: "#studies" },
+  { label: "Contact", href: "#contact" },
+];
+
+/** Fixed top bar: wordmark, section nav (mobile menu below md), help, clock. */
+const Chrome = () => {
+  const [active, setActive] = useState("#home");
+  const [menu, setMenu] = useState(false);
+  const [help, setHelp] = useState(false);
+
+  useEffect(() => {
+    const ids = LINKS.map((l) => l.href.slice(1));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(`#${visible.target.id}`);
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: [0, 0.25, 0.5] },
+    );
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = menu ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menu]);
+
+  return (
+    <>
+      <header className="fixed inset-x-0 top-0 z-50 flex items-center justify-between px-5 py-4 sm:px-8">
+        <a href="#home" className="mono text-sm font-semibold tracking-widest text-text">
+          WE.RAA
+        </a>
+
+        <nav className="mono hidden items-center gap-5 text-xs md:flex">
+          {LINKS.map((link) => {
+            const isActive = active === link.href;
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                className={`flex items-center gap-1.5 transition-colors ${
+                  isActive ? "text-text" : "text-faint hover:text-muted"
+                }`}
+              >
+                ({link.label.toUpperCase()})
+                {isActive && <span className="h-1 w-1 rounded-full bg-accent" />}
+              </a>
+            );
+          })}
+        </nav>
+
+        <div className="flex items-center gap-5">
+          <button
+            onClick={() => setHelp(true)}
+            className="mono hidden text-xs text-faint transition-colors hover:text-text sm:inline"
+          >
+            (?) HELP
+          </button>
+          <Clock />
+          <button
+            onClick={() => setMenu(true)}
+            aria-label="Open menu"
+            className="flex h-6 w-7 flex-col items-end justify-center gap-1.5 md:hidden"
+          >
+            <span className="h-px w-6 bg-text" />
+            <span className="h-px w-4 bg-text" />
+          </button>
+        </div>
+      </header>
+
+      {/* Mobile full-screen menu */}
+      {menu && (
+        <div className="animate-fade fixed inset-0 z-[65] flex flex-col bg-bg px-5 py-4 md:hidden">
+          <div className="flex items-center justify-between">
+            <span className="mono text-sm font-semibold tracking-widest text-text">WE.RAA</span>
+            <button onClick={() => setMenu(false)} aria-label="Close menu" className="mono text-xs text-faint">
+              CLOSE ✕
+            </button>
+          </div>
+          <nav className="flex flex-1 flex-col justify-center gap-2">
+            {LINKS.map((link, i) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMenu(false)}
+                style={{ animationDelay: `${i * 0.05}s` }}
+                className="animate-rise display text-5xl text-text"
+              >
+                ({link.label.toUpperCase()})
+              </a>
+            ))}
+          </nav>
+          <button
+            onClick={() => {
+              setMenu(false);
+              setHelp(true);
+            }}
+            className="mono self-start text-xs text-faint"
+          >
+            (?) HELP
+          </button>
+        </div>
+      )}
+
+      <HelpOverlay open={help} onClose={() => setHelp(false)} />
+    </>
+  );
+};
+
+export default Chrome;

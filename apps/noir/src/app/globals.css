@@ -1,0 +1,174 @@
+@import "tailwindcss";
+
+/*
+ * Palette is "coloured by the hour": the <html> element gets a data-phase of
+ * night / dawn / day / dusk (set client-side), and each phase nudges the base
+ * tint and accent. Values stay near-monochrome so the shift reads as mood.
+ */
+:root,
+:root[data-phase="night"] {
+  --bg:      #0a0a0c;
+  --panel:   #101014;
+  --line:    rgba(235, 235, 240, 0.12);
+  --line-soft: rgba(235, 235, 240, 0.06);
+  --text:    #ededf0;
+  --muted:   #8a8a92;
+  --faint:   #55555c;
+  --ghost:   rgba(235, 235, 240, 0.035);
+  --accent:  #c9d2ff;
+}
+
+:root[data-phase="dawn"] {
+  --bg:      #0d0b0e;
+  --panel:   #141114;
+  --line:    rgba(245, 235, 240, 0.12);
+  --line-soft: rgba(245, 235, 240, 0.06);
+  --text:    #f2ecef;
+  --muted:   #948a90;
+  --faint:   #5e565b;
+  --ghost:   rgba(245, 235, 240, 0.04);
+  --accent:  #ffc9c0;
+}
+
+:root[data-phase="day"] {
+  --bg:      #0b0c0d;
+  --panel:   #111315;
+  --line:    rgba(235, 240, 240, 0.13);
+  --line-soft: rgba(235, 240, 240, 0.06);
+  --text:    #f0f2f2;
+  --muted:   #8b9092;
+  --faint:   #565b5c;
+  --ghost:   rgba(235, 240, 240, 0.04);
+  --accent:  #bfe6d6;
+}
+
+:root[data-phase="dusk"] {
+  --bg:      #0c0a0e;
+  --panel:   #131015;
+  --line:    rgba(240, 235, 245, 0.12);
+  --line-soft: rgba(240, 235, 245, 0.06);
+  --text:    #efecf2;
+  --muted:   #8f8a94;
+  --faint:   #59555e;
+  --ghost:   rgba(240, 235, 245, 0.04);
+  --accent:  #e6c9ff;
+}
+
+@theme inline {
+  --color-bg:        var(--bg);
+  --color-panel:     var(--panel);
+  --color-line:      var(--line);
+  --color-line-soft: var(--line-soft);
+  --color-text:      var(--text);
+  --color-muted:     var(--muted);
+  --color-faint:     var(--faint);
+  --color-ghost:     var(--ghost);
+  --color-accent:    var(--accent);
+
+  --font-sans:  var(--font-geist), system-ui, -apple-system, sans-serif;
+  --font-mono:  var(--font-geist-mono), ui-monospace, monospace;
+  --font-serif: var(--font-instrument), Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-geist), system-ui, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  min-height: 100dvh;
+  overflow-x: hidden;
+  transition: background-color 0.8s ease, color 0.8s ease;
+}
+
+::selection {
+  background: var(--text);
+  color: var(--bg);
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--faint); }
+
+@layer base {
+  :focus-visible {
+    outline: 1px solid var(--text);
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  /* Enormous condensed display caps — the WE.RAA headline treatment. */
+  .display {
+    font-family: var(--font-geist), system-ui, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 0.92;
+    text-transform: uppercase;
+  }
+  .mono {
+    font-family: var(--font-geist-mono), ui-monospace, monospace;
+    letter-spacing: 0.08em;
+  }
+  .serif-italic {
+    font-family: var(--font-instrument), Georgia, serif;
+    font-style: italic;
+  }
+
+  /* Flowing metal button fill for the Liquid Edge study. */
+  .liquid {
+    background: linear-gradient(120deg, #c9d2ff, #ffffff, #bfe6d6, #e6c9ff, #c9d2ff);
+    background-size: 300% 300%;
+    animation: liquid-flow 5s ease infinite;
+  }
+}
+
+@keyframes liquid-flow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes noir-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes noir-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade {
+  animation: noir-fade 0.25s ease both;
+}
+.animate-rise {
+  animation: noir-rise 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -6,8 +6,9 @@ Two portfolio designs sharing one set of content, in an npm-workspaces monorepo.
 apps/
   comic/   Comic/cartoon design (Bangers + Nunito, ink borders, sticker shadows)
   neon/    Dark neon design (Anton + Inter, big condensed type, green accent)
+  noir/    Editorial design (Geist + Instrument Serif, time-of-day palette, smoke canvas)
 packages/
-  content/ Shared data: projects, bio, experience, site config — and settings
+  content/ Shared data: projects, bio, experience, studies, site config — and settings
 ```
 
 ## Commands
@@ -17,6 +18,7 @@ npm install          # once, at the repo root
 
 npm run dev:comic    # comic  → http://localhost:3000
 npm run dev:neon     # neon   → http://localhost:3001
+npm run dev:noir     # noir   → http://localhost:3002
 
 npm run build        # build every workspace
 npm run build:comic  # build one app

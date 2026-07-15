@@ -19,6 +19,16 @@ export const stats: Stat[] = [
   { value: "4", label: "Companies Worked With" },
 ];
 
+/** Editorial "spec sheet" meta — labelled facts for the noir design. */
+export const profile = {
+  based: "Yogyakarta / Remote",
+  role: "Fullstack Developer",
+  since: "2021",
+  focus: "Web · Motion · Type",
+  stack: "PHP · React · Next · GSAP",
+  status: "Available",
+};
+
 export const techStack: TechCategory[] = [
   {
     label: "Web Development",
