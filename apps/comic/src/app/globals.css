@@ -124,6 +124,15 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Scale the whole layout up on large screens (and when zoomed out) so content
+   fills the viewport instead of floating in a fixed column. Everything sized in
+   rem — type, spacing, max-width columns — grows proportionally. Media-query
+   breakpoints are evaluated against the browser default, so they stay stable. */
+@media (min-width: 1536px) { html { font-size: 17px; } }
+@media (min-width: 1920px) { html { font-size: 18px; } }
+@media (min-width: 2560px) { html { font-size: 20px; } }
+@media (min-width: 3400px) { html { font-size: 22px; } }
+
 body {
   font-family: var(--font-nunito), system-ui, -apple-system, sans-serif;
   background-color: var(--canvas);

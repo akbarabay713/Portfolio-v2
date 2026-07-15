@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio
 
-## Getting Started
+Two portfolio designs sharing one set of content, in an npm-workspaces monorepo.
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+apps/
+  comic/   Comic/cartoon design (Bangers + Nunito, ink borders, sticker shadows)
+  neon/    Dark neon design (Anton + Inter, big condensed type, green accent)
+packages/
+  content/ Shared data: projects, bio, experience, site config — and settings
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Commands
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install          # once, at the repo root
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+npm run dev:comic    # comic  → http://localhost:3000
+npm run dev:neon     # neon   → http://localhost:3001
 
-## Learn More
+npm run build        # build every workspace
+npm run build:comic  # build one app
+npm run build:neon
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Settings
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+[`packages/content/src/settings.ts`](packages/content/src/settings.ts) controls both designs:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `activeDesign` — which design your primary domain should serve (`"comic" | "neon"`).
+- `sections.blog / experience / stats` — toggle whole sections on and off everywhere.
+- Per-project `visible` / `featured` flags live in
+  [`packages/content/src/projects.ts`](packages/content/src/projects.ts).
 
-## Deploy on Vercel
+Edit content once in `packages/content` and both designs pick it up.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deploying (Vercel)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Create one Vercel project per app and set **Root Directory** to `apps/comic` or
+`apps/neon`. Point your main domain at whichever app `activeDesign` says, and the
+other at a subdomain (e.g. `neon.yourdomain.com`).

@@ -29,7 +29,7 @@ export default function ProjectsPage() {
   );
 
   return (
-    <section className="mx-auto max-w-6xl px-4 py-16 pb-32">
+    <section className="mx-auto max-w-6xl px-4 py-16 pb-32 2xl:max-w-[100rem]">
       <SectionHeader
         title="Projects"
         subtitle="A selection of products and sites I've designed and built — from ecommerce and SaaS to logistics dashboards."
@@ -83,7 +83,7 @@ export default function ProjectsPage() {
         layout
         className={cn(
           viewMode === "grid"
-            ? "grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            ? "grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4"
             : "flex flex-col gap-4",
         )}
       >

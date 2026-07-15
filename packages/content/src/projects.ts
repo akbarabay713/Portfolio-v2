@@ -1,6 +1,6 @@
-import type { Project } from "@/types/portfolio.types";
+import type { Project } from "./types";
 
-export const projects: Project[] = [
+export const allProjects: Project[] = [
   {
     title: "VitalsWatch",
     description:
@@ -16,6 +16,8 @@ export const projects: Project[] = [
     image: "/projects/vitalswatch.png",
     live: "https://vitalswatch.vercel.app/",
     github: "https://github.com/akbarabay713/vitalswatch",
+    visible: true,
+    featured: true,
   },
   {
     title: "Art Is Wine",
@@ -24,6 +26,7 @@ export const projects: Project[] = [
     tech: ["JavaScript", "WordPress", "WooCommerce", "PHP", "SCSS", "Jquery"],
     image: "/projects/artiswine-nl.png",
     live: "https://artiswine.nl/",
+    visible: true,
   },
   {
     title: "Devinita",
@@ -32,6 +35,7 @@ export const projects: Project[] = [
     tech: ["JavaScript", "WordPress", "WooCommerce", "PHP", "SCSS", "Jquery"],
     image: "/projects/devinita-nl.png",
     live: "https://devinita.nl/",
+    visible: true,
   },
   {
     title: "Greyrox",
@@ -40,6 +44,8 @@ export const projects: Project[] = [
     tech: ["JavaScript", "WordPress", "Elementor", "PHP", "SCSS", "Jquery"],
     image: "/projects/greyrox.png",
     live: "https://www.greyrox.com/",
+    visible: true,
+    featured: true,
   },
   {
     title: "NedTax",
@@ -48,6 +54,7 @@ export const projects: Project[] = [
     tech: ["JavaScript", "WordPress", "Elementor", "PHP", "SCSS", "Jquery"],
     image: "/projects/nedtax.png",
     live: "https://nedtax.nl/nl/",
+    visible: true,
   },
   {
     title: "ToxicoWatch",
@@ -56,6 +63,7 @@ export const projects: Project[] = [
     tech: ["JavaScript", "WordPress", "Elementor", "PHP", "SCSS", "Jquery"],
     image: "/projects/toxico.png",
     live: "https://toxicowatch.org/",
+    visible: true,
   },
   {
     title: "ToxicoWatch Consultancy",
@@ -64,6 +72,7 @@ export const projects: Project[] = [
     tech: ["JavaScript", "WordPress", "Elementor", "PHP", "SCSS", "Jquery"],
     image: "/projects/tw.png",
     live: "https://wordpress-663295-5770621.cloudwaysapps.com/",
+    visible: true,
   },
   {
     title: "Woven+",
@@ -72,6 +81,7 @@ export const projects: Project[] = [
     tech: ["JavaScript", "WordPress", "Elementor", "PHP", "SCSS", "Jquery"],
     image: "/projects/woven.png",
     live: "https://wovenplus.com/",
+    visible: true,
   },
   {
     title: "Urban Africa Naturals",
@@ -80,6 +90,7 @@ export const projects: Project[] = [
     tech: ["JavaScript", "WordPress", "WooCommerce", "PHP", "SCSS", "Jquery"],
     image: "/projects/uan.png",
     live: "https://woocommerce-663295-6105213.cloudwaysapps.com/",
+    visible: true,
   },
   {
     title: "Lendé",
@@ -88,6 +99,7 @@ export const projects: Project[] = [
     tech: ["JavaScript", "WordPress", "WooCommerce", "PHP", "SCSS", "Jquery"],
     image: "/projects/lende.png",
     live: "https://lendeluxury.com/",
+    visible: true,
   },
   {
     title: "Gaia Digital",
@@ -96,6 +108,7 @@ export const projects: Project[] = [
     tech: ["JavaScript", "WordPress", "Elementor", "PHP", "SCSS", "Jquery"],
     image: "/projects/gaia-landing-page.png",
     live: "https://www.gaiadigital.nl/landingspagina-template/",
+    visible: true,
   },
   {
     title: "Skin Color Cosmetics",
@@ -104,6 +117,7 @@ export const projects: Project[] = [
     tech: ["JavaScript", "WordPress", "WooCommerce", "PHP", "SCSS", "Jquery"],
     image: "/projects/skin-color.png",
     live: "https://skincolorcosmetics.nl/",
+    visible: true,
   },
   {
     title: "Dashboard KiriminAja",
@@ -121,5 +135,15 @@ export const projects: Project[] = [
     ],
     image: "/projects/ka.png",
     live: "https://kiriminaja.com/",
+    visible: true,
+    featured: true,
   },
 ];
+
+/** Projects with `visible: false` filtered out — what both designs render. */
+export const projects: Project[] = allProjects.filter(
+  (p) => p.visible !== false,
+);
+
+/** Featured subset, for designs that highlight a shortlist. */
+export const featuredProjects: Project[] = projects.filter((p) => p.featured);

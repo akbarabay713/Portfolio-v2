@@ -9,7 +9,7 @@ import Tag from "@/components/atoms/Tag";
 import SectionHeader from "@/components/molecules/SectionHeader";
 import ExperienceTimeline from "@/components/molecules/ExperienceTimeline";
 import { TechIcon } from "@/components/atoms/Icons/TechIcon";
-import { EASE_OUT, bio, experiences, fadeUpVariants, techStack } from "@/constants";
+import { EASE_OUT, bio, experiences, fadeUpVariants, settings, techStack } from "@/constants";
 
 export default function AboutPage() {
   return (
@@ -84,16 +84,20 @@ export default function AboutPage() {
         </div>
       </motion.div>
 
-      <SectionHeader as="h2" title="Experience" />
+      {settings.sections.experience && (
+        <>
+          <SectionHeader as="h2" title="Experience" />
 
-      <motion.div
-        initial="initial"
-        animate="animate"
-        variants={fadeUpVariants}
-        transition={{ duration: 0.7, ease: EASE_OUT, delay: 0.2 }}
-      >
-        <ExperienceTimeline experiences={experiences} />
-      </motion.div>
+          <motion.div
+            initial="initial"
+            animate="animate"
+            variants={fadeUpVariants}
+            transition={{ duration: 0.7, ease: EASE_OUT, delay: 0.2 }}
+          >
+            <ExperienceTimeline experiences={experiences} />
+          </motion.div>
+        </>
+      )}
     </main>
   );
 }

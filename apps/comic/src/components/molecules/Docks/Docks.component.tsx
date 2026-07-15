@@ -10,7 +10,7 @@ import Box from "@/components/atoms/Box";
 import DockItem from "@/components/atoms/Dock";
 import IcGithub from "@/components/atoms/Icons/IcGithub";
 import IcLinkedin from "@/components/atoms/Icons/IcLinkedin";
-import { siteConfig } from "@/constants";
+import { settings, siteConfig } from "@/constants";
 
 interface NavDock {
   tooltip: string;
@@ -47,13 +47,14 @@ const Dock = () => {
   const toggleTheme = () => setTheme(isDark ? "light" : "dark");
 
   const navigationItems: NavDock[] = useMemo(
-    () => [
-      { tooltip: "Home", icon: <Home size={18} />, href: "/" },
-      { tooltip: "About", icon: <UserRound size={18} />, href: "/about" },
-      { tooltip: "Projects", icon: <Code2 size={18} />, href: "/projects" },
-      { tooltip: "Blog", icon: <Pencil size={18} />, href: "/blog" },
-      { tooltip: "Contact", icon: <Mail size={18} />, href: "/contact" },
-    ],
+    () =>
+      [
+        { tooltip: "Home", icon: <Home size={18} />, href: "/" },
+        { tooltip: "About", icon: <UserRound size={18} />, href: "/about" },
+        { tooltip: "Projects", icon: <Code2 size={18} />, href: "/projects" },
+        { tooltip: "Blog", icon: <Pencil size={18} />, href: "/blog" },
+        { tooltip: "Contact", icon: <Mail size={18} />, href: "/contact" },
+      ].filter((item) => item.href !== "/blog" || settings.sections.blog),
     [],
   );
 

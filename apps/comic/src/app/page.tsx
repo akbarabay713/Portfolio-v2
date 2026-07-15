@@ -10,8 +10,7 @@ import Button from "@/components/atoms/Button";
 import StatusPill from "@/components/atoms/StatusPill";
 import Magnetic from "@/components/atoms/Magnetic";
 import { IcGithub, IcLinkedin } from "@/components/atoms/Icons/SocialIcons";
-import { EASE_OUT, fadeUpVariants, siteConfig } from "@/constants";
-import profileImg from "@/assets/images/akbarr.webp";
+import { bio, EASE_OUT, fadeUpVariants, siteConfig } from "@/constants";
 
 const fade = (delay: number) => ({
   initial: "initial" as const,
@@ -37,12 +36,12 @@ export default function Home() {
     <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 text-center">
       <motion.div {...fade(0)} className="mb-8">
         <Image
-          src={profileImg}
+          src={bio.avatar}
           alt="Portrait of Akbar"
           width={112}
           height={112}
           priority
-          className="ink-border ink-shadow -rotate-3 rounded-full transition-transform duration-300 hover:rotate-0"
+          className="ink-border ink-shadow -rotate-3 rounded-full object-cover transition-transform duration-300 hover:rotate-0"
         />
       </motion.div>
 
