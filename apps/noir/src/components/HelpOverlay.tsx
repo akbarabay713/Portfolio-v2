@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 
 const ITEMS = [
-  { k: "Navigation", v: "Jump between sections from the menu, or scroll." },
+  { k: "Navigation", v: "Jump between sections from the menu or scroll — or press J / K to step forward and back." },
   { k: "Studies", v: "Click any study for a live demo. ← → to move, Esc to close, and every study has a shareable link." },
   { k: "Theme", v: "The palette is coloured by the hour — dawn, day, dusk, night — matched to your local time." },
   { k: "Privacy", v: "No trackers, no cookies, no analytics." },

@@ -43,6 +43,33 @@ const Chrome = () => {
     };
   }, [menu]);
 
+  // Reflect the active section in the browser tab title.
+  useEffect(() => {
+    const label = LINKS.find((l) => l.href === active)?.label;
+    document.title =
+      !label || active === "#home" ? "Akbar — Studio" : `${label} — Akbar`;
+  }, [active]);
+
+  // j / k jump to the next / previous section (power-user shortcut).
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "j" && e.key !== "k") return;
+      if (document.querySelector('[role="dialog"]') || menu) return; // overlay open
+      const el = document.activeElement;
+      if (el && /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName)) return;
+      const i = LINKS.findIndex((l) => l.href === active);
+      const next =
+        e.key === "j" ? Math.min(LINKS.length - 1, i + 1) : Math.max(0, i - 1);
+      if (next !== i) {
+        document
+          .getElementById(LINKS[next].href.slice(1))
+          ?.scrollIntoView({ behavior: "smooth" });
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [active, menu]);
+
   return (
     <>
       <header className="fixed inset-x-0 top-0 z-50 flex items-center justify-between px-5 py-4 sm:px-8">
