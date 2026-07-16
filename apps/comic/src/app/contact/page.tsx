@@ -6,6 +6,7 @@ import { Mail, ArrowUpRight } from "lucide-react";
 import Button from "@/components/atoms/Button";
 import Card from "@/components/atoms/Card";
 import SectionHeader from "@/components/molecules/SectionHeader";
+import { designs } from "@portfolio/content";
 import { EASE_OUT, contactEmail, fadeUpVariants, socialLinks } from "@/constants";
 
 export default function ContactPage() {
@@ -68,6 +69,32 @@ export default function ContactPage() {
                 />
               </a>
             ))}
+          </div>
+
+          <div className="flex w-full flex-col items-center gap-3 border-t border-line pt-8">
+            <span className="text-xs font-bold uppercase tracking-wider text-faint">
+              Try another design
+            </span>
+            <div className="flex flex-wrap items-center justify-center gap-2">
+              {designs.map((d) =>
+                d.id === "comic" ? (
+                  <span
+                    key={d.id}
+                    className="rounded-full border-2 border-outline bg-accent px-4 py-1.5 text-xs font-bold text-accent-contrast"
+                  >
+                    {d.label}
+                  </span>
+                ) : (
+                  <a
+                    key={d.id}
+                    href={d.url}
+                    className="rounded-full border-2 border-outline bg-card px-4 py-1.5 text-xs font-bold text-content transition-all hover:-rotate-2 hover:bg-highlight hover:text-[#16130f]"
+                  >
+                    {d.label}
+                  </a>
+                ),
+              )}
+            </div>
           </div>
         </Card>
       </motion.div>

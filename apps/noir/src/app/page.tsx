@@ -1,5 +1,6 @@
 import {
   bio,
+  designs,
   featuredProjects,
   profile,
   siteConfig,
@@ -180,8 +181,26 @@ export default function Home() {
             {email}
           </a>
         </Reveal>
-        <div className="mono mt-16 flex flex-col justify-between gap-6 border-t border-line pt-8 text-xs text-faint sm:flex-row">
-          <span>© {siteConfig.name.toUpperCase()} — CODED IN THE OPEN</span>
+        <div className="mono mt-16 flex flex-wrap items-center gap-x-8 gap-y-4 border-t border-line pt-8 text-xs text-faint">
+          <span className="mr-auto">© {siteConfig.name.toUpperCase()} — CODED IN THE OPEN</span>
+          <span className="flex items-center gap-3">
+            <span className="text-faint">DESIGN</span>
+            {designs.map((d) =>
+              d.id === "noir" ? (
+                <span key={d.id} className="text-text">
+                  {d.label.toUpperCase()}
+                </span>
+              ) : (
+                <a
+                  key={d.id}
+                  href={d.url}
+                  className="text-muted transition-colors hover:text-text"
+                >
+                  {d.label.toUpperCase()}
+                </a>
+              ),
+            )}
+          </span>
           <div className="flex gap-8">
             <a href={siteConfig.links.github} target="_blank" rel="noopener noreferrer" className="text-muted transition-colors hover:text-text">
               GITHUB ↗

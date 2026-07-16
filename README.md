@@ -36,8 +36,21 @@ npm run build:neon
 
 Edit content once in `packages/content` and both designs pick it up.
 
+## Design switcher
+
+Each app footer links to the other two designs. The URLs come from env vars and
+fall back to the local dev ports, so it works out of the box in development:
+
+```
+NEXT_PUBLIC_COMIC_URL   (default http://localhost:3000)
+NEXT_PUBLIC_NEON_URL    (default http://localhost:3001)
+NEXT_PUBLIC_NOIR_URL    (default http://localhost:3002)
+```
+
 ## Deploying (Vercel)
 
-Create one Vercel project per app and set **Root Directory** to `apps/comic` or
-`apps/neon`. Point your main domain at whichever app `activeDesign` says, and the
-other at a subdomain (e.g. `neon.yourdomain.com`).
+Create one Vercel project per app and set **Root Directory** to `apps/comic`,
+`apps/neon`, or `apps/noir`. Point your main domain at whichever app
+`activeDesign` says, and the others at subdomains (e.g. `neon.yourdomain.com`).
+Set the three `NEXT_PUBLIC_*_URL` env vars on every project so the design
+switcher links across the deployments.

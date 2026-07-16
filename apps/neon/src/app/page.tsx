@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import {
   bio,
+  designs,
   experiences,
   projects,
   settings,
@@ -201,11 +202,29 @@ export default function Home() {
           </a>
         </Reveal>
         <Reveal delay={0.25}>
-          <div className="mt-14 flex items-center justify-between border-t border-line pt-8">
-            <p className="text-sm text-faint">
+          <div className="mt-14 flex flex-wrap items-center gap-x-8 gap-y-4 border-t border-line pt-8 text-sm">
+            <p className="mr-auto text-faint">
               © {new Date().getFullYear()} {siteConfig.name}
             </p>
-            <div className="flex items-center gap-6 text-sm">
+            <div className="flex items-center gap-4">
+              <span className="text-faint">Design</span>
+              {designs.map((d) =>
+                d.id === "neon" ? (
+                  <span key={d.id} className="font-semibold text-accent">
+                    {d.label}
+                  </span>
+                ) : (
+                  <a
+                    key={d.id}
+                    href={d.url}
+                    className="text-muted transition-colors hover:text-content"
+                  >
+                    {d.label}
+                  </a>
+                ),
+              )}
+            </div>
+            <div className="flex items-center gap-6">
               <a
                 href={siteConfig.links.github}
                 target="_blank"
