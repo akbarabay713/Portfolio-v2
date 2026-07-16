@@ -8,6 +8,7 @@ import {
 } from "@portfolio/content";
 
 import SmokeShader from "@/components/SmokeShader";
+import MicToggle from "@/components/MicToggle";
 import SectionHeader from "@/components/SectionHeader";
 import Reveal from "@/components/Reveal";
 import ArchiveSection from "@/components/archive/ArchiveSection";
@@ -64,10 +65,13 @@ export default function Home() {
               PHP and dashboards — now I care about the easing of a hover, the
               weight of a line, the silence between sections.
             </p>
-            <p className="mono mt-8 flex items-center gap-2 text-xs text-faint">
-              <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent" />
-              AVAILABLE FOR WORK
-            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
+              <p className="mono flex items-center gap-2 text-xs text-faint">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent" />
+                AVAILABLE FOR WORK
+              </p>
+              <MicToggle />
+            </div>
           </div>
         </div>
       </section>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { audioState } from "@/lib/audio";
 
 const VERT = `
 attribute vec2 a_pos;
@@ -13,6 +14,7 @@ precision highp float;
 uniform float u_time;
 uniform vec2 u_res;
 uniform vec2 u_mouse;
+uniform float u_audio;
 
 float hash(vec2 p){ p = fract(p * vec2(123.34, 345.45)); p += dot(p, p + 34.345); return fract(p.x * p.y); }
 float noise(vec2 p){
@@ -31,7 +33,7 @@ void main(){
   vec2 uv = gl_FragCoord.xy / u_res;
   float aspect = u_res.x / u_res.y;
   vec2 p = uv * vec2(aspect, 1.0) * 3.0;
-  float t = u_time * 0.06;
+  float t = u_time * (0.06 + u_audio * 0.25);
   vec2 m = (u_mouse - 0.5) * 0.6;
 
   vec2 q = vec2(fbm(p + vec2(0.0, t) + m), fbm(p + vec2(5.2, 1.3 - t)));
@@ -40,10 +42,10 @@ void main(){
   f = smoothstep(0.05, 1.05, f);
 
   float rad = 1.0 - smoothstep(0.15, 0.95, length(uv - 0.5) * 1.25);
-  float d = f * rad;
+  float d = clamp(f * rad * (1.0 + u_audio * 1.6), 0.0, 1.0);
 
   vec3 base = vec3(0.039, 0.039, 0.047);
-  vec3 fog  = vec3(0.80, 0.83, 0.90);
+  vec3 fog  = mix(vec3(0.80, 0.83, 0.90), vec3(0.90, 0.92, 1.0), u_audio);
   gl_FragColor = vec4(mix(base, fog, d * 0.92), 1.0);
 }
 `;
@@ -85,6 +87,7 @@ const SmokeShader = () => {
     const uTime = gl.getUniformLocation(prog, "u_time");
     const uRes = gl.getUniformLocation(prog, "u_res");
     const uMouse = gl.getUniformLocation(prog, "u_mouse");
+    const uAudio = gl.getUniformLocation(prog, "u_audio");
 
     // Render at reduced resolution — smoke is soft, so this is much cheaper.
     const scale = 0.55;
@@ -115,6 +118,7 @@ const SmokeShader = () => {
       gl.uniform1f(uTime, reduce ? 12 : performance.now() / 1000);
       gl.uniform2f(uRes, canvas.width, canvas.height);
       gl.uniform2f(uMouse, mouse.x, mouse.y);
+      gl.uniform1f(uAudio, audioState.level);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
       stats.__smokeFrames = (stats.__smokeFrames ?? 0) + 1;
     };
