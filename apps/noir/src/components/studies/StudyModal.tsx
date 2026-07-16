@@ -6,6 +6,7 @@ import { useGSAP } from "@gsap/react";
 import type { Study } from "@portfolio/content";
 
 import { useFocusTrap } from "@/lib/useFocusTrap";
+import DemoBoundary from "./DemoBoundary";
 import { STUDY_DEMOS } from "./demos";
 
 gsap.registerPlugin(useGSAP);
@@ -133,7 +134,9 @@ const StudyModal = ({ study, index, total, onPrev, onNext, onClose }: StudyModal
           ref={stageRef}
           className="relative h-[52vh] max-h-[460px] min-h-[300px] w-full overflow-hidden bg-bg"
         >
-          <Demo />
+          <DemoBoundary>
+            <Demo />
+          </DemoBoundary>
         </div>
 
         <div className="flex items-center justify-between gap-4 border-t border-line px-6 py-4">
