@@ -11,14 +11,15 @@ gsap.registerPlugin(useGSAP);
 interface ArchiveRowProps {
   project: Project;
   index: number;
+  onOpen?: () => void;
 }
 
 /**
- * A full-width archive line: big title, tags, year. On fine pointers a preview
- * thumbnail follows the cursor while the row is hovered.
+ * A full-width archive line: big title, tags, year. Opens a project detail
+ * modal; on fine pointers a preview thumbnail follows the cursor on hover.
  */
-const ArchiveRow = ({ project, index }: ArchiveRowProps) => {
-  const rowRef = useRef<HTMLAnchorElement>(null);
+const ArchiveRow = ({ project, index, onOpen }: ArchiveRowProps) => {
+  const rowRef = useRef<HTMLButtonElement>(null);
   const previewRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
@@ -50,12 +51,10 @@ const ArchiveRow = ({ project, index }: ArchiveRowProps) => {
   );
 
   return (
-    <a
+    <button
       ref={rowRef}
-      href={project.live ?? project.github}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group grid grid-cols-[auto_1fr] items-center gap-x-6 gap-y-1 border-b border-line py-8 sm:grid-cols-[3rem_1fr_auto_auto]"
+      onClick={onOpen}
+      className="group grid w-full grid-cols-[auto_1fr] items-center gap-x-6 gap-y-1 border-b border-line py-8 text-left sm:grid-cols-[3rem_1fr_auto_auto]"
     >
       <span className="mono text-xs text-faint">{String(index).padStart(2, "0")}</span>
       <h3
@@ -84,7 +83,7 @@ const ArchiveRow = ({ project, index }: ArchiveRowProps) => {
           className="object-cover"
         />
       </div>
-    </a>
+    </button>
   );
 };
 

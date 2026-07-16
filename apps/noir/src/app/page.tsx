@@ -10,7 +10,7 @@ import {
 import SmokeShader from "@/components/SmokeShader";
 import SectionHeader from "@/components/SectionHeader";
 import Reveal from "@/components/Reveal";
-import ArchiveRow from "@/components/ArchiveRow";
+import ArchiveSection from "@/components/archive/ArchiveSection";
 import StudiesSection from "@/components/studies/StudiesSection";
 import SplitHeading from "@/components/gsap/SplitHeading";
 import VelocitySkew from "@/components/gsap/VelocitySkew";
@@ -150,11 +150,7 @@ export default function Home() {
           index={4}
           meta={`${featuredProjects.length} projects · click to open`}
         />
-        <div className="border-t border-line">
-          {featuredProjects.map((project, i) => (
-            <ArchiveRow key={project.title} project={project} index={i + 1} />
-          ))}
-        </div>
+        <ArchiveSection projects={featuredProjects} />
       </section>
 
       {/* ── Studies ──────────────────────────────────────── */}
