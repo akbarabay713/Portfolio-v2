@@ -6,6 +6,8 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import type { Project } from "@portfolio/content";
 
+import { useFocusTrap } from "@/lib/useFocusTrap";
+
 gsap.registerPlugin(useGSAP);
 
 interface ArchiveModalProps {
@@ -32,6 +34,8 @@ const ArchiveModal = ({ project, index, total, onPrev, onNext, onClose }: Archiv
       window.setTimeout(() => setCopied(false), 1500);
     });
   };
+
+  useFocusTrap(ref, !!project);
 
   useEffect(() => {
     if (!project) return;

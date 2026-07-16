@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Clock from "@/components/Clock";
 import HelpOverlay from "@/components/HelpOverlay";
+import { useFocusTrap } from "@/lib/useFocusTrap";
 
 const LINKS = [
   { label: "Home", href: "#home" },
@@ -17,6 +18,8 @@ const Chrome = () => {
   const [active, setActive] = useState("#home");
   const [menu, setMenu] = useState(false);
   const [help, setHelp] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  useFocusTrap(menuRef, menu);
 
   useEffect(() => {
     const ids = LINKS.map((l) => l.href.slice(1));
@@ -117,7 +120,10 @@ const Chrome = () => {
 
       {/* Mobile full-screen menu */}
       {menu && (
-        <div className="animate-fade fixed inset-0 z-[65] flex flex-col bg-bg px-5 py-4 md:hidden">
+        <div
+          ref={menuRef}
+          className="animate-fade fixed inset-0 z-[65] flex flex-col bg-bg px-5 py-4 md:hidden"
+        >
           <div className="flex items-center justify-between">
             <span className="mono text-sm font-semibold tracking-widest text-text">WE.RAA</span>
             <button onClick={() => setMenu(false)} aria-label="Close menu" className="mono text-xs text-faint">

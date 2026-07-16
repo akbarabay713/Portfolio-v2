@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import type { Study } from "@portfolio/content";
 
+import { useFocusTrap } from "@/lib/useFocusTrap";
 import { STUDY_DEMOS } from "./demos";
 
 gsap.registerPlugin(useGSAP);
@@ -40,6 +41,8 @@ const StudyModal = ({ study, index, total, onPrev, onNext, onClose }: StudyModal
       window.setTimeout(() => setCopied(false), 1500);
     });
   };
+
+  useFocusTrap(ref, !!study);
 
   // Scroll-lock + keyboard (ESC to close, arrows to navigate) while open.
   useEffect(() => {

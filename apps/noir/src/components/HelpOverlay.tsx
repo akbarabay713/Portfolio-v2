@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+
+import { useFocusTrap } from "@/lib/useFocusTrap";
 
 const ITEMS = [
   { k: "Navigation", v: "Jump between sections from the menu or scroll — or press J / K to step forward and back." },
@@ -11,6 +13,8 @@ const ITEMS = [
 
 /** Small "(?) HELP" overlay explaining how the site behaves. */
 const HelpOverlay = ({ open, onClose }: { open: boolean; onClose: () => void }) => {
+  const ref = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
@@ -18,10 +22,13 @@ const HelpOverlay = ({ open, onClose }: { open: boolean; onClose: () => void }) 
     return () => window.removeEventListener("keydown", onKey);
   }, [open, onClose]);
 
+  useFocusTrap(ref, open);
+
   if (!open) return null;
 
   return (
     <div
+      ref={ref}
       role="dialog"
       aria-modal="true"
       aria-label="Help"
