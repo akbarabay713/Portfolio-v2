@@ -5,6 +5,7 @@ import type { Project } from "@portfolio/content";
 
 import ArchiveRow from "@/components/ArchiveRow";
 import ArchiveModal from "./ArchiveModal";
+import ArchivePreview from "./ArchivePreview";
 
 const slugify = (s: string) =>
   s
@@ -18,8 +19,39 @@ const slugify = (s: string) =>
  */
 const ArchiveSection = ({ projects }: { projects: Project[] }) => {
   const [slug, setSlug] = useState<string | null>(null);
+  const [hovered, setHovered] = useState<Project | null>(null);
   const lastFocus = useRef<HTMLElement | null>(null);
+  const scrolling = useRef(false);
   const slugs = useMemo(() => projects.map((p) => slugify(p.title)), [projects]);
+
+  // Suppress hover previews while scrolling so rows passing under a stationary
+  // cursor don't flash a preview stuck at the top-left.
+  useEffect(() => {
+    let t: ReturnType<typeof setTimeout>;
+    const onScroll = () => {
+      scrolling.current = true;
+      setHovered(null);
+      clearTimeout(t);
+      t = setTimeout(() => (scrolling.current = false), 140);
+    };
+    // Any real cursor movement means it isn't a stationary wheel-scroll, so
+    // lift the suppression immediately and let hovers register.
+    const onMove = () => {
+      scrolling.current = false;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("mousemove", onMove, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("mousemove", onMove);
+      clearTimeout(t);
+    };
+  }, []);
+
+  const hover = (project: Project | null) => {
+    if (scrolling.current && project) return;
+    setHovered(project);
+  };
 
   useEffect(() => {
     const sync = () => {
@@ -40,6 +72,7 @@ const ArchiveSection = ({ projects }: { projects: Project[] }) => {
 
   const open = (value: string) => {
     lastFocus.current = document.activeElement as HTMLElement;
+    setHovered(null);
     setSlug(value);
     writeUrl(value, true);
   };
@@ -65,8 +98,10 @@ const ArchiveSection = ({ projects }: { projects: Project[] }) => {
           project={project}
           index={i + 1}
           onOpen={() => open(slugs[i])}
+          onHover={hover}
         />
       ))}
+      <ArchivePreview project={slug ? null : hovered} />
       <ArchiveModal
         project={idx >= 0 ? projects[idx] : null}
         index={idx >= 0 ? idx + 1 : 0}
