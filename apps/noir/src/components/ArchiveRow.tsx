@@ -41,10 +41,14 @@ const ArchiveRow = ({ project, index, onOpen }: ArchiveRowProps) => {
       row?.addEventListener("mouseenter", show);
       row?.addEventListener("mouseleave", hide);
       row?.addEventListener("mousemove", move);
+      // Clicking opens the modal over the cursor, so mouseleave never fires —
+      // hide the preview on pointerdown so it can't get stuck on screen.
+      row?.addEventListener("pointerdown", hide);
       return () => {
         row?.removeEventListener("mouseenter", show);
         row?.removeEventListener("mouseleave", hide);
         row?.removeEventListener("mousemove", move);
+        row?.removeEventListener("pointerdown", hide);
       };
     },
     { scope: rowRef },

@@ -1,8 +1,9 @@
 import {
   bio,
   designs,
-  featuredProjects,
+  experiences,
   profile,
+  projects,
   siteConfig,
   studies,
   techStack,
@@ -147,15 +148,49 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── Experience ───────────────────────────────────── */}
+      <section id="experience" className="px-5 py-28 sm:px-8">
+        <SectionHeader
+          title="Experience"
+          kicker="Work"
+          index={4}
+          meta={`${experiences.length} roles`}
+        />
+        <div className="border-t border-line">
+          {experiences.map((exp) => (
+            <Reveal key={`${exp.subtitle}-${exp.date}`}>
+              <div className="grid gap-3 border-b border-line py-10 lg:grid-cols-[11rem_1fr] lg:gap-8">
+                <p className="mono text-[11px] uppercase tracking-wider text-faint">
+                  {exp.date}
+                </p>
+                <div>
+                  <h3 className="display text-2xl text-text sm:text-3xl">
+                    {exp.title}
+                    <span className="text-accent"> @ {exp.subtitle}</span>
+                  </h3>
+                  <ul className="mt-4 flex max-w-2xl flex-col gap-2">
+                    {exp.description.map((line, j) => (
+                      <li key={j} className="text-sm leading-relaxed text-muted">
+                        {line}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
       {/* ── Archive ──────────────────────────────────────── */}
       <section id="archive" className="px-5 py-28 sm:px-8">
         <SectionHeader
           title="Selected Archive"
           kicker="Archive"
-          index={4}
-          meta={`${featuredProjects.length} projects · click to open`}
+          index={5}
+          meta={`${projects.length} projects · click to open`}
         />
-        <ArchiveSection projects={featuredProjects} />
+        <ArchiveSection projects={projects} />
       </section>
 
       {/* ── Studies ──────────────────────────────────────── */}
@@ -163,7 +198,7 @@ export default function Home() {
         <SectionHeader
           title="Studies"
           kicker="Studies"
-          index={5}
+          index={6}
           meta={`${studies.length} experiments · click to open`}
         />
         <StudiesSection studies={studies} />
@@ -171,7 +206,7 @@ export default function Home() {
 
       {/* ── Contact ──────────────────────────────────────── */}
       <section id="contact" className="px-5 py-28 sm:px-8">
-        <SectionHeader title="Contact" kicker="Contact" index={6} meta="Say hello" />
+        <SectionHeader title="Contact" kicker="Contact" index={7} meta="Say hello" />
         <Reveal>
           <a
             href={`mailto:${email}`}
@@ -181,26 +216,35 @@ export default function Home() {
             {email}
           </a>
         </Reveal>
-        <div className="mono mt-16 flex flex-wrap items-center gap-x-8 gap-y-4 border-t border-line pt-8 text-xs text-faint">
-          <span className="mr-auto">© {siteConfig.name.toUpperCase()} — CODED IN THE OPEN</span>
-          <span className="flex items-center gap-3">
-            <span className="text-faint">DESIGN</span>
+        {/* Design switcher — jump to the other two portfolio builds. */}
+        <Reveal delay={0.1}>
+          <div className="mt-20 flex flex-wrap items-center gap-x-6 gap-y-4 border-t border-line pt-8">
+            <span className="mono text-[11px] uppercase tracking-widest text-faint">
+              Try another design →
+            </span>
             {designs.map((d) =>
               d.id === "noir" ? (
-                <span key={d.id} className="text-text">
-                  {d.label.toUpperCase()}
+                <span
+                  key={d.id}
+                  className="mono border border-text px-5 py-2.5 text-xs text-text"
+                >
+                  {d.label.toUpperCase()} ·
                 </span>
               ) : (
                 <a
                   key={d.id}
                   href={d.url}
-                  className="text-muted transition-colors hover:text-text"
+                  className="mono border border-line px-5 py-2.5 text-xs text-muted transition-colors hover:bg-text hover:text-bg"
                 >
-                  {d.label.toUpperCase()}
+                  {d.label.toUpperCase()} ↗
                 </a>
               ),
             )}
-          </span>
+          </div>
+        </Reveal>
+
+        <div className="mono mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-8 text-xs text-faint">
+          <span>© {siteConfig.name.toUpperCase()} — CODED IN THE OPEN</span>
           <div className="flex gap-8">
             <a href={siteConfig.links.github} target="_blank" rel="noopener noreferrer" className="text-muted transition-colors hover:text-text">
               GITHUB ↗

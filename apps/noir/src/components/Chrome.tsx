@@ -8,6 +8,7 @@ import { useFocusTrap } from "@/lib/useFocusTrap";
 const LINKS = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
+  { label: "Experience", href: "#experience" },
   { label: "Archive", href: "#archive" },
   { label: "Studies", href: "#studies" },
   { label: "Contact", href: "#contact" },
@@ -80,7 +81,7 @@ const Chrome = () => {
           WE.RAA
         </a>
 
-        <nav className="mono hidden items-center gap-5 text-xs md:flex">
+        <nav className="mono hidden items-center gap-5 text-xs lg:flex">
           {LINKS.map((link) => {
             const isActive = active === link.href;
             return (
@@ -110,7 +111,7 @@ const Chrome = () => {
           <button
             onClick={() => setMenu(true)}
             aria-label="Open menu"
-            className="flex h-6 w-7 flex-col items-end justify-center gap-1.5 md:hidden"
+            className="flex h-6 w-7 flex-col items-end justify-center gap-1.5 lg:hidden"
           >
             <span className="h-px w-6 bg-text" />
             <span className="h-px w-4 bg-text" />
@@ -122,7 +123,7 @@ const Chrome = () => {
       {menu && (
         <div
           ref={menuRef}
-          className="animate-fade fixed inset-0 z-[65] flex flex-col bg-bg px-5 py-4 md:hidden"
+          className="animate-fade fixed inset-0 z-[65] flex flex-col bg-bg px-5 py-4 lg:hidden"
         >
           <div className="flex items-center justify-between">
             <span className="mono text-sm font-semibold tracking-widest text-text">WE.RAA</span>

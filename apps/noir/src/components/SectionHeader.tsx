@@ -15,7 +15,7 @@ const SectionHeader = ({
   title,
   kicker,
   index,
-  total = 6,
+  total = 7,
   meta,
 }: SectionHeaderProps) => {
   const num = String(index).padStart(2, "0");
