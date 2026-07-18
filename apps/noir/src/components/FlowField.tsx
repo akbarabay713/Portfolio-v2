@@ -39,6 +39,24 @@ const FlowField = () => {
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    // Tint the trails with the current time-of-day accent so the theme shift is
+    // visible. Re-read whenever the phase attribute changes.
+    const readAccent = () => {
+      const hex = getComputedStyle(document.documentElement)
+        .getPropertyValue("--accent")
+        .trim();
+      const m = hex.match(/^#?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i);
+      return m
+        ? `${parseInt(m[1], 16)}, ${parseInt(m[2], 16)}, ${parseInt(m[3], 16)}`
+        : "200, 206, 224";
+    };
+    let accent = readAccent();
+    const phaseObserver = new MutationObserver(() => (accent = readAccent()));
+    phaseObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-phase"],
+    });
     let w = 0;
     let h = 0;
     let particles: { x: number; y: number }[] = [];
@@ -74,7 +92,7 @@ const FlowField = () => {
       ctx.fillStyle = "rgba(10, 10, 12, 0.055)";
       ctx.fillRect(0, 0, w, h);
       ctx.lineWidth = 1;
-      ctx.strokeStyle = `rgba(200, 206, 224, ${0.05 + audioState.level * 0.08})`;
+      ctx.strokeStyle = `rgba(${accent}, ${0.06 + audioState.level * 0.09})`;
       ctx.beginPath();
       for (const p of particles) {
         const angle = vnoise(p.x * scale, p.y * scale + t) * Math.PI * 4;
@@ -136,6 +154,7 @@ const FlowField = () => {
     return () => {
       stop();
       io.disconnect();
+      phaseObserver.disconnect();
       document.removeEventListener("visibilitychange", onVis);
       window.removeEventListener("resize", onResize);
     };

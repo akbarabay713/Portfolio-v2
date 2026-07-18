@@ -60,13 +60,13 @@ export default function Home() {
 
           <div className="mt-10 max-w-md">
             <p className="display mb-4 text-base tracking-normal">
-              Backend roots, frontend obsession
+              Front to back, end to end
             </p>
             <p className="leading-relaxed text-muted">
               I&apos;m Akbar — a fullstack developer. I started in PHP building
               dashboards and logistics systems, then moved toward the front of
               the stack with React and Next.js. I like owning a feature end to
-              end and sweating the details users never name but always feel.
+              end: the database, the API, and the interface on top.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
               <p className="mono flex items-center gap-2 text-xs text-faint">
