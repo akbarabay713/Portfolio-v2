@@ -30,12 +30,12 @@ export default function OpengraphImage() {
             letterSpacing: "4px",
           }}
         >
-          <span>WE.RAA</span>
-          <span>• NIGHT / 23:00</span>
+          <span>AKBAR/DEV</span>
+          <span>• FULLSTACK</span>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column" }}>
-          {["I BUILD FOR", "THE WEB."].map((line) => (
+          {["FROM DATABASE", "TO PIXELS."].map((line) => (
             <span
               key={line}
               style={{
@@ -60,7 +60,7 @@ export default function OpengraphImage() {
           }}
         >
           <span>{siteConfig.author} · Fullstack Developer</span>
-          <span>coloured by the hour</span>
+          <span>themed by the local hour</span>
         </div>
       </div>
     ),

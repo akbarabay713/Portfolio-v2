@@ -9,7 +9,7 @@ import {
   techStack,
 } from "@portfolio/content";
 
-import SmokeShader from "@/components/SmokeShader";
+import FlowField from "@/components/FlowField";
 import MicToggle from "@/components/MicToggle";
 import SectionHeader from "@/components/SectionHeader";
 import Reveal from "@/components/Reveal";
@@ -45,27 +45,28 @@ export default function Home() {
         id="home"
         className="relative flex min-h-screen flex-col justify-end overflow-hidden px-5 pb-16 pt-28 sm:px-8"
       >
-        <SmokeShader />
+        <FlowField />
         <span className="mono absolute right-5 top-28 text-right text-[11px] text-faint sm:right-8">
-          CURRENT
+          FULLSTACK
           <br />
-          (HOME)
+          SINCE {profile.since}
         </span>
 
         <div className="relative">
           <h1 className="display text-[15vw] leading-[0.9] sm:text-[12vw]">
-            <SplitHeading text="I build for" className="block" />
-            <SplitHeading text="the web." delay={0.1} className="block" />
+            <SplitHeading text="From database" className="block" />
+            <SplitHeading text="to pixels." delay={0.1} className="block" />
           </h1>
 
           <div className="mt-10 max-w-md">
             <p className="display mb-4 text-base tracking-normal">
-              I kinda hate and love it
+              Backend roots, frontend obsession
             </p>
             <p className="leading-relaxed text-muted">
-              Backend built my foundation. The web became the craft. Started with
-              PHP and dashboards — now I care about the easing of a hover, the
-              weight of a line, the silence between sections.
+              I&apos;m Akbar — a fullstack developer. I started in PHP building
+              dashboards and logistics systems, then moved toward the front of
+              the stack with React and Next.js. I like owning a feature end to
+              end and sweating the details users never name but always feel.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
               <p className="mono flex items-center gap-2 text-xs text-faint">
@@ -80,17 +81,17 @@ export default function Home() {
 
       {/* ── About ────────────────────────────────────────── */}
       <section id="about" className="px-5 py-28 sm:px-8">
-        <SectionHeader title="About" kicker="Index" index={2} meta="Design & code" />
+        <SectionHeader title="About" kicker="Index" index={2} meta="Who I am" />
         <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr]">
           <div>
             <Reveal>
               <p className="serif-italic mb-6 text-3xl text-muted sm:text-4xl">
-                obsessed with the seams
+                pragmatic, curious,
               </p>
             </Reveal>
             <h2 className="display text-4xl sm:text-6xl">
-              <SplitHeading scroll text="Between" className="block" />
-              <SplitHeading scroll delay={0.08} text="design & code." className="block" />
+              <SplitHeading scroll text="Backend brain," className="block" />
+              <SplitHeading scroll delay={0.08} text="frontend hands." className="block" />
             </h2>
           </div>
           <div className="flex flex-col gap-6">
@@ -101,8 +102,9 @@ export default function Home() {
             ))}
             <Reveal delay={0.2}>
               <p className="leading-relaxed text-muted">
-                Outside of client work I keep an ongoing archive of studies —
-                small, numbered experiments that chase a single idea to its end.
+                On the side I keep a running set of studies — small, numbered
+                front-end experiments I build to learn a technique properly
+                instead of just reading about it.
               </p>
             </Reveal>
 
@@ -244,7 +246,7 @@ export default function Home() {
         </Reveal>
 
         <div className="mono mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-8 text-xs text-faint">
-          <span>© {siteConfig.name.toUpperCase()} — CODED IN THE OPEN</span>
+          <span>© {new Date().getFullYear()} {siteConfig.name.toUpperCase()} — BUILT FROM SCRATCH</span>
           <div className="flex gap-8">
             <a href={siteConfig.links.github} target="_blank" rel="noopener noreferrer" className="text-muted transition-colors hover:text-text">
               GITHUB ↗

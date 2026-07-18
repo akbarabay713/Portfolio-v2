@@ -78,7 +78,7 @@ const Chrome = () => {
     <>
       <header className="fixed inset-x-0 top-0 z-50 flex items-center justify-between px-5 py-4 sm:px-8">
         <a href="#home" className="mono text-sm font-semibold tracking-widest text-text">
-          WE.RAA
+          AKBAR/DEV
         </a>
 
         <nav className="mono hidden items-center gap-5 text-xs lg:flex">
@@ -126,7 +126,7 @@ const Chrome = () => {
           className="animate-fade fixed inset-0 z-[65] flex flex-col bg-bg px-5 py-4 lg:hidden"
         >
           <div className="flex items-center justify-between">
-            <span className="mono text-sm font-semibold tracking-widest text-text">WE.RAA</span>
+            <span className="mono text-sm font-semibold tracking-widest text-text">AKBAR/DEV</span>
             <button onClick={() => setMenu(false)} aria-label="Close menu" className="mono text-xs text-faint">
               CLOSE ✕
             </button>

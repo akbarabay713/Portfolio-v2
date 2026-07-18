@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /*
- * Palette is "coloured by the hour": the <html> element gets a data-phase of
+ * Palette is "themed by the local hour": the <html> element gets a data-phase of
  * night / dawn / day / dusk (set client-side), and each phase nudges the base
  * tint and accent. Values stay near-monochrome so the shift reads as mood.
  */
@@ -102,7 +102,7 @@ body {
 }
 
 @layer utilities {
-  /* Enormous condensed display caps — the WE.RAA headline treatment. */
+  /* Enormous condensed display caps — the big editorial headline treatment. */
   .display {
     font-family: var(--font-geist), system-ui, sans-serif;
     font-weight: 800;

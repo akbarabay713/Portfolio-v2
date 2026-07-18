@@ -7,7 +7,7 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(useGSAP);
 
 /**
- * A hollow ring eased behind the pointer (the WE.RAA circle cursor). Grows
+ * A hollow ring eased behind the pointer (a hollow circle cursor). Grows
  * over interactive targets. Fine pointers only; native cursor stays visible so
  * text and links still feel clickable.
  */
