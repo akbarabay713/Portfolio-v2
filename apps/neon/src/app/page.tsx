@@ -66,8 +66,8 @@ export default function Home() {
             className="mt-10 max-w-lg leading-relaxed text-muted"
           >
             Hi! I&apos;m <span className="font-semibold text-content">{siteConfig.name}</span>.
-            A fullstack developer who builds fast, scalable, and responsive web
-            solutions with React, Next.js, and PHP.
+            A fullstack developer — I build web apps end to end, from the
+            database up to the interface, with React, Next.js, and PHP.
           </motion.p>
 
           <motion.div
