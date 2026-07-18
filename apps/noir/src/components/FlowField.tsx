@@ -85,6 +85,22 @@ const FlowField = () => {
     let raf = 0;
     let running = false;
 
+    // Cursor influence — particles nearby are pushed away with a slight swirl,
+    // so moving the mouse parts the flow and leaves a wake.
+    const cursor = { x: -9999, y: -9999 };
+    const RADIUS = 130;
+    const onMove = (e: MouseEvent) => {
+      const r = canvas.getBoundingClientRect();
+      cursor.x = e.clientX - r.left;
+      cursor.y = e.clientY - r.top;
+    };
+    const clearCursor = () => {
+      cursor.x = -9999;
+      cursor.y = -9999;
+    };
+    window.addEventListener("mousemove", onMove);
+    document.addEventListener("mouseleave", clearCursor);
+
     const step = () => {
       const t = performance.now() * 0.00004;
       const boost = 1 + audioState.level * 2.4;
@@ -96,8 +112,20 @@ const FlowField = () => {
       ctx.beginPath();
       for (const p of particles) {
         const angle = vnoise(p.x * scale, p.y * scale + t) * Math.PI * 4;
-        const nx = p.x + Math.cos(angle) * 1.3 * boost;
-        const ny = p.y + Math.sin(angle) * 1.3 * boost;
+        let nx = p.x + Math.cos(angle) * 1.3 * boost;
+        let ny = p.y + Math.sin(angle) * 1.3 * boost;
+
+        const dx = p.x - cursor.x;
+        const dy = p.y - cursor.y;
+        const d2 = dx * dx + dy * dy;
+        if (d2 < RADIUS * RADIUS) {
+          const d = Math.sqrt(d2) || 1;
+          const f = (1 - d / RADIUS) * 3.2;
+          // push away + a perpendicular component for the swirl
+          nx += (dx / d) * f - (dy / d) * f * 0.5;
+          ny += (dy / d) * f + (dx / d) * f * 0.5;
+        }
+
         ctx.moveTo(p.x, p.y);
         ctx.lineTo(nx, ny);
         p.x = nx;
@@ -157,6 +185,8 @@ const FlowField = () => {
       phaseObserver.disconnect();
       document.removeEventListener("visibilitychange", onVis);
       window.removeEventListener("resize", onResize);
+      window.removeEventListener("mousemove", onMove);
+      document.removeEventListener("mouseleave", clearCursor);
     };
   }, []);
 
