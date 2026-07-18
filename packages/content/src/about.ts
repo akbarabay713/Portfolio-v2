@@ -1,7 +1,7 @@
 import type { Experience, Stat, TechCategory } from "./types";
 
 export const bio = {
-  name: "akbar",
+  name: "Akbar",
   avatar: "/images/akbarr.webp",
   greeting: "Hey, I'm Akbar",
   paragraphs: [
@@ -24,8 +24,8 @@ export const profile = {
   based: "Yogyakarta / Remote",
   role: "Fullstack Developer",
   since: "2021",
-  focus: "Web · Motion · Type",
-  stack: "PHP · React · Next · GSAP",
+  focus: "Frontend · Backend · UI",
+  stack: "PHP · Laravel · React · Next",
   status: "Available",
 };
 
@@ -34,8 +34,8 @@ export const techStack: TechCategory[] = [
     label: "Web Development",
     items: [
       "JavaScript",
-      "Typescript",
-      "Php",
+      "TypeScript",
+      "PHP",
       "HTML",
       "CSS",
       "React",
@@ -45,12 +45,12 @@ export const techStack: TechCategory[] = [
       "Node.js",
       "Express",
       "Laravel",
-      "Wordpress",
-      "Tailwind",
+      "WordPress",
+      "Tailwind CSS",
       "Sass",
-      "Jquery",
+      "jQuery",
       "MongoDB",
-      "MySql",
+      "MySQL",
       "Firebase",
     ],
   },
