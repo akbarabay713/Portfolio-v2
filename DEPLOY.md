@@ -12,8 +12,13 @@ own Vercel project on its own domain:
 CI/CD lives in [.github/workflows](.github/workflows):
 
 - **ci.yml** — lint + build all workspaces on every pull request and push.
-- **deploy.yml** — on every push to `main`, builds each app on Vercel and points
-  its domain at the new deployment. Runs the three apps in parallel.
+- **deploy.yml** — three modes:
+  - **Push to `main`** → production deploy of all three apps in parallel, each
+    domain pointed at its new deployment.
+  - **Manual run** (Actions tab → Deploy → _Run workflow_) → same, but you can
+    pick a single app (`comic` / `neon` / `noir`) instead of `all`.
+  - **Pull request** → throwaway **preview** deploys (no domain change); the
+    temporary URLs are posted as a comment on the PR and updated on each push.
 
 No domains, tokens, or project IDs are hardcoded — the deploy workflow reads them
 from repo **Secrets** and **Variables**, so this is safe to keep public.
@@ -90,7 +95,10 @@ resolves to Vercel.
 
 ## How a deploy runs
 
-1. Push to `main` (or run **Deploy** manually from the Actions tab).
+**Production** (push to `main`, or a manual run):
+
+1. A `setup` step picks the app matrix — all three, or the single app chosen in a
+   manual run.
 2. For each app in parallel: `vercel pull` → `vercel deploy --prod` (build runs on
    Vercel, respecting each project's Root Directory) → `vercel alias set` to move
    the domain onto the fresh deployment.
@@ -98,6 +106,14 @@ resolves to Vercel.
 
 If a required secret or variable is missing, the job fails fast and names exactly
 what's absent.
+
+**Preview** (pull request):
+
+Each app is deployed to a temporary Vercel preview URL (no `--prod`, domains
+untouched), and a single comment on the PR lists the three links — updated in
+place on every push. The switcher in a preview build still points at the live
+production domains. Preview needs the repo secrets, so it's skipped (with a
+warning, not a failure) on pull requests from forks, which don't receive them.
 
 ## Local development
 

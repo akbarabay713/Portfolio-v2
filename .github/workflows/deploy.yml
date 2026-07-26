@@ -1,29 +1,60 @@
 name: Deploy
 
-# Deploys all three designs to Vercel and points each at its own domain.
+# Deploys the three designs to Vercel and points each at its own domain.
 # Domains come from repo Variables, tokens/IDs from repo Secrets — nothing is
 # hardcoded here. See DEPLOY.md for the one-time setup.
+#
+#   push to main       -> production deploy of all three (or the picked one)
+#   manual "Run"       -> production deploy; choose one app or "all"
+#   pull request        -> throwaway preview deploys, URLs posted on the PR
 
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
+    inputs:
+      app:
+        description: Which design to deploy
+        type: choice
+        default: all
+        options: [all, comic, neon, noir]
 
 concurrency:
-  group: deploy-${{ github.ref }}
-  cancel-in-progress: false
+  group: deploy-${{ github.workflow }}-${{ github.ref }}
+  # A newer push to a PR cancels its in-flight preview; production is never cancelled.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+  pull-requests: write
 
 jobs:
-  deploy:
+  # Build the production matrix: every app, or just the one picked in a manual run.
+  setup:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.pick.outputs.matrix }}
+    steps:
+      - id: pick
+        run: |
+          app="${{ github.event.inputs.app }}"
+          if [ -z "$app" ] || [ "$app" = "all" ]; then
+            echo 'matrix={"include":[{"app":"comic","key":"COMIC"},{"app":"neon","key":"NEON"},{"app":"noir","key":"NOIR"}]}' >> "$GITHUB_OUTPUT"
+          else
+            key=$(echo "$app" | tr '[:lower:]' '[:upper:]')
+            echo "matrix={\"include\":[{\"app\":\"$app\",\"key\":\"$key\"}]}" >> "$GITHUB_OUTPUT"
+          fi
+
+  production:
+    needs: setup
+    if: github.event_name != 'pull_request'
     name: Deploy ${{ matrix.app }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      matrix:
-        include:
-          - { app: comic, key: COMIC }
-          - { app: neon, key: NEON }
-          - { app: noir, key: NOIR }
+      matrix: ${{ fromJSON(needs.setup.outputs.matrix) }}
     environment:
       name: production (${{ matrix.app }})
       url: https://${{ vars[format('{0}_DOMAIN', matrix.key)] }}
@@ -82,3 +113,101 @@ jobs:
           set -euo pipefail
           vercel alias set "${{ steps.deploy.outputs.url }}" "$DOMAIN" --token="$VERCEL_TOKEN"
           echo "**${{ matrix.app }}** → https://$DOMAIN" >> "$GITHUB_STEP_SUMMARY"
+
+  # Pull requests get throwaway preview URLs (no --prod, no domain change).
+  preview:
+    if: github.event_name == 'pull_request'
+    name: Preview deploys
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID_COMIC: ${{ secrets.VERCEL_PROJECT_ID_COMIC }}
+      VERCEL_PROJECT_ID_NEON: ${{ secrets.VERCEL_PROJECT_ID_NEON }}
+      VERCEL_PROJECT_ID_NOIR: ${{ secrets.VERCEL_PROJECT_ID_NOIR }}
+      # Preview builds still link the switcher at the live production sites.
+      COMIC_DOMAIN: ${{ vars.COMIC_DOMAIN }}
+      NEON_DOMAIN: ${{ vars.NEON_DOMAIN }}
+      NOIR_DOMAIN: ${{ vars.NOIR_DOMAIN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Skip if secrets are unavailable
+        id: gate
+        run: |
+          if [ -z "$VERCEL_TOKEN" ]; then
+            echo "::warning::VERCEL_TOKEN not available (e.g. a fork PR); skipping preview."
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install Vercel CLI
+        if: steps.gate.outputs.run == 'true'
+        run: npm install -g vercel@latest
+
+      - name: Deploy previews
+        if: steps.gate.outputs.run == 'true'
+        id: deploy
+        run: |
+          set -euo pipefail
+          # Only pass switcher URLs that are actually configured.
+          env_args=()
+          [ -n "$COMIC_DOMAIN" ] && env_args+=(--build-env "NEXT_PUBLIC_COMIC_URL=https://$COMIC_DOMAIN")
+          [ -n "$NEON_DOMAIN" ] && env_args+=(--build-env "NEXT_PUBLIC_NEON_URL=https://$NEON_DOMAIN")
+          [ -n "$NOIR_DOMAIN" ] && env_args+=(--build-env "NEXT_PUBLIC_NOIR_URL=https://$NOIR_DOMAIN")
+
+          table="| App | Preview |"$'\n'"| --- | --- |"$'\n'
+          for app in comic neon noir; do
+            key=$(echo "$app" | tr '[:lower:]' '[:upper:]')
+            pid_var="VERCEL_PROJECT_ID_$key"
+            export VERCEL_PROJECT_ID="${!pid_var}"
+            if [ -z "$VERCEL_PROJECT_ID" ]; then
+              table="$table| \`$app\` | _no project id — skipped_ |"$'\n'
+              continue
+            fi
+            vercel pull --yes --environment=preview --token="$VERCEL_TOKEN"
+            url=$(vercel deploy --yes "${env_args[@]}" --token="$VERCEL_TOKEN" | tail -n1)
+            table="$table| \`$app\` | $url |"$'\n'
+          done
+
+          {
+            echo "table<<EOF"
+            printf '%s' "$table"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Comment preview URLs on the PR
+        if: steps.gate.outputs.run == 'true'
+        uses: actions/github-script@v7
+        env:
+          TABLE: ${{ steps.deploy.outputs.table }}
+        with:
+          script: |
+            const marker = '<!-- preview-deploys -->';
+            const body = `${marker}\n### 🔎 Preview deployments\nBuilt from ${context.sha.slice(0, 7)}.\n\n${process.env.TABLE}`;
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            const existing = comments.find((c) => c.body && c.body.includes(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }
