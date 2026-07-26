@@ -189,7 +189,7 @@ jobs:
         with:
           script: |
             const marker = '<!-- preview-deploys -->';
-            const body = `${marker}\n### 🔎 Preview deployments\nBuilt from ${context.sha.slice(0, 7)}.\n\n${process.env.TABLE}`;
+            const body = `${marker}\n### Preview deployments\nCommit ${context.sha.slice(0, 7)}\n\n${process.env.TABLE}`;
             const { data: comments } = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
