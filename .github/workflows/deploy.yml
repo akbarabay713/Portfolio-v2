@@ -1,12 +1,7 @@
 name: Deploy
 
-# Deploys the three designs to Vercel and points each at its own domain.
-# Domains come from repo Variables, tokens/IDs from repo Secrets — nothing is
-# hardcoded here. See DEPLOY.md for the one-time setup.
-#
-#   push to main       -> production deploy of all three (or the picked one)
-#   manual "Run"       -> production deploy; choose one app or "all"
-#   pull request        -> throwaway preview deploys, URLs posted on the PR
+# Ships each app to its own Vercel project and domain.
+# Tokens and domains come from repo secrets/variables — see DEPLOY.md.
 
 on:
   push:
@@ -22,7 +17,7 @@ on:
 
 concurrency:
   group: deploy-${{ github.workflow }}-${{ github.ref }}
-  # A newer push to a PR cancels its in-flight preview; production is never cancelled.
+  # Cancel a superseded preview; never cancel a production deploy.
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 permissions:
@@ -30,7 +25,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  # Build the production matrix: every app, or just the one picked in a manual run.
+  # All three apps, or just the one chosen in a manual run.
   setup:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
@@ -62,7 +57,7 @@ jobs:
       VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets[format('VERCEL_PROJECT_ID_{0}', matrix.key)] }}
-      # This app's own domain, plus all three so the design switcher links resolve.
+      # All three domains so the switcher can link between the sites.
       DOMAIN: ${{ vars[format('{0}_DOMAIN', matrix.key)] }}
       COMIC_DOMAIN: ${{ vars.COMIC_DOMAIN }}
       NEON_DOMAIN: ${{ vars.NEON_DOMAIN }}
@@ -114,7 +109,7 @@ jobs:
           vercel alias set "${{ steps.deploy.outputs.url }}" "$DOMAIN" --token="$VERCEL_TOKEN"
           echo "**${{ matrix.app }}** → https://$DOMAIN" >> "$GITHUB_STEP_SUMMARY"
 
-  # Pull requests get throwaway preview URLs (no --prod, no domain change).
+  # PRs get preview URLs — no --prod, domains left alone.
   preview:
     if: github.event_name == 'pull_request'
     name: Preview deploys
@@ -125,7 +120,7 @@ jobs:
       VERCEL_PROJECT_ID_COMIC: ${{ secrets.VERCEL_PROJECT_ID_COMIC }}
       VERCEL_PROJECT_ID_NEON: ${{ secrets.VERCEL_PROJECT_ID_NEON }}
       VERCEL_PROJECT_ID_NOIR: ${{ secrets.VERCEL_PROJECT_ID_NOIR }}
-      # Preview builds still link the switcher at the live production sites.
+      # Previews still point the switcher at the live sites.
       COMIC_DOMAIN: ${{ vars.COMIC_DOMAIN }}
       NEON_DOMAIN: ${{ vars.NEON_DOMAIN }}
       NOIR_DOMAIN: ${{ vars.NOIR_DOMAIN }}
@@ -155,7 +150,7 @@ jobs:
         id: deploy
         run: |
           set -euo pipefail
-          # Only pass switcher URLs that are actually configured.
+          # Only pass switcher URLs that are set.
           env_args=()
           [ -n "$COMIC_DOMAIN" ] && env_args+=(--build-env "NEXT_PUBLIC_COMIC_URL=https://$COMIC_DOMAIN")
           [ -n "$NEON_DOMAIN" ] && env_args+=(--build-env "NEXT_PUBLIC_NEON_URL=https://$NEON_DOMAIN")
