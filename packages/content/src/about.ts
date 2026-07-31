@@ -19,7 +19,7 @@ export const stats: Stat[] = [
   { value: "4", label: "Companies Worked With" },
 ];
 
-/** Editorial "spec sheet" meta — labelled facts for the noir design. */
+/** Spec-sheet facts for the noir design. */
 export const profile = {
   based: "Yogyakarta / Remote",
   role: "Fullstack Developer",

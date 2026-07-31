@@ -10,7 +10,7 @@ interface SectionHeaderProps {
   meta?: string;
 }
 
-/** Editorial section head: bracketed title left, oversized ghost numeral right. */
+/** Section head: bracketed title left, big ghost numeral right. */
 const SectionHeader = ({
   title,
   kicker,

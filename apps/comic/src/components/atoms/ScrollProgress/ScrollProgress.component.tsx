@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useSpring } from "framer-motion";
 
-/** A chunky comic progress bar pinned to the top of the viewport. */
+/** scroll progress bar pinned to top of viewport */
 const ScrollProgress = () => {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {

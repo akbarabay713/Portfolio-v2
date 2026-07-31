@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-/** Sparse drifting dots on a canvas — the reference's subtle starfield backdrop. */
+/** sparse drifting dots on a canvas, starfield backdrop. */
 const Starfield = () => {
   const ref = useRef<HTMLCanvasElement>(null);
 

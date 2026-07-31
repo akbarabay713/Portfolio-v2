@@ -12,10 +12,7 @@ interface MarqueeProps {
   className?: string;
 }
 
-/**
- * Infinite horizontal marquee that speeds up with scroll velocity and eases
- * back to cruising speed — a GSAP staple on creative-dev portfolios.
- */
+/** infinite horizontal marquee, speeds up with scroll velocity then eases back. */
 const Marquee = ({ items, className }: MarqueeProps) => {
   const ref = useRef<HTMLDivElement>(null);
 

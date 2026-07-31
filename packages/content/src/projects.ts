@@ -140,10 +140,10 @@ export const allProjects: Project[] = [
   },
 ];
 
-/** Projects with `visible: false` filtered out — what both designs render. */
+/** Visible projects (`visible: false` filtered out). */
 export const projects: Project[] = allProjects.filter(
   (p) => p.visible !== false,
 );
 
-/** Featured subset, for designs that highlight a shortlist. */
+/** Featured subset. */
 export const featuredProjects: Project[] = projects.filter((p) => p.featured);

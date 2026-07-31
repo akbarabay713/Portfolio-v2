@@ -11,8 +11,8 @@ interface MagneticProps {
 }
 
 /**
- * Nudges its child toward the cursor while hovered, then springs back.
- * A subtle, tactile hover — disabled when the user prefers reduced motion.
+ * nudges its child toward the cursor while hovered, then springs back.
+ * disabled when the user prefers reduced motion.
  */
 const Magnetic = ({ children, strength = 8, className }: MagneticProps) => {
   const ref = useRef<HTMLDivElement>(null);

@@ -1,6 +1,6 @@
 import type { Variants } from "framer-motion";
 
-// Expressive ease-out (fast start, soft settle) — the site's signature timing.
+// ease-out: fast start, soft settle
 export const EASE_OUT: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 export const fadeUpVariants: Variants = {

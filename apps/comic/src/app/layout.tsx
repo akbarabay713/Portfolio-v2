@@ -12,7 +12,7 @@ import CommandPalette from "@/components/organisms/CommandPalette/CommandPalette
 import ThemeProvider from "@/Providers/Theme-provider";
 import { siteConfig } from "@/constants";
 
-// Rounded, friendly body type; chunky comic display for headings.
+// nunito body font, bangers comic display for headings
 const nunito = Nunito({
   subsets: ["latin"],
   variable: "--font-nunito",

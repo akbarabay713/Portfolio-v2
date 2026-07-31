@@ -9,10 +9,8 @@ gsap.registerPlugin(useGSAP);
 const INTERACTIVE = "a, button, [role='button'], input, textarea";
 
 /**
- * Custom cursor for fine pointers: a green dot glued to the pointer and a
- * difference-blend ring that trails it. The ring grows over interactive
- * elements, and over [data-cursor='view'] targets it becomes a filled badge
- * reading VIEW.
+ * custom cursor for fine pointers: dot on the pointer, blend ring trailing it.
+ * ring grows over interactive elements, becomes a VIEW badge over [data-cursor='view'].
  */
 const NeonCursor = () => {
   const dotRef = useRef<HTMLDivElement>(null);

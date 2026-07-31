@@ -13,7 +13,7 @@ interface MagneticProps {
   strength?: number;
 }
 
-/** Magnetic hover using gsap.quickTo — the element leans toward the cursor. */
+/** magnetic hover using gsap.quickTo; element leans toward the cursor. */
 const Magnetic = ({ children, className, strength = 0.3 }: MagneticProps) => {
   const ref = useRef<HTMLDivElement>(null);
 

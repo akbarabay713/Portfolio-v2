@@ -8,7 +8,7 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 interface CountUpProps {
-  /** e.g. "4+", "13+", "10K+" — leading number animates, suffix stays. */
+  /** e.g. "4+", "13+", "10K+". leading number animates, suffix stays. */
   value: string;
   className?: string;
   delay?: number;

@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { audioState } from "@/lib/audio";
 
-// Cheap 2D value noise — enough to drive a soft, evolving vector field.
+// cheap 2D value noise, enough to drive an evolving vector field.
 const hash = (x: number, y: number) => {
   const n = Math.sin(x * 127.1 + y * 311.7) * 43758.5453;
   return n - Math.floor(n);
@@ -24,9 +24,9 @@ const vnoise = (x: number, y: number) => {
 };
 
 /**
- * Particles advected through a noise flow field, drawn as faint trails. A
- * canvas-2D signature for the hero — reacts to the mic, pauses off-screen and
- * when the tab is hidden, and renders a single static frame under reduced motion.
+ * Hero canvas: particles pushed through a noise flow field, drawn as faint
+ * trails. Reacts to the mic, pauses off-screen and when the tab is hidden,
+ * renders a single static frame under reduced motion.
  */
 const FlowField = () => {
   const ref = useRef<HTMLCanvasElement>(null);
@@ -85,8 +85,8 @@ const FlowField = () => {
     let raf = 0;
     let running = false;
 
-    // Cursor influence — particles nearby are pushed away with a slight swirl,
-    // so moving the mouse parts the flow and leaves a wake.
+    // cursor pushes nearby particles away with a slight swirl, so the mouse
+    // parts the flow and leaves a wake.
     const cursor = { x: -9999, y: -9999 };
     const RADIUS = 130;
     const onMove = (e: MouseEvent) => {

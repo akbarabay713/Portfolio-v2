@@ -5,9 +5,8 @@ export interface DesignLink {
 }
 
 /**
- * The three portfolio designs and where each is deployed. URLs come from
- * per-app env vars at build time and fall back to the local dev ports.
- * Each app marks its own entry as current in its switcher.
+ * The three designs and their URLs. URLs come from per-app env vars at build
+ * time, falling back to the local dev ports.
  */
 export const designs: DesignLink[] = [
   {

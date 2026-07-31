@@ -7,7 +7,7 @@ export interface Project {
   github?: string;
   /** Hidden everywhere when false. */
   visible?: boolean;
-  /** Highlighted designs may surface featured projects first or larger. */
+  /** May be surfaced first or larger. */
   featured?: boolean;
 }
 

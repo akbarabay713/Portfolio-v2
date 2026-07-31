@@ -218,7 +218,7 @@ export default function Home() {
             {email}
           </a>
         </Reveal>
-        {/* Design switcher — jump to the other two portfolio builds. */}
+        {/* Design switcher: jump to the other two portfolio builds. */}
         <Reveal delay={0.1}>
           <div className="mt-20 flex flex-wrap items-center gap-x-6 gap-y-4 border-t border-line pt-8">
             <span className="mono text-[11px] uppercase tracking-widest text-faint">

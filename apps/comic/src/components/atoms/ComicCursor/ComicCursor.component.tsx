@@ -6,10 +6,9 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 const INTERACTIVE = "a, button, [role='button'], input, textarea, [data-cursor='hover']";
 
 /**
- * Comic ink cursor for fine-pointer devices: a solid dot that tracks exactly,
- * and an outlined ring that lags behind, grows over interactive elements, and
- * squishes on click. On touch it stays parked off-screen and the native cursor
- * is untouched.
+ * custom cursor for fine-pointer devices: solid dot tracks exactly, outlined
+ * ring lags behind, grows over interactive els, squishes on click. on touch it
+ * stays off-screen and the native cursor is left alone.
  */
 const ComicCursor = () => {
   const [hovering, setHovering] = useState(false);

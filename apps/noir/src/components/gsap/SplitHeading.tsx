@@ -18,9 +18,9 @@ interface SplitHeadingProps {
 }
 
 /**
- * Splits text into characters and staggers them up from behind a clipped
- * line — the classic GSAP split-text reveal. Words stay wrapped in
- * whitespace-nowrap spans so line breaks land between words.
+ * Splits text into characters and staggers them up from behind a clipped line.
+ * Words stay wrapped in whitespace-nowrap spans so line breaks land between
+ * words.
  */
 const SplitHeading = ({
   text,

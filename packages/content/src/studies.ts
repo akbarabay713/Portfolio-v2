@@ -6,7 +6,7 @@ export interface Study {
   year: string;
 }
 
-/** Numbered micro-experiments — a running lab notebook of interface ideas. */
+/** Numbered UI micro-experiments. */
 export const studies: Study[] = [
   { id: "S-001", title: "Split Text Rise", note: "Characters lift from a clipped baseline.", technique: "GSAP", year: "2024" },
   { id: "S-002", title: "Smoke Field", note: "Drifting light blobs blurred into fog.", technique: "Canvas", year: "2024" },

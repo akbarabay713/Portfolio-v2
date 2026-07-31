@@ -17,9 +17,8 @@ interface ProjectsGalleryProps {
 }
 
 /**
- * Signature GSAP move: on desktop the section pins to the viewport and the
- * project panels scrub horizontally as you scroll. On touch/small screens and
- * under reduced motion it stays a plain vertical stack.
+ * desktop: section pins and panels scrub horizontally on scroll.
+ * touch/small screens and reduced motion: plain vertical stack.
  */
 const ProjectsGallery = ({ projects }: ProjectsGalleryProps) => {
   const sectionRef = useRef<HTMLElement>(null);

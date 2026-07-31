@@ -1,7 +1,7 @@
 /**
- * Shared microphone level. The smoke shader reads `audioState.level` (0–1) each
- * frame; the mic toggle turns analysis on and off. A module singleton so the
- * button and the shader see the same value without prop-drilling.
+ * Shared mic level. The hero flow field reads `audioState.level` (0-1) each
+ * frame; the mic toggle turns analysis on and off. Module singleton so the
+ * button and the canvas see the same value without prop-drilling.
  */
 export const audioState = { level: 0, active: false };
 

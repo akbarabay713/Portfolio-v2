@@ -19,9 +19,8 @@ export const introDelay = () => {
 };
 
 /**
- * Load intro: the name staggers up character by character, a green bar draws
- * underneath, then the whole curtain lifts to reveal the page. Shown once per
- * browser session.
+ * intro: name staggers up char by char, green bar draws underneath, curtain lifts.
+ * shown once per browser session.
  */
 const Preloader = () => {
   const ref = useRef<HTMLDivElement>(null);

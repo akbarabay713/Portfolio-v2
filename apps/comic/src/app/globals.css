@@ -2,9 +2,9 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Tokens are runtime CSS variables that switch with the active theme, exposed
-   to Tailwind via `@theme inline` so utilities like `bg-surface` / `text-accent`
-   resolve to the live variable instead of needing `dark:` variants everywhere. */
+/* runtime CSS vars that switch with the theme, exposed to Tailwind via
+   `@theme inline` so utilities like `bg-surface` resolve to the live var
+   instead of needing `dark:` variants everywhere. */
 
 /* Dark theme (default) */
 
@@ -28,7 +28,7 @@
   --line:        rgba(242, 237, 225, 0.14);
   --line-strong: #f2ede1;
 
-  /* Comic ink: outline + hard "sticker" shadow color, and the marker highlight. */
+  /* comic ink: outline, hard offset shadow color, marker highlight */
   --outline:   #f2ede1;
   --highlight: #ffd23f;
   --halftone:  rgba(242, 237, 225, 0.05);
@@ -64,7 +64,7 @@
   --line:        rgba(22, 19, 15, 0.14);
   --line-strong: #16130f;
 
-  /* Comic ink: outline + hard "sticker" shadow color, and the marker highlight. */
+  /* comic ink: outline, hard offset shadow color, marker highlight */
   --outline:   #16130f;
   --highlight: #ffd23f;
   --halftone:  rgba(22, 19, 15, 0.06);
@@ -124,10 +124,9 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Scale the whole layout up on large screens (and when zoomed out) so content
-   fills the viewport instead of floating in a fixed column. Everything sized in
-   rem — type, spacing, max-width columns — grows proportionally. Media-query
-   breakpoints are evaluated against the browser default, so they stay stable. */
+/* scale layout up on large screens (and when zoomed out) so content fills the
+   viewport instead of floating in a fixed column. everything is rem-sized so it
+   grows proportionally. breakpoints use the browser default so they stay stable. */
 @media (min-width: 1536px) { html { font-size: 17px; } }
 @media (min-width: 1920px) { html { font-size: 18px; } }
 @media (min-width: 2560px) { html { font-size: 20px; } }
@@ -150,7 +149,7 @@ body {
 ::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 99px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--faint); }
 
-/* Selection — comic yellow marker */
+/* selection: comic yellow marker */
 
 ::selection { background: var(--highlight); color: #16130f; }
 
@@ -176,7 +175,7 @@ body {
     font-weight: 700;
   }
 
-  /* Comic ink outline + hard offset "sticker" shadow. */
+  /* comic ink outline + hard offset shadow */
   .ink-border {
     border: 2px solid var(--outline);
   }
@@ -187,13 +186,13 @@ body {
     box-shadow: 3px 3px 0 0 var(--outline);
   }
 
-  /* Ben-Day halftone dots — comic paper texture for the backdrop. */
+  /* Ben-Day halftone dots for comic paper texture */
   .comic-halftone {
     background-image: radial-gradient(var(--halftone) 1.6px, transparent 1.7px);
     background-size: 15px 15px;
   }
 
-  /* Jagged "explosion" burst shape for click bubbles. */
+  /* jagged burst shape for click bubbles */
   .comic-burst {
     clip-path: polygon(
       50% 0%, 58% 18%, 79% 8%, 74% 30%, 97% 30%, 79% 44%, 95% 62%, 72% 60%,
@@ -202,7 +201,7 @@ body {
     );
   }
 
-  /* Underline that grows from the left on hover. */
+  /* underline that grows from the left on hover */
   .link-underline {
     background-image: linear-gradient(var(--accent), var(--accent));
     background-size: 0% 2px;

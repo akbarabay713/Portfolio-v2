@@ -13,11 +13,7 @@ interface ExperienceSectionProps {
   experiences: Experience[];
 }
 
-/**
- * Experience rows with GSAP choreography: each divider line draws itself in,
- * content slides up, and on fine pointers a floating company-logo badge
- * trails the cursor over the hovered row.
- */
+/** experience rows animate in on scroll; on fine pointers a logo badge follows the cursor. */
 const ExperienceSection = ({ experiences }: ExperienceSectionProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const previewRef = useRef<HTMLDivElement>(null);

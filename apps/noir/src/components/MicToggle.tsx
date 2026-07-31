@@ -5,7 +5,7 @@ import { disableMic, enableMic } from "@/lib/audio";
 
 type State = "off" | "on" | "error";
 
-/** Toggles mic-reactive smoke — the reference's "REACT TO MIC". */
+/** Toggle mic reactivity for the hero flow field. */
 const MicToggle = () => {
   const [state, setState] = useState<State>("off");
 

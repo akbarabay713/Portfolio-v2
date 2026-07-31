@@ -1,6 +1,6 @@
 import { siteConfig } from "@portfolio/content";
 
-/** Vertical email on the left edge — desktop only. */
+/** vertical email on the left edge, desktop only. */
 const EmailRail = () => (
   <a
     href={`mailto:${siteConfig.email}`}

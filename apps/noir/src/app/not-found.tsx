@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-/** On-brand 404 that lives inside the noir chrome. */
+/** 404 page inside the noir chrome. */
 export default function NotFound() {
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center px-6 text-center">

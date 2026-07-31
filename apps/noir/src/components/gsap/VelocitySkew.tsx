@@ -7,8 +7,8 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 /**
- * Renderless: skews every [data-skew] element with scroll velocity and eases
- * it back — fast flicks make images lean into the motion.
+ * Renderless: skews every [data-skew] element by scroll velocity and eases it
+ * back. fast flicks make images lean into the motion.
  */
 const VelocitySkew = () => {
   useGSAP(() => {

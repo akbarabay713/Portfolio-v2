@@ -15,7 +15,7 @@ interface Burst {
 
 let counter = 0;
 
-/** Pops a comic starburst ("POW!") wherever the user clicks, then fades it out. */
+/** pops a comic starburst where the user clicks, then fades it out */
 const ClickBurst = () => {
   const [bursts, setBursts] = useState<Burst[]>([]);
 

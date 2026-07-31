@@ -5,7 +5,7 @@ export const alt = `${siteConfig.author} — Studio`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-/** Editorial OG card matching the noir hero. */
+/** OG card matching the noir hero. */
 export default function OpengraphImage() {
   return new ImageResponse(
     (
