@@ -5,7 +5,7 @@
  *               to label itself.
  * sections      toggle whole sections on or off everywhere.
  */
-export type DesignId = "comic" | "neon";
+export type DesignId = "comic" | "neon" | "noir";
 
 export const settings = {
   activeDesign: "comic" as DesignId,
