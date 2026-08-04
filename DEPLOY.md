@@ -3,117 +3,65 @@
 This monorepo ships **three separate portfolio designs**, each deployed as its
 own Vercel project on its own domain:
 
-| App          | Vercel project | Domain (repo variable) |
-| ------------ | -------------- | ---------------------- |
-| `apps/comic` | comic          | `COMIC_DOMAIN`         |
-| `apps/neon`  | neon           | `NEON_DOMAIN`          |
-| `apps/noir`  | noir           | `NOIR_DOMAIN`          |
+| App          | Vercel project | Root Directory |
+| ------------ | -------------- | -------------- |
+| `apps/comic` | comic          | `apps/comic`   |
+| `apps/neon`  | neon           | `apps/neon`    |
+| `apps/noir`  | noir           | `apps/noir`    |
 
-CI/CD lives in [.github/workflows](.github/workflows):
-
-- **ci.yml** — lint + build all workspaces on every pull request and push.
-- **deploy.yml** — three modes:
-  - **Push to `main`** → production deploy of all three apps in parallel, each
-    domain pointed at its new deployment.
-  - **Manual run** (Actions tab → Deploy → _Run workflow_) → same, but you can
-    pick a single app (`comic` / `neon` / `noir`) instead of `all`.
-  - **Pull request** → throwaway **preview** deploys (no domain change); the
-    temporary URLs are posted as a comment on the PR and updated on each push.
-
-No domains, tokens, or project IDs are hardcoded — the deploy workflow reads them
-from repo **Secrets** and **Variables**, so this is safe to keep public.
+Deploys run through **Vercel's Git integration**: every push to `main` builds and
+deploys automatically, and pull requests get preview URLs. GitHub Actions only
+runs checks — see [.github/workflows/ci.yml](.github/workflows/ci.yml) (lint +
+build on every PR and push).
 
 ---
 
 ## One-time setup
 
-### 1. Create the three Vercel projects
+### 1. Create the three projects
 
-For each app, create a Vercel project linked to this repo with the **Root
-Directory** set to the app folder. Easiest via the CLI (run once per app):
+For each app: **vercel.com → Add New… → Project → import `Portfolio-v2`**, then
+before the first deploy:
 
-```bash
-npm i -g vercel
-cd apps/comic && vercel link      # create/select the "comic" project
-cd ../neon    && vercel link      # "neon"
-cd ../noir    && vercel link      # "noir"
+- **Root Directory** → Edit → pick the app folder (`apps/comic`, etc.).
+- Enable **Include files outside the Root Directory** (so the shared
+  `packages/content` workspace resolves).
+- Framework preset auto-detects **Next.js**; leave build/install as default.
+- Deploy, and name the project `comic` / `neon` / `noir`.
+
+### 2. Environment variables
+
+In **each** project → **Settings → Environment Variables** (Production +
+Preview), set all four with your real domains:
+
+```
+NEXT_PUBLIC_SITE_URL   = https://<this project's own domain>
+NEXT_PUBLIC_COMIC_URL  = https://<comic domain>
+NEXT_PUBLIC_NEON_URL   = https://<neon domain>
+NEXT_PUBLIC_NOIR_URL   = https://<noir domain>
 ```
 
-In each project's **Settings → General**, confirm:
+The three `*_URL` values go in all three projects — that's how each site's design
+switcher links to the other two. Without them, the switcher falls back to the
+local dev ports (see `packages/content/src/designs.ts`).
 
-- **Root Directory** = `apps/comic` (resp. `apps/neon`, `apps/noir`)
-- **Include files outside the root directory** = enabled (needed so the shared
-  `packages/content` workspace resolves)
-- Framework preset = **Next.js**
+### 3. Domains + DNS
 
-Grab the IDs you'll need:
+In **each** project → **Settings → Domains** → add that project's domain, then
+create the DNS record Vercel shows at your registrar:
 
-```bash
-cat apps/comic/.vercel/project.json   # -> { "orgId": "...", "projectId": "..." }
-```
+- Subdomain (`neon.example.com`) → **CNAME** to `cname.vercel-dns.com`.
+- Apex (`example.com`) → the **A record** Vercel displays (e.g. `76.76.21.21`).
 
-`orgId` is the same for all three; `projectId` is per app.
+Wait for **Valid Configuration**.
 
-> The `.vercel/` folders are git-ignored and only used locally to read the IDs —
-> the workflow pulls settings fresh on each run.
+### 4. Redeploy
 
-### 2. Add GitHub Secrets
-
-Repo → **Settings → Secrets and variables → Actions → Secrets**:
-
-| Secret                    | Value                                                            |
-| ------------------------- | --------------------------------------------------------------- |
-| `VERCEL_TOKEN`            | A Vercel access token (Vercel → Account Settings → Tokens)      |
-| `VERCEL_ORG_ID`           | `orgId` from any `project.json`                                  |
-| `VERCEL_PROJECT_ID_COMIC` | `projectId` of the comic project                                |
-| `VERCEL_PROJECT_ID_NEON`  | `projectId` of the neon project                                 |
-| `VERCEL_PROJECT_ID_NOIR`  | `projectId` of the noir project                                 |
-
-### 3. Add GitHub Variables (the domains)
-
-Repo → **Settings → Secrets and variables → Actions → Variables**:
-
-| Variable       | Example              |
-| -------------- | -------------------- |
-| `COMIC_DOMAIN` | `comic.example.com`  |
-| `NEON_DOMAIN`  | `neon.example.com`   |
-| `NOIR_DOMAIN`  | `studio.example.com` |
-
-Use bare hostnames (no `https://`). These feed two things: each site's own
-`NEXT_PUBLIC_SITE_URL`, and the three `NEXT_PUBLIC_*_URL` values the design
-switcher uses to link between the sites.
-
-### 4. Point DNS at Vercel
-
-Add each domain to its Vercel project (**Settings → Domains**, or
-`vercel domains add <domain>`), then create the DNS record your registrar needs
-(usually a `CNAME` to `cname.vercel-dns.com`, or Vercel's `A` record for an apex
-domain). The workflow's `vercel alias` step can only attach a domain once DNS
-resolves to Vercel.
+Env vars only apply to new builds, so after setting them: each project →
+**Deployments → ⋯ → Redeploy**. After that, every push to `main` deploys on its
+own.
 
 ---
-
-## How a deploy runs
-
-**Production** (push to `main`, or a manual run):
-
-1. A `setup` step picks the app matrix — all three, or the single app chosen in a
-   manual run.
-2. For each app in parallel: `vercel pull` → `vercel deploy --prod` (build runs on
-   Vercel, respecting each project's Root Directory) → `vercel alias set` to move
-   the domain onto the fresh deployment.
-3. The run summary lists each app and its live URL.
-
-If a required secret or variable is missing, the job fails fast and names exactly
-what's absent.
-
-**Preview** (pull request):
-
-Each app is deployed to a temporary Vercel preview URL (no `--prod`, domains
-untouched), and a single comment on the PR lists the three links — updated in
-place on every push. The switcher in a preview build still points at the live
-production domains. Preview needs the repo secrets, so it's skipped (with a
-warning, not a failure) on pull requests from forks, which don't receive them.
 
 ## Local development
 
@@ -124,5 +72,8 @@ npm run dev:neon    # neon  on :3001
 npm run dev:noir    # noir  on :3002
 ```
 
-Without the `NEXT_PUBLIC_*_URL` variables set, the switcher falls back to those
-localhost ports (see `packages/content/src/designs.ts`).
+## Which app is "primary"
+
+`packages/content/src/settings.ts` has `activeDesign` — the design your main
+domain serves and that each app uses to label itself. Point your primary domain
+at whichever project matches it.
