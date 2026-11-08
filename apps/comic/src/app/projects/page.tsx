@@ -32,7 +32,7 @@ export default function ProjectsPage() {
     <section className="mx-auto max-w-6xl px-4 py-16 pb-32 2xl:max-w-[100rem]">
       <SectionHeader
         title="Projects"
-        subtitle="A selection of products and sites I've designed and built — from ecommerce and SaaS to logistics dashboards."
+        subtitle="A selection of products and sites I've designed and built, from ecommerce and SaaS to logistics dashboards."
       />
 
       <motion.div
@@ -48,7 +48,7 @@ export default function ProjectsPage() {
               key={filter}
               onClick={() => setActiveFilter(filter)}
               className={cn(
-                "rounded-full ink-border px-4 py-2 text-sm font-bold transition-all active:scale-95",
+                "min-h-11 rounded-full ink-border px-4 py-2 text-sm font-bold transition-all active:scale-95",
                 activeFilter === filter
                   ? "bg-accent text-accent-contrast ink-shadow-sm"
                   : "bg-card text-muted hover:-translate-y-0.5 hover:text-content",
@@ -67,7 +67,7 @@ export default function ProjectsPage() {
               aria-label={`${mode} view`}
               aria-pressed={viewMode === mode}
               className={cn(
-                "flex h-9 w-9 items-center justify-center rounded-full transition-all active:scale-90",
+                "flex h-11 w-11 items-center justify-center rounded-full transition-all active:scale-90",
                 viewMode === mode
                   ? "bg-accent text-accent-contrast"
                   : "text-muted hover:text-content",

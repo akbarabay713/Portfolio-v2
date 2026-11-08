@@ -89,7 +89,7 @@ const SmokeShader = () => {
     const uMouse = gl.getUniformLocation(prog, "u_mouse");
     const uAudio = gl.getUniformLocation(prog, "u_audio");
 
-    // Render at reduced resolution — smoke is soft, so this is much cheaper.
+    // Render at reduced resolution. Smoke is soft, so this is much cheaper.
     const scale = 0.55;
     const resize = () => {
       const r = canvas.getBoundingClientRect();

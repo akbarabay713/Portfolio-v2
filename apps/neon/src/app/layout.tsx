@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     url: siteConfig.url,
     title: siteConfig.title,
     description: siteConfig.description,
-    siteName: `${siteConfig.name} — Portfolio`,
+    siteName: `${siteConfig.name} | Portfolio`,
   },
 };
 

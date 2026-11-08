@@ -49,7 +49,7 @@ const Marquee = ({ items, className }: MarqueeProps) => {
     { scope: ref },
   );
 
-  // Content doubled so the -50% loop is seamless.
+  // Content doubled so the -50% loop has no visible jump.
   const strip = [...items, ...items];
 
   return (
@@ -64,7 +64,7 @@ const Marquee = ({ items, className }: MarqueeProps) => {
             <span className="font-display text-3xl text-faint sm:text-4xl">
               {item}
             </span>
-            <span className="text-xl text-accent">✳</span>
+            <span aria-hidden="true" className="inline-block h-2.5 w-2.5 bg-accent" />
           </span>
         ))}
       </div>

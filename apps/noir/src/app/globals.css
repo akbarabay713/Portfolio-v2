@@ -13,7 +13,7 @@
   --line-soft: rgba(235, 235, 240, 0.06);
   --text:    #ededf0;
   --muted:   #8a8a92;
-  --faint:   #55555c;
+  --faint:   #7d7d85;
   --ghost:   rgba(235, 235, 240, 0.035);
   --accent:  #c9d2ff;
 }
@@ -25,7 +25,7 @@
   --line-soft: rgba(245, 235, 240, 0.06);
   --text:    #f2ecef;
   --muted:   #948a90;
-  --faint:   #5e565b;
+  --faint:   #857b81;
   --ghost:   rgba(245, 235, 240, 0.04);
   --accent:  #ffc9c0;
 }
@@ -37,7 +37,7 @@
   --line-soft: rgba(235, 240, 240, 0.06);
   --text:    #f0f2f2;
   --muted:   #8b9092;
-  --faint:   #565b5c;
+  --faint:   #7b8183;
   --ghost:   rgba(235, 240, 240, 0.04);
   --accent:  #bfe6d6;
 }
@@ -49,7 +49,7 @@
   --line-soft: rgba(240, 235, 245, 0.06);
   --text:    #efecf2;
   --muted:   #8f8a94;
-  --faint:   #59555e;
+  --faint:   #807c86;
   --ghost:   rgba(240, 235, 245, 0.04);
   --accent:  #e6c9ff;
 }
@@ -102,7 +102,7 @@ body {
 }
 
 @layer utilities {
-  /* Enormous condensed display caps — the big editorial headline treatment. */
+  /* Enormous condensed display caps, the big editorial headline treatment. */
   .display {
     font-family: var(--font-geist), system-ui, sans-serif;
     font-weight: 800;

@@ -51,7 +51,7 @@ const Chrome = () => {
   useEffect(() => {
     const label = LINKS.find((l) => l.href === active)?.label;
     document.title =
-      !label || active === "#home" ? "Akbar — Studio" : `${label} — Akbar`;
+      !label || active === "#home" ? "Akbar | Studio" : `${label} | Akbar`;
   }, [active]);
 
   // j / k jump to the next / previous section (power-user shortcut).

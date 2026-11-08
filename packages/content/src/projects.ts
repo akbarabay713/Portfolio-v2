@@ -4,7 +4,7 @@ export const allProjects: Project[] = [
   {
     title: "VitalsWatch",
     description:
-      "VitalsWatch simulates a CI/CD pipeline that audits every commit for Core Web Vitals (LCP, INP, CLS), visualizes performance trends across deployments, catches regressions before they reach production, isolates the file or dependency responsible, and translates technical lag into estimated business impact. No backend — a deterministic frontend simulation drives the whole app.",
+      "VitalsWatch simulates a CI/CD pipeline that audits every commit for Core Web Vitals (LCP, INP, CLS), visualizes performance trends across deployments, catches regressions before they reach production, isolates the file or dependency responsible, and translates technical lag into estimated business impact. No backend. A deterministic frontend simulation drives the whole app.",
     tech: [
       "JavaScript",
       "TypeScript",

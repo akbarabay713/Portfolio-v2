@@ -224,7 +224,7 @@ const MarqueeDemo = () => {
       <div ref={ref} className="w-full overflow-hidden">
         <div data-track className="flex w-max gap-8 whitespace-nowrap">
           {[...items, ...items].map((it, i) => (
-            <span key={i} className="display text-4xl text-text/70">{it} <span className="text-accent">✳</span></span>
+            <span key={i} className="display text-4xl text-text/70">{it} <span className="text-accent">/</span></span>
           ))}
         </div>
       </div>
@@ -329,7 +329,7 @@ const CurtainIntro = () => {
   }, []);
   return (
     <div ref={ref} className="relative h-full w-full">
-      <Center><span className="mono text-sm text-muted">— welcome —</span></Center>
+      <Center><span className="mono text-sm text-muted">welcome</span></Center>
       <div data-curtain className="absolute inset-0 grid place-items-center bg-panel">
         <p className="display flex text-6xl text-text">
           {"AKBAR".split("").map((c, i) => (
@@ -422,7 +422,7 @@ const ScrollProgressDemo = () => {
       <div className="h-full overflow-y-auto px-12 py-8"
         onScroll={(e) => { const t = e.currentTarget; setP(t.scrollTop / (t.scrollHeight - t.clientHeight || 1)); }}>
         {Array.from({ length: 12 }).map((_, i) => (
-          <p key={i} className="border-b border-line py-4 text-muted">Line {i + 1} — scroll me.</p>
+          <p key={i} className="border-b border-line py-4 text-muted">Line {i + 1}: scroll me.</p>
         ))}
       </div>
     </div>
@@ -522,7 +522,7 @@ const ElasticHalo = () => {
     <div ref={ref} className="relative h-full w-full">
       <div ref={halo} className="pointer-events-none absolute -ml-12 -mt-12 h-24 w-24 rounded-full blur-xl"
         style={{ background: "radial-gradient(circle, rgba(201,210,255,0.5), transparent 70%)" }} />
-      <Center><span className="mono text-[11px] text-faint">move — the halo overshoots</span></Center>
+      <Center><span className="mono text-[11px] text-faint">move, and the halo overshoots</span></Center>
     </div>
   );
 };

@@ -63,7 +63,7 @@ export default function Home() {
               Front to back, end to end
             </p>
             <p className="leading-relaxed text-muted">
-              I&apos;m Akbar — a fullstack developer. I started in PHP building
+              I&apos;m Akbar, a fullstack developer. I started in PHP building
               dashboards and logistics systems, then moved toward the front of
               the stack with React and Next.js. I like owning a feature end to
               end: the database, the API, and the interface on top.
@@ -102,7 +102,7 @@ export default function Home() {
             ))}
             <Reveal delay={0.2}>
               <p className="leading-relaxed text-muted">
-                On the side I keep a running set of studies — small, numbered
+                On the side I keep a running set of studies: small, numbered
                 front-end experiments I build to learn a technique properly
                 instead of just reading about it.
               </p>
@@ -246,7 +246,7 @@ export default function Home() {
         </Reveal>
 
         <div className="mono mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-8 text-xs text-faint">
-          <span>© {new Date().getFullYear()} {siteConfig.name.toUpperCase()} — BUILT FROM SCRATCH</span>
+          <span>© {new Date().getFullYear()} {siteConfig.name.toUpperCase()} · BUILT FROM SCRATCH</span>
           <div className="flex gap-8">
             <a href={siteConfig.links.github} target="_blank" rel="noopener noreferrer" className="text-muted transition-colors hover:text-text">
               GITHUB ↗

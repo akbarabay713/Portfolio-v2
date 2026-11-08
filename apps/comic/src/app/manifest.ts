@@ -3,7 +3,7 @@ import { siteConfig } from "@/constants";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: `${siteConfig.name} — ${siteConfig.jobTitle}`,
+    name: `${siteConfig.name} | ${siteConfig.jobTitle}`,
     short_name: siteConfig.name,
     description: siteConfig.description,
     start_url: "/",

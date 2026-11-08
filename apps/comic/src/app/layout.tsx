@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   authors: [{ name: siteConfig.author, url: siteConfig.url }],
   creator: siteConfig.author,
   publisher: siteConfig.author,
-  applicationName: `${siteConfig.name} — Portfolio`,
+  applicationName: `${siteConfig.name} | Portfolio`,
   alternates: { canonical: "/" },
   manifest: "/manifest.webmanifest",
   openGraph: {
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     url: siteConfig.url,
     title: siteConfig.title,
     description: siteConfig.description,
-    siteName: `${siteConfig.name} — Portfolio`,
+    siteName: `${siteConfig.name} | Portfolio`,
   },
   twitter: {
     card: "summary_large_image",

@@ -18,7 +18,7 @@ const Clock = () => {
   }, []);
 
   // Render nothing until mounted to avoid a server/client mismatch.
-  if (!now) return <span className="mono text-xs text-muted">— / --:--</span>;
+  if (!now) return <span className="mono text-xs text-muted">-- / --:--</span>;
 
   const phase = phaseFor(now.getHours());
 

@@ -28,9 +28,7 @@ const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const SectionLabel = ({ children }: { children: React.ReactNode }) => (
   <Reveal className="mb-12 flex items-center gap-3">
-    <span aria-hidden="true" className="text-2xl text-accent">
-      ✳
-    </span>
+    <span aria-hidden="true" className="inline-block h-2.5 w-2.5 bg-accent" />
     <span className="text-sm font-semibold uppercase tracking-[0.2em] text-muted">
       {children}
     </span>
@@ -66,7 +64,7 @@ export default function Home() {
             className="mt-10 max-w-lg leading-relaxed text-muted"
           >
             Hi! I&apos;m <span className="font-semibold text-content">{siteConfig.name}</span>.
-            A fullstack developer — I build web apps end to end, from the
+            A fullstack developer. I build web apps end to end, from the
             database up to the interface, with React, Next.js, and PHP.
           </motion.p>
 

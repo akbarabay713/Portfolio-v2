@@ -25,7 +25,7 @@ const instrument = Instrument_Serif({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
-  title: `${siteConfig.name} — Studio`,
+  title: `${siteConfig.name} | Studio`,
   description: siteConfig.description,
   keywords: [...siteConfig.keywords],
   authors: [{ name: siteConfig.author, url: siteConfig.url }],
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: siteConfig.locale,
     url: siteConfig.url,
-    title: `${siteConfig.name} — Studio`,
+    title: `${siteConfig.name} | Studio`,
     description: siteConfig.description,
-    siteName: `${siteConfig.name} — Studio`,
+    siteName: `${siteConfig.name} | Studio`,
   },
 };
 

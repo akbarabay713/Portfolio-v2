@@ -5,7 +5,7 @@ export const bio = {
   avatar: "/images/akbarr.webp",
   greeting: "Hey, I'm Akbar",
   paragraphs: [
-    "I'm a software engineer who builds things for the web — front-end apps and the backends behind them.",
+    "I'm a software engineer who builds things for the web: front-end apps and the backends behind them.",
     "Most of my work is in JavaScript and TypeScript, plus a fair amount of PHP. I've spent time with React, Next.js, Vue, and Laravel, and I like working on a team and shipping things people actually use.",
     "When I'm not coding I'm usually poking at some new tool or gadget, or getting outside for a bit.",
   ],
@@ -97,7 +97,7 @@ export const experiences: Experience[] = [
     description: [
       "Built Shopee omnichannel integrations into the KiriminAja dashboard so orders from different platforms could be handled in one place.",
       "Helped rebuild the KiriminAja and KiriminAja Plus dashboards, working on both the UI and backend performance.",
-      "Built the fulfillment flow for KiriminAja Plus — from receiving stock in the warehouse to shipping orders out.",
+      "Built the fulfillment flow for KiriminAja Plus, from receiving stock in the warehouse to shipping orders out.",
       "Wrote Technical Requirement Documents (TRDs) for upcoming features.",
       "Worked across both monolith and microservices, mostly in PHP.",
     ],

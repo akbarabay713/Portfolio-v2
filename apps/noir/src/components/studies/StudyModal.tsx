@@ -94,7 +94,7 @@ const StudyModal = ({ study, index, total, onPrev, onNext, onClose }: StudyModal
       ref={ref}
       role="dialog"
       aria-modal="true"
-      aria-label={`${study.id} — ${study.title}`}
+      aria-label={`${study.id}: ${study.title}`}
       onClick={onClose}
       className="fixed inset-0 z-[80] flex items-center justify-center bg-bg/80 p-4 backdrop-blur-sm sm:p-8"
     >

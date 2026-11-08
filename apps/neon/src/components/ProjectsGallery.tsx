@@ -71,9 +71,7 @@ const ProjectsGallery = ({ projects }: ProjectsGalleryProps) => {
       className="py-28 lg:flex lg:h-screen lg:flex-col lg:justify-center lg:py-0"
     >
       <Reveal className="mb-12 flex items-center gap-3">
-        <span aria-hidden="true" className="text-2xl text-accent">
-          ✳
-        </span>
+        <span aria-hidden="true" className="inline-block h-2.5 w-2.5 bg-accent" />
         <span className="text-sm font-semibold uppercase tracking-[0.2em] text-muted">
           Selected Projects
         </span>
