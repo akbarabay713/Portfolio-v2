@@ -102,7 +102,7 @@ export default function ProjectsPage() {
                 delay: Math.min(index * 0.06, 0.4),
               }}
             >
-              <ProjectCard project={project} viewMode={viewMode} />
+              <ProjectCard project={project} viewMode={viewMode} priority={index === 0} />
             </motion.div>
           ))}
         </AnimatePresence>

@@ -4,7 +4,6 @@ import "./globals.css";
 
 import Docks from "@/components/molecules/Docks/Docks.component";
 import ScrollProgress from "@/components/atoms/ScrollProgress";
-import ComicBackground from "@/components/layouts/ComicBackground.component";
 import ComicCursor from "@/components/atoms/ComicCursor";
 import ClickBurst from "@/components/atoms/ClickBurst";
 import PageTransition from "@/components/layouts/PageTransition.component";
@@ -104,7 +103,6 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
         <ThemeProvider>
-          <ComicBackground />
           <ComicCursor />
           <ClickBurst />
           <ScrollProgress />

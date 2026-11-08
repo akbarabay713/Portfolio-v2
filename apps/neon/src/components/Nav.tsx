@@ -29,6 +29,16 @@ const Nav = () => {
     gsap.delayedCall(0.15, () => scrollToAnchor(href));
   };
 
+  // Close the overlay with Escape.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
   // Lock scroll while the overlay is open.
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";

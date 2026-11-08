@@ -34,7 +34,7 @@ export default function ContactPage() {
             </p>
             <a
               href={`mailto:${contactEmail}`}
-              className="text-xl font-bold text-content transition-colors hover:text-accent sm:text-2xl"
+              className="inline-flex min-h-11 items-center text-xl font-bold text-content transition-colors hover:text-accent sm:text-2xl"
             >
               {contactEmail}
             </a>

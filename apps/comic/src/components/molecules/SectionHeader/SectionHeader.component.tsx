@@ -47,17 +47,9 @@ const SectionHeader = ({
     </motion.div>
 
     {subtitle && (
-      <motion.div
-        initial="initial"
-        whileInView="animate"
-        viewport={viewport}
-        variants={fadeUpVariants}
-        transition={{ duration: 0.7, ease: EASE_OUT, delay: 0.1 }}
-      >
-        <Body variant="lg" className="max-w-2xl text-muted">
-          {subtitle}
-        </Body>
-      </motion.div>
+      <Body variant="lg" className="max-w-2xl text-muted">
+        {subtitle}
+      </Body>
     )}
   </div>
 );

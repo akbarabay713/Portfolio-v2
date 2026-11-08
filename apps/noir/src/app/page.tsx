@@ -228,7 +228,7 @@ export default function Home() {
               d.id === "noir" ? (
                 <span
                   key={d.id}
-                  className="mono border border-text px-5 py-2.5 text-xs text-text"
+                  className="mono inline-flex min-h-11 items-center border border-text px-5 py-2.5 text-xs text-text"
                 >
                   {d.label.toUpperCase()} ·
                 </span>
@@ -236,7 +236,7 @@ export default function Home() {
                 <a
                   key={d.id}
                   href={d.url}
-                  className="mono border border-line px-5 py-2.5 text-xs text-muted transition-colors hover:bg-text hover:text-bg"
+                  className="mono inline-flex min-h-11 items-center border border-line px-5 py-2.5 text-xs text-muted transition-colors hover:bg-text hover:text-bg"
                 >
                   {d.label.toUpperCase()} ↗
                 </a>
@@ -248,10 +248,10 @@ export default function Home() {
         <div className="mono mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-8 text-xs text-faint">
           <span>© {new Date().getFullYear()} {siteConfig.name.toUpperCase()} · BUILT FROM SCRATCH</span>
           <div className="flex gap-8">
-            <a href={siteConfig.links.github} target="_blank" rel="noopener noreferrer" className="text-muted transition-colors hover:text-text">
+            <a href={siteConfig.links.github} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center text-muted transition-colors hover:text-text">
               GITHUB ↗
             </a>
-            <a href={siteConfig.links.linkedin} target="_blank" rel="noopener noreferrer" className="text-muted transition-colors hover:text-text">
+            <a href={siteConfig.links.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center text-muted transition-colors hover:text-text">
               LINKEDIN ↗
             </a>
           </div>

@@ -44,7 +44,7 @@ const DockItem = ({
   });
 
   const content = (
-    <div className="group relative flex h-10 shrink-0 items-end justify-center">
+    <div className="group relative flex h-11 shrink-0 items-end justify-center sm:h-10">
       <motion.div
         ref={ref}
         style={{ width: smoothWidth, height: smoothWidth }}

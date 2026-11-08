@@ -19,7 +19,6 @@ import ProjectsGallery from "@/components/ProjectsGallery";
 import SplitHeading from "@/components/gsap/SplitHeading";
 import Marquee from "@/components/gsap/Marquee";
 import Magnetic from "@/components/gsap/Magnetic";
-import CountUp from "@/components/gsap/CountUp";
 import VelocitySkew from "@/components/gsap/VelocitySkew";
 import { scrollToAnchor } from "@/components/gsap/SmoothScroll";
 import { introDelay } from "@/components/gsap/Preloader";
@@ -57,16 +56,11 @@ export default function Home() {
             />
           </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: EASE, delay: INTRO + 0.2 }}
-            className="mt-10 max-w-lg leading-relaxed text-muted"
-          >
+          <p className="mt-10 max-w-lg leading-relaxed text-muted">
             Hi! I&apos;m <span className="font-semibold text-content">{siteConfig.name}</span>.
             A fullstack developer. I build web apps end to end, from the
             database up to the interface, with React, Next.js, and PHP.
-          </motion.p>
+          </p>
 
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -94,24 +88,18 @@ export default function Home() {
         </div>
 
         {settings.sections.stats && (
-          <motion.div
+          <motion.ul
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: INTRO + 0.5 }}
-            data-speed="0.9"
-            className="mt-20 flex flex-wrap gap-10 lg:absolute lg:bottom-24 lg:right-0 lg:mt-0 lg:flex-col lg:gap-8 lg:text-right"
+            className="mt-14 flex flex-wrap gap-x-8 gap-y-2 text-sm text-muted"
           >
-            {stats.map((stat, i) => (
-              <div key={stat.label}>
-                <CountUp
-                  value={stat.value}
-                  delay={INTRO + 0.6 + i * 0.15}
-                  className="font-display block text-4xl text-accent sm:text-5xl"
-                />
-                <p className="mt-1 text-sm text-muted">{stat.label}</p>
-              </div>
+            {stats.map((stat) => (
+              <li key={stat.label}>
+                <span className="font-semibold text-content">{stat.value}</span> {stat.label}
+              </li>
             ))}
-          </motion.div>
+          </motion.ul>
         )}
       </section>
       <Marquee
@@ -194,7 +182,7 @@ export default function Home() {
         <Reveal delay={0.15}>
           <a
             href={`mailto:${siteConfig.email}`}
-            className="mt-10 inline-block text-xl font-semibold text-muted transition-colors hover:text-accent sm:text-2xl"
+            className="mt-10 inline-flex min-h-11 items-center text-xl font-semibold text-muted transition-colors hover:text-accent sm:text-2xl"
           >
             {siteConfig.email}
           </a>
@@ -215,7 +203,7 @@ export default function Home() {
                   <a
                     key={d.id}
                     href={d.url}
-                    className="text-muted transition-colors hover:text-content"
+                    className="inline-flex min-h-11 min-w-11 items-center text-muted transition-colors hover:text-content"
                   >
                     {d.label}
                   </a>
@@ -227,7 +215,7 @@ export default function Home() {
                 href={siteConfig.links.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted transition-colors hover:text-accent"
+                className="inline-flex min-h-11 items-center text-muted transition-colors hover:text-accent"
               >
                 GitHub
               </a>
@@ -235,7 +223,7 @@ export default function Home() {
                 href={siteConfig.links.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted transition-colors hover:text-accent"
+                className="inline-flex min-h-11 items-center text-muted transition-colors hover:text-accent"
               >
                 LinkedIn
               </a>

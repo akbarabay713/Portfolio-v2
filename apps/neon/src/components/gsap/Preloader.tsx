@@ -9,13 +9,18 @@ gsap.registerPlugin(useGSAP);
 const NAME = "AKBAR";
 const SEEN_KEY = "neon-intro-seen";
 
+/** Phones skip the curtain so the page shows sooner on slow connections. */
+const skipsIntro = () =>
+  window.matchMedia("(prefers-reduced-motion: reduce), (max-width: 639px)").matches ||
+  Boolean(sessionStorage.getItem(SEEN_KEY));
+
 /**
- * How long hero entrances should wait for the preloader curtain. Zero on
- * repeat visits within the same session (the preloader is skipped).
+ * How long hero entrances should wait for the preloader curtain. Zero when
+ * the preloader is skipped.
  */
 export const introDelay = () => {
   if (typeof window === "undefined") return 0.8;
-  return sessionStorage.getItem(SEEN_KEY) ? 0 : 0.8;
+  return skipsIntro() ? 0 : 0.8;
 };
 
 /**
@@ -28,10 +33,7 @@ const Preloader = () => {
 
   useGSAP(
     () => {
-      if (
-        window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
-        sessionStorage.getItem(SEEN_KEY)
-      ) {
+      if (skipsIntro()) {
         setDone(true);
         return;
       }
@@ -65,7 +67,7 @@ const Preloader = () => {
     <div
       ref={ref}
       aria-hidden="true"
-      className="fixed inset-0 z-[90] flex flex-col items-center justify-center gap-4 bg-canvas"
+      className="fixed inset-0 z-[90] hidden flex-col items-center justify-center gap-4 bg-canvas sm:flex"
     >
       <p className="font-display overflow-hidden pb-[0.08em] text-6xl text-content sm:text-8xl">
         {NAME.split("").map((char, i) => (

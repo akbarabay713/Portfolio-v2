@@ -57,6 +57,10 @@ const Chrome = () => {
   // j / k jump to the next / previous section (power-user shortcut).
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && menu) {
+        setMenu(false);
+        return;
+      }
       if (e.key !== "j" && e.key !== "k") return;
       if (document.querySelector('[role="dialog"]') || menu) return; // overlay open
       const el = document.activeElement;
@@ -123,11 +127,14 @@ const Chrome = () => {
       {menu && (
         <div
           ref={menuRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menu"
           className="animate-fade fixed inset-0 z-[65] flex flex-col bg-bg px-5 py-4 lg:hidden"
         >
           <div className="flex items-center justify-between">
             <span className="mono text-sm font-semibold tracking-widest text-text">AKBAR/DEV</span>
-            <button onClick={() => setMenu(false)} aria-label="Close menu" className="mono text-xs text-faint">
+            <button onClick={() => setMenu(false)} aria-label="Close menu" className="mono -my-2.5 min-h-11 text-xs text-faint">
               CLOSE ✕
             </button>
           </div>
@@ -149,7 +156,7 @@ const Chrome = () => {
               setMenu(false);
               setHelp(true);
             }}
-            className="mono self-start text-xs text-faint"
+            className="mono min-h-11 self-start text-xs text-faint"
           >
             (?) HELP
           </button>

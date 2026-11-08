@@ -3,11 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useTypewriter, Cursor } from "react-simple-typewriter";
 import { ArrowRight } from "lucide-react";
 
 import Button from "@/components/atoms/Button";
-import StatusPill from "@/components/atoms/StatusPill";
 import Magnetic from "@/components/atoms/Magnetic";
 import { IcGithub, IcLinkedin } from "@/components/atoms/Icons/SocialIcons";
 import { bio, EASE_OUT, fadeUpVariants, siteConfig } from "@/constants";
@@ -20,20 +18,8 @@ const fade = (delay: number) => ({
 });
 
 export default function Home() {
-  const [text] = useTypewriter({
-    words: [
-      "Hey, I'm Akbar",
-      "I build things for the web",
-      "Fullstack Developer",
-    ],
-    loop: true,
-    delaySpeed: 2500,
-    typeSpeed: 80,
-    deleteSpeed: 40,
-  });
-
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 text-center">
+    <main className="relative mx-auto flex min-h-screen w-full max-w-4xl flex-col items-start justify-center overflow-hidden px-6 text-left">
       <motion.div {...fade(0)} className="mb-8">
         <Image
           src={bio.avatar}
@@ -45,14 +31,9 @@ export default function Home() {
         />
       </motion.div>
 
-      <motion.div {...fade(0.05)} className="mb-6">
-        <StatusPill>Available for opportunities</StatusPill>
-      </motion.div>
-
       <motion.div {...fade(0.15)} className="mb-6 max-w-4xl">
-        <h1 className="min-h-[2lh] font-display tracking-wide text-4xl leading-tight text-content sm:text-6xl md:text-7xl lg:min-h-[1lh]">
-          {text}
-          <Cursor cursorColor="var(--accent)" />
+        <h1 className="font-display tracking-wide text-4xl leading-tight text-content sm:text-6xl md:text-7xl">
+          I build things for the web
         </h1>
       </motion.div>
 
@@ -65,7 +46,7 @@ export default function Home() {
 
       <motion.div
         {...fade(0.35)}
-        className="mb-16 flex flex-wrap items-center justify-center gap-4"
+        className="mb-16 flex flex-wrap items-center justify-start gap-4"
       >
         <Magnetic>
           <Button
@@ -91,7 +72,7 @@ export default function Home() {
         </Magnetic>
       </motion.div>
 
-      <motion.div {...fade(0.45)} className="flex items-center gap-5">
+      <motion.div {...fade(0.45)} className="-ml-3 flex items-center gap-5">
         <Magnetic strength={6}>
           <a
             href={siteConfig.links.github}

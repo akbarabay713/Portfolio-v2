@@ -12,9 +12,10 @@ import { cn } from "@/lib/utils.lib";
 interface ProjectCardProps {
   project: Project;
   viewMode?: "grid" | "list";
+  priority?: boolean;
 }
 
-const ProjectCard = ({ project, viewMode = "grid" }: ProjectCardProps) => {
+const ProjectCard = ({ project, viewMode = "grid", priority }: ProjectCardProps) => {
   const { title, description, tech, image, live, github } = project;
   const isList = viewMode === "list";
 
@@ -36,6 +37,7 @@ const ProjectCard = ({ project, viewMode = "grid" }: ProjectCardProps) => {
           src={image}
           alt={`${title} project screenshot`}
           fill
+          priority={priority}
           className="object-cover transition-transform duration-500 group-hover:scale-105"
           sizes={isList ? "(max-width: 768px) 100vw, 288px" : "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"}
         />

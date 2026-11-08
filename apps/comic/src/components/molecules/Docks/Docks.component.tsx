@@ -31,7 +31,7 @@ const Dock = () => {
     return () => clearTimeout(id);
   }, []);
 
-  // Shrink the dock on small screens so every item stays on-screen.
+  // Bigger tap targets on small screens; the social links drop out to make room.
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 639px)");
     const update = () => setCompact(mq.matches);
@@ -40,7 +40,7 @@ const Dock = () => {
     return () => mq.removeEventListener("change", update);
   }, []);
 
-  const baseSize = compact ? 34 : 40;
+  const baseSize = compact ? 44 : 40;
   const maxSize = compact ? 44 : 60;
 
   const isDark = resolvedTheme === "dark";
@@ -97,19 +97,21 @@ const Dock = () => {
         />
       ))}
 
-      <Divider />
+      <div className="hidden sm:contents">
+        <Divider />
 
-      {socialItems.map((item) => (
-        <DockItem
-          key={item.tooltip}
-          mouseX={mouseX}
-          tooltip={item.tooltip}
-          icon={item.icon}
-          href={item.href}
-          baseSize={baseSize}
-          maxSize={maxSize}
-        />
-      ))}
+        {socialItems.map((item) => (
+          <DockItem
+            key={item.tooltip}
+            mouseX={mouseX}
+            tooltip={item.tooltip}
+            icon={item.icon}
+            href={item.href}
+            baseSize={baseSize}
+            maxSize={maxSize}
+          />
+        ))}
+      </div>
 
       <Divider />
 

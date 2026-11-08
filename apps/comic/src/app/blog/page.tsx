@@ -2,12 +2,16 @@
 
 import { motion } from "framer-motion";
 import { Rss } from "lucide-react";
+import { notFound } from "next/navigation";
+import { settings } from "@portfolio/content";
 
 import Heading from "@/components/atoms/Heading";
 import StatusPill from "@/components/atoms/StatusPill";
 import { EASE_OUT, fadeUpVariants } from "@/constants";
 
 export default function BlogPage() {
+  if (!settings.sections.blog) notFound();
+
   return (
     <main className="flex min-h-[80vh] flex-col items-center justify-center px-4 text-center">
       <motion.div

@@ -23,7 +23,7 @@
 
   --content:   #f2ede1;
   --muted:     #b6b0a2;
-  --faint:     #8a8375;
+  --faint:     #9a9385;
 
   --line:        rgba(242, 237, 225, 0.14);
   --line-strong: #f2ede1;
@@ -31,7 +31,6 @@
   /* comic ink: outline, hard offset shadow color, marker highlight */
   --outline:   #f2ede1;
   --highlight: #ffd23f;
-  --halftone:  rgba(242, 237, 225, 0.05);
 
   --negative: #ff6b6b;
   --warning:  #ffcf4d;
@@ -67,7 +66,6 @@
   /* comic ink: outline, hard offset shadow color, marker highlight */
   --outline:   #16130f;
   --highlight: #ffd23f;
-  --halftone:  rgba(22, 19, 15, 0.06);
 
   --negative: #e5322b;
   --warning:  #f0a500;
@@ -184,12 +182,6 @@ body {
   }
   .ink-shadow-sm {
     box-shadow: 3px 3px 0 0 var(--outline);
-  }
-
-  /* Ben-Day halftone dots for comic paper texture */
-  .comic-halftone {
-    background-image: radial-gradient(var(--halftone) 1.6px, transparent 1.7px);
-    background-size: 15px 15px;
   }
 
   /* jagged burst shape for click bubbles */
