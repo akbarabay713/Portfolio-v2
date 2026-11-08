@@ -146,7 +146,7 @@ export default function Home() {
                 href={bio.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-2 inline-flex items-center gap-2 font-semibold text-accent transition-colors hover:text-accent-strong"
+                className="mt-2 inline-flex min-h-11 items-center gap-2 font-semibold text-accent transition-colors hover:text-accent-strong"
               >
                 Download résumé <ArrowUpRight size={18} />
               </a>

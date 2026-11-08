@@ -80,7 +80,7 @@ export default function ContactPage() {
                 d.id === "comic" ? (
                   <span
                     key={d.id}
-                    className="rounded-full border-2 border-outline bg-accent px-4 py-1.5 text-xs font-bold text-accent-contrast"
+                    className="inline-flex min-h-11 items-center rounded-full border-2 border-outline bg-accent px-4 py-1.5 text-xs font-bold text-accent-contrast"
                   >
                     {d.label}
                   </span>
@@ -88,7 +88,7 @@ export default function ContactPage() {
                   <a
                     key={d.id}
                     href={d.url}
-                    className="rounded-full border-2 border-outline bg-card px-4 py-1.5 text-xs font-bold text-content transition-all hover:-rotate-2 hover:bg-highlight hover:text-[#16130f]"
+                    className="inline-flex min-h-11 items-center rounded-full border-2 border-outline bg-card px-4 py-1.5 text-xs font-bold text-content transition-all hover:-rotate-2 hover:bg-highlight hover:text-[#16130f]"
                   >
                     {d.label}
                   </a>

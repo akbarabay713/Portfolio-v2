@@ -76,8 +76,8 @@ const Chrome = () => {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 flex items-center justify-between px-5 py-4 sm:px-8">
-        <a href="#home" className="mono text-sm font-semibold tracking-widest text-text">
+      <header className="fixed inset-x-0 top-0 z-50 flex items-center justify-between px-5 py-4 before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:-z-10 before:h-20 before:bg-linear-to-b before:from-bg before:from-60% before:to-transparent sm:px-8">
+        <a href="#home" className="mono -my-3 py-3 text-sm font-semibold tracking-widest text-text">
           AKBAR/DEV
         </a>
 
@@ -111,7 +111,7 @@ const Chrome = () => {
           <button
             onClick={() => setMenu(true)}
             aria-label="Open menu"
-            className="flex h-6 w-7 flex-col items-end justify-center gap-1.5 lg:hidden"
+            className="-my-2.5 -mr-2 flex h-11 w-11 flex-col items-end justify-center gap-1.5 pr-2 lg:hidden"
           >
             <span className="h-px w-6 bg-text" />
             <span className="h-px w-4 bg-text" />

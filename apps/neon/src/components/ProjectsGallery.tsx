@@ -118,13 +118,13 @@ const ProjectsGallery = ({ projects }: ProjectsGalleryProps) => {
             <p className="mt-4 text-sm uppercase tracking-wider text-faint lg:line-clamp-1">
               {project.tech.join(" · ")}
             </p>
-            <div className="mt-5 flex items-center gap-6">
+            <div className="mt-3 flex items-center gap-6">
               {project.live && (
                 <a
                   href={project.live}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 font-semibold text-accent transition-colors hover:text-accent-strong"
+                  className="inline-flex min-h-11 items-center gap-1.5 font-semibold text-accent transition-colors hover:text-accent-strong"
                 >
                   Live site <ArrowUpRight size={16} />
                 </a>
@@ -134,7 +134,7 @@ const ProjectsGallery = ({ projects }: ProjectsGalleryProps) => {
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 font-semibold text-muted transition-colors hover:text-content"
+                  className="inline-flex min-h-11 items-center gap-1.5 font-semibold text-muted transition-colors hover:text-content"
                 >
                   Code <ArrowUpRight size={16} />
                 </a>

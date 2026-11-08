@@ -34,7 +34,7 @@ const MicToggle = () => {
     <button
       onClick={toggle}
       aria-pressed={state === "on"}
-      className="mono flex items-center gap-2 text-xs text-faint transition-colors hover:text-text"
+      className="mono -my-3.5 flex min-h-11 items-center gap-2 text-xs text-faint transition-colors hover:text-text"
     >
       <span
         className={`inline-block h-1.5 w-1.5 rounded-full ${

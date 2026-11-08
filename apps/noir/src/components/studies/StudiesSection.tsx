@@ -75,7 +75,7 @@ const StudiesSection = ({ studies }: { studies: Study[] }) => {
           <button
             key={t}
             onClick={() => setFilter(t)}
-            className={`border px-3 py-1.5 transition-colors ${
+            className={`min-h-11 border px-3 py-1.5 transition-colors ${
               filter === t
                 ? "border-text bg-text text-bg"
                 : "border-line text-faint hover:text-text"

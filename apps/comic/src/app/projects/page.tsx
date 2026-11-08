@@ -29,7 +29,7 @@ export default function ProjectsPage() {
   );
 
   return (
-    <section className="mx-auto max-w-6xl px-4 py-16 pb-32 2xl:max-w-[100rem]">
+    <main className="mx-auto max-w-6xl px-4 py-16 pb-32 2xl:max-w-[100rem]">
       <SectionHeader
         title="Projects"
         subtitle="A selection of products and sites I've designed and built, from ecommerce and SaaS to logistics dashboards."
@@ -107,6 +107,6 @@ export default function ProjectsPage() {
           ))}
         </AnimatePresence>
       </motion.div>
-    </section>
+    </main>
   );
 }

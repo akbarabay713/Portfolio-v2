@@ -57,7 +57,8 @@ const Nav = () => {
 
       <AnimatePresence>
         {open && (
-          <motion.div
+          <motion.nav
+            aria-label="Primary"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -88,7 +89,7 @@ const Nav = () => {
             >
               {siteConfig.email}
             </motion.a>
-          </motion.div>
+          </motion.nav>
         )}
       </AnimatePresence>
     </>

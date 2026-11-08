@@ -14,7 +14,7 @@ export const bio = {
 };
 
 export const stats: Stat[] = [
-  { value: "4+", label: "Years of Experience" },
+  { value: "3+", label: "Years of Experience" },
   { value: "13+", label: "Completed Projects" },
   { value: "4", label: "Companies Worked With" },
 ];

@@ -50,7 +50,7 @@ export default function Home() {
       </motion.div>
 
       <motion.div {...fade(0.15)} className="mb-6 max-w-4xl">
-        <h1 className="font-display tracking-wide text-4xl leading-tight text-content sm:text-6xl md:text-7xl">
+        <h1 className="min-h-[2lh] font-display tracking-wide text-4xl leading-tight text-content sm:text-6xl md:text-7xl lg:min-h-[1lh]">
           {text}
           <Cursor cursorColor="var(--accent)" />
         </h1>
@@ -97,7 +97,7 @@ export default function Home() {
             href={siteConfig.links.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-faint transition-colors hover:text-accent"
+            className="inline-flex h-11 w-11 items-center justify-center text-faint transition-colors hover:text-accent"
             aria-label="GitHub"
           >
             <IcGithub width={24} height={24} />
@@ -109,7 +109,7 @@ export default function Home() {
             href={siteConfig.links.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-faint transition-colors hover:text-accent"
+            className="inline-flex h-11 w-11 items-center justify-center text-faint transition-colors hover:text-accent"
             aria-label="LinkedIn"
           >
             <IcLinkedin width={20} height={20} />

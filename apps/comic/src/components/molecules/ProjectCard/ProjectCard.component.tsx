@@ -54,9 +54,9 @@ const ProjectCard = ({ project, viewMode = "grid" }: ProjectCardProps) => {
       </div>
 
       <div className="flex flex-1 flex-col px-1">
-        <h3 className="font-display tracking-wide mb-2 text-xl text-content transition-colors group-hover:text-accent">
+        <h2 className="font-display tracking-wide mb-2 text-xl text-content transition-colors group-hover:text-accent">
           {title}
-        </h3>
+        </h2>
         <p
           className={cn(
             "mb-4 text-sm leading-relaxed text-muted",
@@ -77,7 +77,7 @@ const ProjectCard = ({ project, viewMode = "grid" }: ProjectCardProps) => {
             href={github}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-faint transition-colors hover:text-content"
+            className="mt-1 inline-flex min-h-11 items-center gap-2 text-xs font-semibold text-faint transition-colors hover:text-content"
           >
             <IcGithub width={14} height={14} /> View code
           </a>

@@ -89,7 +89,7 @@ export const allProjects: Project[] = [
       "An ecommerce store where customers can buy 100% natural, vegan skincare products made from unrefined Ghanaian shea butter that nourishes skin and hair.",
     tech: ["JavaScript", "WordPress", "WooCommerce", "PHP", "SCSS", "jQuery"],
     image: "/projects/uan.png",
-    live: "https://woocommerce-663295-6105213.cloudwaysapps.com/",
+    live: "https://urbanafricanaturals.com/",
     visible: true,
   },
   {

@@ -14,8 +14,8 @@ const SEEN_KEY = "neon-intro-seen";
  * repeat visits within the same session (the preloader is skipped).
  */
 export const introDelay = () => {
-  if (typeof window === "undefined") return 1.3;
-  return sessionStorage.getItem(SEEN_KEY) ? 0 : 1.3;
+  if (typeof window === "undefined") return 0.8;
+  return sessionStorage.getItem(SEEN_KEY) ? 0 : 0.8;
 };
 
 /**
@@ -44,16 +44,16 @@ const Preloader = () => {
       });
       tl.from("[data-pre-char]", {
         yPercent: 110,
-        duration: 0.7,
+        duration: 0.45,
         ease: "power4.out",
-        stagger: 0.06,
+        stagger: 0.04,
       })
-        .from("[data-pre-bar]", { scaleX: 0, duration: 0.5, ease: "power2.inOut" }, "-=0.3")
+        .from("[data-pre-bar]", { scaleX: 0, duration: 0.3, ease: "power2.inOut" }, "-=0.2")
         .to(ref.current, {
           yPercent: -100,
-          duration: 0.8,
+          duration: 0.55,
           ease: "power4.inOut",
-          delay: 0.15,
+          delay: 0.05,
         });
     },
     { scope: ref },
