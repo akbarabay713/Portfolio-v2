@@ -13,7 +13,7 @@ interface StudyRowProps {
   onOpen?: () => void;
 }
 
-/** One line of the studies ledger: id, title + note, technique, year, arrow. */
+/** One line of the studies ledger: id, title + note, technique, arrow. */
 const StudyRow = ({ study, onOpen }: StudyRowProps) => {
   const ref = useRef<HTMLButtonElement>(null);
 
@@ -36,7 +36,7 @@ const StudyRow = ({ study, onOpen }: StudyRowProps) => {
       ref={ref}
       data-hover
       onClick={onOpen}
-      className="group grid w-full grid-cols-[3.5rem_1fr_auto] items-baseline gap-x-4 border-b border-line py-6 text-left transition-colors sm:grid-cols-[4rem_1fr_8rem_4rem_2rem]"
+      className="group grid w-full grid-cols-[3.5rem_1fr] items-baseline gap-x-4 border-b border-line py-6 text-left transition-colors sm:grid-cols-[4rem_1fr_8rem_2rem]"
     >
       <span className="mono text-xs text-faint">{study.id}</span>
       <div>
@@ -48,7 +48,6 @@ const StudyRow = ({ study, onOpen }: StudyRowProps) => {
       <span className="mono hidden text-right text-[11px] text-faint sm:block">
         {study.technique.toUpperCase()}
       </span>
-      <span className="mono text-right text-[11px] text-faint">{study.year}</span>
       <span className="mono hidden text-right text-muted transition-transform group-hover:translate-x-1 sm:block">
         →
       </span>

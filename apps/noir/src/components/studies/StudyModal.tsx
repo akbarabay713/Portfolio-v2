@@ -106,7 +106,7 @@ const StudyModal = ({ study, index, total, onPrev, onNext, onClose }: StudyModal
         <div className="flex items-start justify-between border-b border-line px-6 py-4">
           <div>
             <p className="mono text-[11px] text-faint">
-              {study.id} · {study.technique.toUpperCase()} · {study.year}
+              {study.id} · {study.technique.toUpperCase()}
             </p>
             <h3 className="display mt-1 text-2xl text-text sm:text-3xl">{study.title}</h3>
           </div>

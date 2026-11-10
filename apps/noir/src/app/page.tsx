@@ -135,13 +135,9 @@ export default function Home() {
                 {col.items.map((item) => (
                   <li
                     key={item}
-                    data-hover
-                    className="group flex items-center justify-between border-b border-line-soft py-4 text-lg text-text transition-colors last:border-b-0 hover:text-accent"
+                    className="border-b border-line-soft py-4 text-lg text-text last:border-b-0"
                   >
                     {item}
-                    <span className="text-faint transition-transform group-hover:translate-x-1">
-                      →
-                    </span>
                   </li>
                 ))}
               </ul>
@@ -215,7 +211,8 @@ export default function Home() {
             data-hover
             className="display block break-words text-[11vw] leading-none text-text transition-colors hover:text-accent"
           >
-            {email}
+            {email.split("@")[0]}
+            <wbr />@{email.split("@")[1]}
           </a>
         </Reveal>
         {/* Design switcher: jump to the other two portfolio builds. */}
@@ -246,7 +243,7 @@ export default function Home() {
         </Reveal>
 
         <div className="mono mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-8 text-xs text-faint">
-          <span>© {new Date().getFullYear()} {siteConfig.name.toUpperCase()} · BUILT FROM SCRATCH</span>
+          <span>© {new Date().getFullYear()} {siteConfig.name.toUpperCase()}</span>
           <div className="flex gap-8">
             <a href={siteConfig.links.github} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center text-muted transition-colors hover:text-text">
               GITHUB ↗
