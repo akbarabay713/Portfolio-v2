@@ -17,10 +17,9 @@ export default function AboutPage() {
       <SectionHeader title="About me" />
 
       <motion.div
-        initial="initial"
+        initial={false}
         animate="animate"
         variants={fadeUpVariants}
-        transition={{ duration: 0.7, ease: EASE_OUT, delay: 0.15 }}
         className="mb-24 flex flex-col gap-8 md:flex-row lg:gap-16"
       >
         <div className="flex w-full flex-col gap-4 md:w-[35%]">
@@ -29,6 +28,7 @@ export default function AboutPage() {
               src={bio.avatar}
               alt={`Portrait of ${bio.name}`}
               fill
+              priority
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 35vw"
             />

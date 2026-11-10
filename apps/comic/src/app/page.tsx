@@ -31,13 +31,13 @@ export default function Home() {
         />
       </motion.div>
 
-      <motion.div {...fade(0.15)} className="mb-6 max-w-4xl">
+      <motion.div className="mb-6 max-w-4xl">
         <h1 className="font-display tracking-wide text-4xl leading-tight text-content sm:text-6xl md:text-7xl">
           {bio.greeting}
         </h1>
       </motion.div>
 
-      <motion.div {...fade(0.25)} className="mb-12 max-w-xl">
+      <motion.div className="mb-12 max-w-xl">
         <p className="text-base leading-relaxed text-muted md:text-lg">
           I&apos;m a fullstack developer. I build fast, easy-to-use web apps and
           sites, and I care about writing clean code and getting the details right.

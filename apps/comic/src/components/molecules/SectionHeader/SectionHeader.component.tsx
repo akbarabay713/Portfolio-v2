@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 import Heading from "@/components/atoms/Heading";
 import Body from "@/components/atoms/Body";
-import { EASE_OUT, fadeUpVariants } from "@/constants";
+import { EASE_OUT } from "@/constants";
 import { cn } from "@/lib/utils.lib";
 
 interface SectionHeaderProps {
@@ -23,13 +23,7 @@ const SectionHeader = ({
   as = "h1",
 }: SectionHeaderProps) => (
   <div className={cn("mb-10", className)}>
-    <motion.div
-      initial="initial"
-      whileInView="animate"
-      viewport={viewport}
-      variants={fadeUpVariants}
-      transition={{ duration: 0.7, ease: EASE_OUT }}
-    >
+    <div>
       <Heading as={as} variant="h2" weight="bold" className="mb-3">
         <span className="relative isolate inline-block">
           {/* Highlighter marker that swipes in under the title. */}
@@ -44,7 +38,7 @@ const SectionHeader = ({
           {title}
         </span>
       </Heading>
-    </motion.div>
+    </div>
 
     {subtitle && (
       <Body variant="lg" className="max-w-2xl text-muted">

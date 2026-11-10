@@ -5,8 +5,8 @@ export const bio = {
   avatar: "/images/akbarr.webp",
   greeting: "Hey, I'm Akbar",
   paragraphs: [
-    "I'm a software engineer who builds things for the web: front-end apps and the backends behind them.",
-    "Most of my work is in JavaScript and TypeScript, plus a fair amount of PHP. I've spent time with React, Next.js, Vue, and Laravel, and I like working on a team and shipping things people actually use.",
+    "I'm a fullstack developer who builds for the web: front-end apps and the backends behind them.",
+    "Most of my work is in JavaScript, TypeScript and PHP: React, Next.js, Vue and Laravel for apps, and WordPress for client sites. I like working on a team and shipping things people actually use.",
     "When I'm not coding I'm usually poking at some new tool or gadget, or getting outside for a bit.",
   ],
   resumeUrl:
@@ -71,10 +71,9 @@ export const experiences: Experience[] = [
     date: "December 2024 - Present",
     image: "/images/madeindonesia_logo.png",
     description: [
-      "Built responsive, SEO-friendly landing pages from Figma designs using Next.js and WordPress.",
-      "Wrote reusable, component-based React and WordPress code that was easy to maintain.",
-      "Maintained and improved existing client codebases, from first handoff through delivery.",
-      "Worked directly with European clients to scope the work and figure out the right approach.",
+      "Build landing pages from Figma designs in Next.js and WordPress, with responsive layouts and SEO handled from the start.",
+      "Work directly with European clients to scope each project and choose the right approach.",
+      "Maintain existing client codebases, from first handoff through delivery.",
     ],
   },
   {
@@ -83,10 +82,9 @@ export const experiences: Experience[] = [
     date: "March 2025 - May 2026",
     image: "/images/gaia.png",
     description: [
-      "Built fast, SEO-focused WordPress landing pages from Figma mockups.",
-      "Wrote modular, reusable code within the WordPress ecosystem.",
-      "Cleaned up and maintained older client codebases, improving how they performed.",
-      "Worked with international clients to understand what they needed and build it.",
+      "Built SEO-focused WordPress landing pages from Figma mockups, including the agency's own landing page template.",
+      "Cleaned up older client codebases and improved their performance.",
+      "Worked with international clients to turn their requirements into finished sites.",
     ],
   },
   {

@@ -2,9 +2,28 @@ import type { Project } from "./types";
 
 export const allProjects: Project[] = [
   {
+    title: "KiriminAja Dashboard",
+    description:
+      "I built the Shopee order integration and the KiriminAja Plus fulfillment flow, from warehouse stock to shipped orders, and worked on the dashboard rebuild across UI and backend performance. Indonesian online sellers use it to compare courier rates and ship across every major courier in one place.",
+    tech: [
+      "JavaScript",
+      "TypeScript",
+      "Vue",
+      "Nuxt.js",
+      "Laravel",
+      "MySQL",
+      "Tailwind CSS",
+      "Pinia",
+    ],
+    image: "/projects/ka.png",
+    live: "https://kiriminaja.com/",
+    visible: true,
+    featured: true,
+  },
+  {
     title: "VitalsWatch",
     description:
-      "VitalsWatch simulates a CI/CD pipeline that audits every commit for Core Web Vitals (LCP, INP, CLS), visualizes performance trends across deployments, catches regressions before they reach production, isolates the file or dependency responsible, and translates technical lag into estimated business impact. No backend. A deterministic frontend simulation drives the whole app.",
+      "A Core Web Vitals monitor I built as a side project. It simulates a CI pipeline that audits each commit for LCP, INP and CLS, charts trends across deploys, flags regressions and traces each one to the file or dependency responsible. It runs entirely in the browser on simulated data.",
     tech: [
       "JavaScript",
       "TypeScript",
@@ -22,7 +41,7 @@ export const allProjects: Project[] = [
   {
     title: "Art Is Wine",
     description:
-      "A Dutch corporate event booking platform where companies can organize wine-painting team-building experiences for their employees and clients.",
+      "WooCommerce site for a Dutch company that runs wine-and-painting team events, where businesses book workshops for their staff and clients.",
     tech: ["JavaScript", "WordPress", "WooCommerce", "PHP", "SCSS", "jQuery"],
     image: "/projects/artiswine-nl.png",
     live: "https://artiswine.nl/",
@@ -31,7 +50,7 @@ export const allProjects: Project[] = [
   {
     title: "Devinita",
     description:
-      "An online wine shop where customers can browse and order exclusive Italian wines imported directly to the Netherlands.",
+      "WooCommerce shop for Italian wines imported directly to the Netherlands.",
     tech: ["JavaScript", "WordPress", "WooCommerce", "PHP", "SCSS", "jQuery"],
     image: "/projects/devinita-nl.png",
     live: "https://devinita.nl/",
@@ -40,7 +59,7 @@ export const allProjects: Project[] = [
   {
     title: "Greyrox",
     description:
-      "A B2B SaaS platform where IT teams can orchestrate multi-cloud workflows, manage AI dataflows, and build resilient low-code integrations across their infrastructure.",
+      "Marketing site for Greyrox, a B2B platform for multi-cloud workflows, AI dataflows and low-code integrations.",
     tech: ["JavaScript", "WordPress", "Elementor", "PHP", "SCSS", "jQuery"],
     image: "/projects/greyrox.png",
     live: "https://www.greyrox.com/",
@@ -50,7 +69,7 @@ export const allProjects: Project[] = [
   {
     title: "NedTax",
     description:
-      "A professional tax advisory website where Dutch and German businesses can connect with a team of 40+ experts for specialized cross-border accounting and tax consulting.",
+      "Elementor site for a Dutch-German tax advisory firm whose 40+ specialists handle cross-border accounting and tax.",
     tech: ["JavaScript", "WordPress", "Elementor", "PHP", "SCSS", "jQuery"],
     image: "/projects/nedtax.png",
     live: "https://nedtax.nl/nl/",
@@ -59,7 +78,7 @@ export const allProjects: Project[] = [
   {
     title: "ToxicoWatch",
     description:
-      "An environmental research foundation website where visitors can explore ongoing biomonitoring studies tracking toxic substances like dioxins, PFAS, and heavy metals across Europe.",
+      "Elementor site for an environmental research foundation, presenting its biomonitoring studies on dioxins, PFAS and heavy metals across Europe.",
     tech: ["JavaScript", "WordPress", "Elementor", "PHP", "SCSS", "jQuery"],
     image: "/projects/toxico.png",
     live: "https://toxicowatch.org/",
@@ -68,7 +87,7 @@ export const allProjects: Project[] = [
   {
     title: "ToxicoWatch Consultancy",
     description:
-      "A consultancy website where governments and businesses can hire environmental toxicology experts for research, biomonitoring, and advisory services on Persistent Organic Pollutants.",
+      "Elementor site for ToxicoWatch's consultancy, which offers toxicology research and advisory work on persistent organic pollutants to governments and businesses.",
     tech: ["JavaScript", "WordPress", "Elementor", "PHP", "SCSS", "jQuery"],
     image: "/projects/tw.png",
     live: "https://wordpress-663295-5770621.cloudwaysapps.com/",
@@ -77,7 +96,7 @@ export const allProjects: Project[] = [
   {
     title: "Woven+",
     description:
-      "A B2B wholesale showcase where hotels, resorts, and retailers can browse and order commercial-grade handcrafted outdoor furniture from a global manufacturer.",
+      "Elementor catalog for a maker of handcrafted outdoor furniture, aimed at hotels, resorts and retailers buying wholesale.",
     tech: ["JavaScript", "WordPress", "Elementor", "PHP", "SCSS", "jQuery"],
     image: "/projects/woven.png",
     live: "https://wovenplus.com/",
@@ -86,7 +105,7 @@ export const allProjects: Project[] = [
   {
     title: "Urban Africa Naturals",
     description:
-      "An ecommerce store where customers can buy 100% natural, vegan skincare products made from unrefined Ghanaian shea butter that nourishes skin and hair.",
+      "WooCommerce store for vegan skincare made from unrefined Ghanaian shea butter.",
     tech: ["JavaScript", "WordPress", "WooCommerce", "PHP", "SCSS", "jQuery"],
     image: "/projects/uan.png",
     live: "https://urbanafricanaturals.com/",
@@ -95,7 +114,7 @@ export const allProjects: Project[] = [
   {
     title: "Lendé",
     description:
-      "A luxury membership platform where fashion lovers in Amsterdam can join a club and rotate coveted designer handbags each month without the full purchase commitment.",
+      "WooCommerce membership site for an Amsterdam club where members rotate designer handbags each month.",
     tech: ["JavaScript", "WordPress", "WooCommerce", "PHP", "SCSS", "jQuery"],
     image: "/projects/lende.png",
     live: "https://lendeluxury.com/",
@@ -104,7 +123,7 @@ export const allProjects: Project[] = [
   {
     title: "Gaia Digital",
     description:
-      "A web agency landing page template showcase where entrepreneurs can see a conversion-focused website design built to attract and convert more leads.",
+      "Landing page template for Gaia Digital, the agency I worked at, built in Elementor to show clients a conversion-focused layout.",
     tech: ["JavaScript", "WordPress", "Elementor", "PHP", "SCSS", "jQuery"],
     image: "/projects/gaia-landing-page.png",
     live: "https://www.gaiadigital.nl/landingspagina-template/",
@@ -113,30 +132,11 @@ export const allProjects: Project[] = [
   {
     title: "Skin Color Cosmetics",
     description:
-      "An online beauty store where customers can shop for premium mineral makeup products specially formulated to match and enhance their individual skin tone.",
+      "WooCommerce store for mineral makeup matched to individual skin tones.",
     tech: ["JavaScript", "WordPress", "WooCommerce", "PHP", "SCSS", "jQuery"],
     image: "/projects/skin-color.png",
     live: "https://skincolorcosmetics.nl/",
     visible: true,
-  },
-  {
-    title: "Dashboard KiriminAja",
-    description:
-      "A logistics dashboard platform where Indonesian e-commerce businesses can compare rates and ship packages across all major courier services in a single interface.",
-    tech: [
-      "JavaScript",
-      "TypeScript",
-      "Vue",
-      "Nuxt.js",
-      "Laravel",
-      "MySQL",
-      "Tailwind CSS",
-      "Pinia",
-    ],
-    image: "/projects/ka.png",
-    live: "https://kiriminaja.com/",
-    visible: true,
-    featured: true,
   },
 ];
 

@@ -7,7 +7,7 @@ import Button from "@/components/atoms/Button";
 import Card from "@/components/atoms/Card";
 import SectionHeader from "@/components/molecules/SectionHeader";
 import { designs } from "@portfolio/content";
-import { EASE_OUT, contactEmail, fadeUpVariants, socialLinks } from "@/constants";
+import { contactEmail, fadeUpVariants, socialLinks } from "@/constants";
 
 export default function ContactPage() {
   return (
@@ -17,12 +17,7 @@ export default function ContactPage() {
         subtitle="Got a project, a role, or just want to say hi? Feel free to reach out."
       />
 
-      <motion.div
-        initial="initial"
-        animate="animate"
-        variants={fadeUpVariants}
-        transition={{ duration: 0.7, ease: EASE_OUT, delay: 0.2 }}
-      >
+      <motion.div initial={false} animate="animate" variants={fadeUpVariants}>
         <Card className="ink-border ink-shadow flex flex-col items-center gap-8 p-8 sm:p-12">
           <div className="flex h-16 w-16 items-center justify-center rounded-full ink-border bg-accent-dim">
             <Mail size={28} className="text-accent" />

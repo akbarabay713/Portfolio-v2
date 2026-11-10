@@ -87,7 +87,7 @@ export default function ProjectsPage() {
             : "flex flex-col gap-4",
         )}
       >
-        <AnimatePresence mode="popLayout">
+        <AnimatePresence initial={false} mode="popLayout">
           {filtered.map((project, index) => (
             <motion.div
               key={project.title}
