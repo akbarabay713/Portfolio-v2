@@ -75,7 +75,7 @@ const ExperienceSection = ({ experiences }: ExperienceSectionProps) => {
         <div
           key={`${exp.subtitle}-${exp.date}`}
           data-exp-row
-          onMouseEnter={() => setPreview(exp.image)}
+          onMouseEnter={() => setPreview(exp.image ?? null)}
           onMouseLeave={() => setPreview(null)}
           className="relative"
         >

@@ -15,7 +15,7 @@ export interface Experience {
   title: string;
   subtitle: string;
   date: string;
-  image: string;
+  image?: string;
   description: string[];
 }
 

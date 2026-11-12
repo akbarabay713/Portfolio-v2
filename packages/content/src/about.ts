@@ -77,7 +77,7 @@ export const experiences: Experience[] = [
     ],
   },
   {
-    title: "Fullstack Developer",
+    title: "Fullstack Developer (Part-time)",
     subtitle: "Gaia Digital",
     date: "March 2025 - May 2026",
     image: "/images/gaia.png",
@@ -88,7 +88,7 @@ export const experiences: Experience[] = [
     ],
   },
   {
-    title: "Fullstack Developer",
+    title: "Software Engineer",
     subtitle: "KiriminAja",
     date: "July 2023 - December 2024",
     image: "/images/kiriminaja.png",
@@ -101,6 +101,16 @@ export const experiences: Experience[] = [
     ],
   },
   {
+    title: "Web Developer",
+    subtitle: "Freelance",
+    date: "January 2022 - June 2023",
+    description: [
+      "Built custom websites and web apps for clients across different industries.",
+      "Built responsive interfaces and the backend features each client needed.",
+      "Handled delivery end to end: development, deployment, revisions, and maintenance.",
+    ],
+  },
+  {
     title: "Intern",
     subtitle: "Public Works Agency",
     date: "July 2021 - September 2021",
@@ -109,6 +119,7 @@ export const experiences: Experience[] = [
       "Built a profile website for the department to share its services and public information.",
       "Built an online registration system for desludging services, which helped keep things running during the COVID-19 pandemic.",
       "Kept the department's web platforms running and up to date.",
+      "Was the only one of four interns offered a full-time position at the end of the internship.",
     ],
   },
 ];
