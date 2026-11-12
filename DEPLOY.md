@@ -1,13 +1,14 @@
 # Deployment
 
-This monorepo ships **three separate portfolio designs**, each deployed as its
+This monorepo ships **four separate portfolio designs**, each deployed as its
 own Vercel project on its own domain:
 
-| App          | Vercel project | Root Directory |
-| ------------ | -------------- | -------------- |
-| `apps/comic` | comic          | `apps/comic`   |
-| `apps/neon`  | neon           | `apps/neon`    |
-| `apps/noir`  | noir           | `apps/noir`    |
+| App            | Vercel project | Root Directory |
+| -------------- | -------------- | -------------- |
+| `apps/waybill` | waybill        | `apps/waybill` |
+| `apps/comic`   | comic          | `apps/comic`   |
+| `apps/neon`    | neon           | `apps/neon`    |
+| `apps/noir`    | noir           | `apps/noir`    |
 
 Deploys run through **Vercel's Git integration**: every push to `main` builds and
 deploys automatically, and pull requests get preview URLs. GitHub Actions only
@@ -18,7 +19,7 @@ build on every PR and push).
 
 ## One-time setup
 
-### 1. Create the three projects
+### 1. Create the projects
 
 For each app: **vercel.com → Add New… → Project → import `Portfolio-v2`**, then
 before the first deploy:
@@ -27,23 +28,27 @@ before the first deploy:
 - Enable **Include files outside the Root Directory** (so the shared
   `packages/content` workspace resolves).
 - Framework preset auto-detects **Next.js**; leave build/install as default.
-- Deploy, and name the project `comic` / `neon` / `noir`.
+- Deploy, and name the project `waybill` / `comic` / `neon` / `noir`.
 
 ### 2. Environment variables
 
 In **each** project → **Settings → Environment Variables** (Production +
-Preview), set all four with your real domains:
+Preview), set that project's own domain:
 
 ```
-NEXT_PUBLIC_SITE_URL   = https://<this project's own domain>
-NEXT_PUBLIC_COMIC_URL  = https://<comic domain>
-NEXT_PUBLIC_NEON_URL   = https://<neon domain>
-NEXT_PUBLIC_NOIR_URL   = https://<noir domain>
+NEXT_PUBLIC_SITE_URL     = https://<this project's own domain>
 ```
 
-The three `*_URL` values go in all three projects — that's how each site's design
-switcher links to the other two. Without them, the switcher falls back to the
-local dev ports (see `packages/content/src/designs.ts`).
+If `sections.designSwitcher` is on, also set every design's URL in every
+project, so each site links to the others. Without them, the switcher falls
+back to the local dev ports (see `packages/content/src/designs.ts`).
+
+```
+NEXT_PUBLIC_WAYBILL_URL  = https://<waybill domain>
+NEXT_PUBLIC_COMIC_URL    = https://<comic domain>
+NEXT_PUBLIC_NEON_URL     = https://<neon domain>
+NEXT_PUBLIC_NOIR_URL     = https://<noir domain>
+```
 
 ### 3. Domains + DNS
 
@@ -70,6 +75,7 @@ npm install
 npm run dev         # comic on :3000
 npm run dev:neon    # neon  on :3001
 npm run dev:noir    # noir  on :3002
+npm run dev:waybill # waybill on :3003
 ```
 
 ## Which app is "primary"

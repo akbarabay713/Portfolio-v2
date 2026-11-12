@@ -1,11 +1,13 @@
+import type { DesignId } from "./settings";
+
 export interface DesignLink {
-  id: "comic" | "neon" | "noir";
+  id: DesignId;
   label: string;
   url: string;
 }
 
 /**
- * The three designs and their URLs. URLs come from per-app env vars at build
+ * The designs and their URLs. URLs come from per-app env vars at build
  * time, falling back to the local dev ports.
  */
 export const designs: DesignLink[] = [
@@ -23,5 +25,10 @@ export const designs: DesignLink[] = [
     id: "noir",
     label: "Studio",
     url: process.env.NEXT_PUBLIC_NOIR_URL ?? "http://localhost:3002",
+  },
+  {
+    id: "waybill",
+    label: "Waybill",
+    url: process.env.NEXT_PUBLIC_WAYBILL_URL ?? "http://localhost:3003",
   },
 ];

@@ -5,10 +5,10 @@
  *               to label itself.
  * sections      toggle whole sections on or off everywhere.
  */
-export type DesignId = "comic" | "neon" | "noir";
+export type DesignId = "comic" | "neon" | "noir" | "waybill";
 
 export const settings = {
-  activeDesign: "noir" as DesignId,
+  activeDesign: "waybill" as DesignId,
 
   sections: {
     /** Blog page + nav links. */
@@ -17,7 +17,7 @@ export const settings = {
     experience: true,
     /** Hero stats. */
     stats: true,
-    /** Links to the other two designs. */
+    /** Links to the other designs. */
     designSwitcher: false,
   },
 } as const;
