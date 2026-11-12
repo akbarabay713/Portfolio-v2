@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { audioState } from "@/lib/audio";
 
 // cheap 2D value noise, enough to drive an evolving vector field.
 const hash = (x: number, y: number) => {
@@ -25,7 +24,7 @@ const vnoise = (x: number, y: number) => {
 
 /**
  * Hero canvas: particles pushed through a noise flow field, drawn as faint
- * trails. Reacts to the mic, pauses off-screen and when the tab is hidden,
+ * trails. Pauses off-screen and when the tab is hidden,
  * renders a single static frame under reduced motion.
  */
 const FlowField = () => {
@@ -103,17 +102,16 @@ const FlowField = () => {
 
     const step = () => {
       const t = performance.now() * 0.00004;
-      const boost = 1 + audioState.level * 2.4;
       // Fade the previous frame slightly to leave trails.
       ctx.fillStyle = "rgba(10, 10, 12, 0.055)";
       ctx.fillRect(0, 0, w, h);
       ctx.lineWidth = 1;
-      ctx.strokeStyle = `rgba(${accent}, ${0.06 + audioState.level * 0.09})`;
+      ctx.strokeStyle = `rgba(${accent}, 0.06)`;
       ctx.beginPath();
       for (const p of particles) {
         const angle = vnoise(p.x * scale, p.y * scale + t) * Math.PI * 4;
-        let nx = p.x + Math.cos(angle) * 1.3 * boost;
-        let ny = p.y + Math.sin(angle) * 1.3 * boost;
+        let nx = p.x + Math.cos(angle) * 1.3;
+        let ny = p.y + Math.sin(angle) * 1.3;
 
         const dx = p.x - cursor.x;
         const dy = p.y - cursor.y;

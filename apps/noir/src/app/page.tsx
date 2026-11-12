@@ -11,7 +11,6 @@ import {
 } from "@portfolio/content";
 
 import FlowField from "@/components/FlowField";
-import MicToggle from "@/components/MicToggle";
 import SectionHeader from "@/components/SectionHeader";
 import Reveal from "@/components/Reveal";
 import ArchiveSection from "@/components/archive/ArchiveSection";
@@ -55,26 +54,24 @@ export default function Home() {
 
         <div className="relative">
           <h1 className="display text-[15vw] leading-[0.9] sm:text-[12vw]">
-            <SplitHeading text="From database" className="block" />
-            <SplitHeading text="to pixels." delay={0.1} className="block" />
+            <SplitHeading text={bio.fullName} className="block" />
           </h1>
 
           <div className="mt-10 max-w-md">
             <p className="display mb-4 text-base tracking-normal">
-              Front to back, end to end
+              Fullstack developer in {profile.based.split(" /")[0]}
             </p>
             <p className="leading-relaxed text-muted">
-              I&apos;m Akbar, a fullstack developer. I started in PHP building
-              dashboards and logistics systems, then moved toward the front of
-              the stack with React and Next.js. I like owning a feature end to
-              end: the database, the API, and the interface on top.
+              I started in PHP building dashboards and logistics systems, then
+              moved toward the front of the stack with React and Next.js. I like
+              owning a feature end to end: the database, the API, and the
+              interface on top.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
               <p className="mono flex items-center gap-2 text-xs text-faint">
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent" />
                 AVAILABLE FOR WORK
               </p>
-              <MicToggle />
             </div>
           </div>
         </div>

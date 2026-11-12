@@ -87,7 +87,7 @@ export const allProjects: Project[] = [
   {
     title: "ToxicoWatch Consultancy",
     description:
-      "Elementor site for ToxicoWatch's consultancy, which offers toxicology research and advisory work on persistent organic pollutants to governments and businesses.",
+      "Elementor site for ToxicoWatch’s consultancy, which offers toxicology research and advisory work on persistent organic pollutants to governments and businesses.",
     tech: ["JavaScript", "WordPress", "Elementor", "PHP", "SCSS", "jQuery"],
     image: "/projects/tw.png",
     live: "https://wordpress-663295-5770621.cloudwaysapps.com/",

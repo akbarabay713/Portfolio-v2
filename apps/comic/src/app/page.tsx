@@ -39,7 +39,7 @@ export default function Home() {
 
       <motion.div className="mb-12 max-w-xl">
         <p className="text-base leading-relaxed text-muted md:text-lg">
-          I&apos;m a fullstack developer. I build fast, easy-to-use web apps and
+          I’m a fullstack developer. I build fast, easy-to-use web apps and
           sites, and I care about writing clean code and getting the details right.
         </p>
       </motion.div>
@@ -67,7 +67,7 @@ export default function Home() {
         </Magnetic>
         <Magnetic>
           <Button as={Link} href="/contact" variant="outline" caps>
-            Let&apos;s talk
+            Let’s talk
           </Button>
         </Magnetic>
       </motion.div>

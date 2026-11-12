@@ -2,12 +2,13 @@ import type { Experience, Stat, TechCategory } from "./types";
 
 export const bio = {
   name: "Akbar",
+  fullName: "Akbar Abu",
   avatar: "/images/akbarr.webp",
-  greeting: "Hey, I'm Akbar",
+  greeting: "Hey, I’m Akbar",
   paragraphs: [
-    "I'm a fullstack developer who builds for the web: front-end apps and the backends behind them.",
+    "I’m a fullstack developer who builds for the web: front-end apps and the backends behind them.",
     "Most of my work is in JavaScript, TypeScript and PHP: React, Next.js, Vue and Laravel for apps, and WordPress for client sites. I like working on a team and shipping things people actually use.",
-    "When I'm not coding I'm usually poking at some new tool or gadget, or getting outside for a bit.",
+    "When I’m not coding I’m usually poking at some new tool or gadget, or getting outside for a bit.",
   ],
   resumeUrl:
     "https://drive.google.com/file/d/1RCnn63Psw8MYcKf1elrDc-4UzV70huxa/view?usp=sharing",
@@ -82,7 +83,7 @@ export const experiences: Experience[] = [
     date: "March 2025 - May 2026",
     image: "/images/gaia.png",
     description: [
-      "Built SEO-focused WordPress landing pages from Figma mockups, including the agency's own landing page template.",
+      "Built SEO-focused WordPress landing pages from Figma mockups, including the agency’s own landing page template.",
       "Cleaned up older client codebases and improved their performance.",
       "Worked with international clients to turn their requirements into finished sites.",
     ],
@@ -118,7 +119,7 @@ export const experiences: Experience[] = [
     description: [
       "Built a profile website for the department to share its services and public information.",
       "Built an online registration system for desludging services, which helped keep things running during the COVID-19 pandemic.",
-      "Kept the department's web platforms running and up to date.",
+      "Kept the department’s web platforms running and up to date.",
       "Was the only one of four interns offered a full-time position at the end of the internship.",
     ],
   },

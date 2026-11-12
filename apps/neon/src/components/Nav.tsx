@@ -49,11 +49,35 @@ const Nav = () => {
 
   return (
     <>
+      <header className="fixed inset-x-0 top-0 z-[70] hidden items-center justify-between bg-linear-to-b from-canvas from-60% to-transparent px-10 pb-10 pt-6 lg:flex">
+        <a
+          href="#home"
+          onClick={goTo("#home")}
+          className="font-display inline-flex min-h-11 items-center text-2xl tracking-wide text-content"
+        >
+          {siteConfig.name}
+        </a>
+        <nav aria-label="Sections" className="flex items-center gap-8">
+          {links
+            .filter((link) => link.href !== "#home")
+            .map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={goTo(link.href)}
+                className="inline-flex min-h-11 items-center text-sm font-semibold uppercase tracking-[0.15em] text-muted transition-colors hover:text-accent"
+              >
+                {link.label}
+              </a>
+            ))}
+        </nav>
+      </header>
+
       <button
         onClick={() => setOpen(!open)}
         aria-label={open ? "Close menu" : "Open menu"}
         aria-expanded={open}
-        className="fixed right-6 top-6 z-[70] flex h-12 w-12 flex-col items-center justify-center gap-1.5 sm:right-10 sm:top-8"
+        className="fixed right-6 top-6 z-[70] flex h-12 w-12 flex-col items-center justify-center gap-1.5 sm:right-10 sm:top-8 lg:hidden"
       >
         <motion.span
           animate={open ? { rotate: 45, y: 4 } : { rotate: 0, y: 0 }}

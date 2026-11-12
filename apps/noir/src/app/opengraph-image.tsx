@@ -35,7 +35,7 @@ export default function OpengraphImage() {
         </div>
 
         <div style={{ display: "flex", flexDirection: "column" }}>
-          {["FROM DATABASE", "TO PIXELS."].map((line) => (
+          {["AKBAR ABU"].map((line) => (
             <span
               key={line}
               style={{
@@ -59,7 +59,7 @@ export default function OpengraphImage() {
             fontSize: "24px",
           }}
         >
-          <span>{siteConfig.author} · Fullstack Developer</span>
+          <span>Fullstack Developer · Yogyakarta</span>
           <span>themed by the local hour</span>
         </div>
       </div>

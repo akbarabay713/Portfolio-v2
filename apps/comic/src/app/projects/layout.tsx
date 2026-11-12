@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 const description =
-  "Akbar's web development projects, built with React, Next.js, and WordPress.";
+  "Akbar’s web development projects, built with React, Next.js, and WordPress.";
 
 export const metadata: Metadata = {
   title: "Projects",

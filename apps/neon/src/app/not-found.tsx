@@ -10,7 +10,7 @@ export default function NotFound() {
       </p>
       <h1 className="font-display text-[30vw] leading-none text-ghost sm:text-[20vw]">404</h1>
       <p className="mt-8 max-w-sm leading-relaxed text-muted">
-        This page doesn&apos;t exist. It may have moved, or the link is wrong.
+        This page doesn’t exist. It may have moved, or the link is wrong.
       </p>
       <Link
         href="/"

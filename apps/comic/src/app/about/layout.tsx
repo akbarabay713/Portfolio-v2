@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 const description =
-  "Learn about Akbar's background, skills, tech stack, and professional experience as a fullstack software developer.";
+  "Learn about Akbar’s background, skills, tech stack, and professional experience as a fullstack software developer.";
 
 export const metadata: Metadata = {
   title: "About",

@@ -57,7 +57,7 @@ export default function Home() {
           </h1>
 
           <p className="mt-10 max-w-lg leading-relaxed text-muted">
-            Hi! I&apos;m <span className="font-semibold text-content">{siteConfig.name}</span>.
+            Hi! I’m <span className="font-semibold text-content">{siteConfig.name}</span>.
             A fullstack developer. I build web apps end to end, from the
             database up to the interface, with React, Next.js, and PHP.
           </p>
@@ -77,7 +77,7 @@ export default function Home() {
                 }}
                 className="font-display inline-block bg-accent px-9 py-4 text-lg tracking-wider text-accent-contrast"
               >
-                Let&apos;s Talk
+                Let’s Talk
               </a>
             </Magnetic>
             <p className="mt-4 flex items-center gap-2 text-sm text-muted">
@@ -176,7 +176,7 @@ export default function Home() {
       <section id="contact" className="flex flex-col justify-center py-40">
         <SectionLabel>Get in Touch</SectionLabel>
         <h2 className="font-display text-5xl leading-none text-content sm:text-7xl lg:text-8xl">
-          <SplitHeading scroll text="Let's work" />{" "}
+          <SplitHeading scroll text="Let’s work" />{" "}
           <SplitHeading scroll delay={0.2} text="together" className="text-accent" />
         </h2>
         <Reveal delay={0.15}>

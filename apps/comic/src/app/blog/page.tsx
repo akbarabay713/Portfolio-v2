@@ -36,7 +36,7 @@ export default function BlogPage() {
         transition={{ duration: 0.7, ease: EASE_OUT, delay: 0.15 }}
         className="mb-8 max-w-md text-lg text-muted"
       >
-        I&apos;m planning to write about web development and the things I run
+        I’m planning to write about web development and the things I run
         into while building.
       </motion.p>
 
