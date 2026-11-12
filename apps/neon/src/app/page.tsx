@@ -192,24 +192,26 @@ export default function Home() {
             <p className="mr-auto text-faint">
               © {new Date().getFullYear()} {siteConfig.name}
             </p>
-            <div className="flex items-center gap-4">
-              <span className="text-faint">Design</span>
-              {designs.map((d) =>
-                d.id === "neon" ? (
-                  <span key={d.id} className="font-semibold text-accent">
-                    {d.label}
-                  </span>
-                ) : (
-                  <a
-                    key={d.id}
-                    href={d.url}
-                    className="inline-flex min-h-11 min-w-11 items-center text-muted transition-colors hover:text-content"
-                  >
-                    {d.label}
-                  </a>
-                ),
-              )}
-            </div>
+            {settings.sections.designSwitcher && (
+              <div className="flex items-center gap-4">
+                <span className="text-faint">Design</span>
+                {designs.map((d) =>
+                  d.id === "neon" ? (
+                    <span key={d.id} className="font-semibold text-accent">
+                      {d.label}
+                    </span>
+                  ) : (
+                    <a
+                      key={d.id}
+                      href={d.url}
+                      className="inline-flex min-h-11 min-w-11 items-center text-muted transition-colors hover:text-content"
+                    >
+                      {d.label}
+                    </a>
+                  ),
+                )}
+              </div>
+            )}
             <div className="flex items-center gap-6">
               <a
                 href={siteConfig.links.github}

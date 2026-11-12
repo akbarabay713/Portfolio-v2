@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Bangers, Nunito } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 import Docks from "@/components/molecules/Docks/Docks.component";
@@ -110,6 +111,7 @@ export default function RootLayout({
           <CommandPalette />
           <PageTransition>{children}</PageTransition>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

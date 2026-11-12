@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Anton, Inter } from "next/font/google";
 import { siteConfig } from "@portfolio/content";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 import Starfield from "@/components/Starfield";
@@ -55,6 +56,7 @@ export default function RootLayout({
         <EmailRail />
         <ScrollLine />
         <SmoothScroll>{children}</SmoothScroll>
+        <Analytics />
       </body>
     </html>
   );

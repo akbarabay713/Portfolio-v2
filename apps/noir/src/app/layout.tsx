@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import { siteConfig } from "@portfolio/content";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 import TimeTheme from "@/components/TimeTheme";
@@ -61,6 +62,7 @@ export default function RootLayout({
         <Grain />
         <Chrome />
         {children}
+        <Analytics />
       </body>
     </html>
   );

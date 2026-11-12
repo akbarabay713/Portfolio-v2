@@ -8,7 +8,7 @@
 export type DesignId = "comic" | "neon" | "noir";
 
 export const settings = {
-  activeDesign: "comic" as DesignId,
+  activeDesign: "noir" as DesignId,
 
   sections: {
     /** Blog page + nav links. */
@@ -17,6 +17,8 @@ export const settings = {
     experience: true,
     /** Hero stats. */
     stats: true,
+    /** Links to the other two designs. */
+    designSwitcher: false,
   },
 } as const;
 

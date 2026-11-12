@@ -4,6 +4,7 @@ import {
   experiences,
   profile,
   projects,
+  settings,
   siteConfig,
   studies,
   techStack,
@@ -216,31 +217,33 @@ export default function Home() {
           </a>
         </Reveal>
         {/* Design switcher: jump to the other two portfolio builds. */}
-        <Reveal delay={0.1}>
-          <div className="mt-20 flex flex-wrap items-center gap-x-6 gap-y-4 border-t border-line pt-8">
-            <span className="mono text-[11px] uppercase tracking-widest text-faint">
-              Try another design →
-            </span>
-            {designs.map((d) =>
-              d.id === "noir" ? (
-                <span
-                  key={d.id}
-                  className="mono inline-flex min-h-11 items-center border border-text px-5 py-2.5 text-xs text-text"
-                >
-                  {d.label.toUpperCase()} ·
-                </span>
-              ) : (
-                <a
-                  key={d.id}
-                  href={d.url}
-                  className="mono inline-flex min-h-11 items-center border border-line px-5 py-2.5 text-xs text-muted transition-colors hover:bg-text hover:text-bg"
-                >
-                  {d.label.toUpperCase()} ↗
-                </a>
-              ),
-            )}
-          </div>
-        </Reveal>
+        {settings.sections.designSwitcher && (
+          <Reveal delay={0.1}>
+            <div className="mt-20 flex flex-wrap items-center gap-x-6 gap-y-4 border-t border-line pt-8">
+              <span className="mono text-[11px] uppercase tracking-widest text-faint">
+                Try another design →
+              </span>
+              {designs.map((d) =>
+                d.id === "noir" ? (
+                  <span
+                    key={d.id}
+                    className="mono inline-flex min-h-11 items-center border border-text px-5 py-2.5 text-xs text-text"
+                  >
+                    {d.label.toUpperCase()} ·
+                  </span>
+                ) : (
+                  <a
+                    key={d.id}
+                    href={d.url}
+                    className="mono inline-flex min-h-11 items-center border border-line px-5 py-2.5 text-xs text-muted transition-colors hover:bg-text hover:text-bg"
+                  >
+                    {d.label.toUpperCase()} ↗
+                  </a>
+                ),
+              )}
+            </div>
+          </Reveal>
+        )}
 
         <div className="mono mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-8 text-xs text-faint">
           <span>© {new Date().getFullYear()} {siteConfig.name.toUpperCase()}</span>
