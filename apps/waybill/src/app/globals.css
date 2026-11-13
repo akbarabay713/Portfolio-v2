@@ -2181,9 +2181,6 @@ html[data-xray-scan] .xray-line {
     transform: none;
   }
 
-  .hero h1 .word + .word::before {
-    content: " ";
-  }
 
   .lede {
     margin-top: 6pt;
