@@ -36,5 +36,6 @@ export function LocalClock() {
 /** How far the visitor's clock is from Yogyakarta, e.g. "6 h ahead of you". */
 export function TimeOffset() {
   const text = useSyncExternalStore(subscribe, offset, () => "");
-  return text ? <span className="offset">{text}</span> : null;
+  // Always rendered, so the line's space is reserved before the time is known.
+  return <span className="offset">{text || "\u00a0"}</span>;
 }
