@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image, { getImageProps } from "next/image";
 import {
   bio,
   experiences,
@@ -9,6 +9,8 @@ import {
   techStack,
 } from "@portfolio/content";
 
+import Manifest, { type ManifestRow } from "@/components/Manifest";
+import PrintButton from "@/components/PrintButton";
 import { checkLive, displayHost } from "@/lib/live";
 import { shortDate, shortStack } from "@/lib/format";
 
@@ -29,6 +31,30 @@ export default async function Home() {
   );
   const liveCount = [...live.values()].filter(Boolean).length;
   const isLive = (url?: string) => Boolean(url && live.get(url));
+
+  const manifestRows: ManifestRow[] = others.map((project) => {
+    const { props } = getImageProps({
+      src: project.image,
+      alt: "",
+      width: 1920,
+      height: 1200,
+      sizes: "(max-width: 860px) 100vw, 1100px",
+    });
+    return {
+      title: project.title,
+      description: project.description,
+      stack: shortStack(project.tech, 2),
+      link:
+        project.live && isLive(project.live)
+          ? { kind: "live", href: project.live, label: displayHost(project.live) }
+          : project.github
+            ? { kind: "code", href: project.github }
+            : project.live
+              ? { kind: "down" }
+              : { kind: "private" },
+      preview: { src: props.src, srcSet: props.srcSet },
+    };
+  });
 
   return (
     <div className="wrap">
@@ -62,6 +88,11 @@ export default async function Home() {
               Right now I build landing pages for European clients at
               MadeIndonesia. Before that I built shipping software at
               KiriminAja.
+            </p>
+            <p className="print-only print-contact">
+              {siteConfig.email} · {siteConfig.url.replace(/^https?:\/\//, "")} ·{" "}
+              {siteConfig.links.github.replace(/^https:\/\//, "")} ·{" "}
+              {siteConfig.links.linkedin.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, "")}
             </p>
           </div>
 
@@ -183,51 +214,7 @@ export default async function Home() {
             </article>
           ))}
 
-          {others.length > 0 && (
-            <table className="manifest">
-              <thead>
-                <tr>
-                  <th scope="col">Client</th>
-                  <th scope="col">What I built</th>
-                  <th scope="col">Stack</th>
-                  <th scope="col">Live site</th>
-                </tr>
-              </thead>
-              <tbody>
-                {others.map((project) => (
-                  <tr key={project.title}>
-                    <td className="client">{project.title}</td>
-                    <td className="what">{project.description}</td>
-                    <td className="stack">{shortStack(project.tech, 2)}</td>
-                    <td className="url">
-                      {project.live && isLive(project.live) ? (
-                        <a
-                          className="live"
-                          href={project.live}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {displayHost(project.live)}
-                        </a>
-                      ) : project.github ? (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Code
-                        </a>
-                      ) : project.live ? (
-                        <span className="down">Not responding</span>
-                      ) : (
-                        <span className="down">Private</span>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
+          {manifestRows.length > 0 && <Manifest rows={manifestRows} />}
         </section>
 
         {settings.sections.experience && (
@@ -283,6 +270,7 @@ export default async function Home() {
           <a href={bio.resumeUrl} target="_blank" rel="noopener noreferrer">
             Résumé
           </a>
+          <PrintButton />
         </div>
       </footer>
     </div>

@@ -675,7 +675,7 @@ html[data-printed] .label-body {
 
 /* ---------- phones and small tablets ---------- */
 
-@media (max-width: 860px) {
+@media screen and (max-width: 860px) {
   .wrap {
     padding: 0 16px;
   }
@@ -843,5 +843,347 @@ html[data-printed] .label-body {
 
   .contact .links {
     justify-content: flex-start;
+  }
+}
+
+/* ---------- project previews ---------- */
+
+.client-btn {
+  display: inline;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.client-btn:hover span:first-child {
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+
+.client-toggle {
+  margin-left: 8px;
+  white-space: nowrap;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--muted-paper);
+}
+
+.preview-row td {
+  padding-top: 0;
+}
+
+.preview-inline {
+  display: block;
+  width: 100%;
+  max-width: 760px;
+  height: auto;
+  border: var(--rule);
+  background: var(--shot-bg);
+  animation: unfold 200ms ease-out both;
+}
+
+@keyframes unfold {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Follows the mouse; never shown for touch. */
+.preview-float {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 20;
+  width: 360px;
+  height: 225px;
+  border: var(--rule);
+  background: var(--shot-bg);
+  box-shadow: 4px 5px 0 rgba(27, 26, 23, 0.16);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 120ms ease-out;
+}
+
+.preview-float[data-visible] {
+  opacity: 1;
+}
+
+.preview-float img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .manifest .row:hover {
+    background: var(--paper-hover);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .preview-inline {
+    animation: none;
+  }
+
+  .preview-float {
+    transition: none;
+  }
+}
+
+.link-btn {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.print-only {
+  display: none;
+}
+
+@media screen and (max-width: 860px) {
+  .client-btn {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 44px;
+    align-items: center;
+  }
+
+  .preview-row td {
+    padding-top: 12px;
+  }
+
+  .manifest .preview-row {
+    padding: 0 16px 16px;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+
+  .preview-float {
+    display: none;
+  }
+}
+
+/* ---------- print: the page as a CV ---------- */
+
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm 14mm 16mm;
+  }
+
+  :root {
+    --paper: #fff;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #000;
+    font-size: 9.5pt;
+    line-height: 1.4;
+  }
+
+  .wrap {
+    max-width: none;
+    padding: 0;
+  }
+
+  .bar,
+  .skip,
+  .label,
+  .shot,
+  .contact,
+  .preview-row,
+  .preview-float,
+  .client-toggle,
+  .stamp {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block;
+  }
+
+  .hero {
+    display: block;
+    padding: 0 0 10pt;
+    border-bottom: 1.5px solid #000;
+  }
+
+  .hero h1 {
+    font-size: 22pt;
+    line-height: 1;
+  }
+
+  .hero h1 br {
+    display: none;
+  }
+
+  .hero h1 span + span::before {
+    content: " ";
+  }
+
+  .lede {
+    margin-top: 6pt;
+    font-size: 11pt;
+    max-width: none;
+  }
+
+  .lede-sub {
+    display: block;
+    margin-top: 2pt;
+    color: #333;
+    max-width: none;
+  }
+
+  .print-contact {
+    margin-top: 6pt;
+    font-family: var(--mono);
+    font-size: 8.5pt;
+  }
+
+  .sheet {
+    border: 0;
+    margin: 0;
+    background: none;
+  }
+
+  .sheet-head {
+    padding: 12pt 0 4pt;
+    border-bottom: 1px solid #000;
+  }
+
+  .sheet h2 {
+    font-size: 12pt;
+  }
+
+  .sheet-meta {
+    font-size: 8pt;
+    color: #333;
+  }
+
+  .feature {
+    display: block;
+    border: 0;
+    border-bottom: 1px solid #bbb;
+    break-inside: avoid;
+  }
+
+  .feature-data {
+    padding: 6pt 0;
+    gap: 3pt;
+  }
+
+  .feature-title h3 {
+    font-size: 10.5pt;
+  }
+
+  .feature-data p {
+    font-size: 9.5pt;
+  }
+
+  .kv {
+    grid-template-columns: 40pt 1fr;
+    gap: 1pt 6pt;
+  }
+
+  .kv dt,
+  .kv dd {
+    font-size: 8pt;
+  }
+
+  .manifest th {
+    padding: 4pt 6pt 4pt 0;
+    font-size: 7.5pt;
+    border-bottom: 1px solid #000;
+  }
+
+  .manifest td,
+  .manifest th:first-child,
+  .manifest td:first-child,
+  .manifest th:last-child,
+  .manifest td:last-child {
+    padding: 4pt 6pt 4pt 0;
+    font-size: 8.5pt;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .manifest tr {
+    break-inside: avoid;
+  }
+
+  .manifest .stack,
+  .manifest .url {
+    font-size: 7.5pt;
+  }
+
+  .client-btn {
+    font-weight: 600;
+  }
+
+  .live,
+  .live:visited,
+  a {
+    color: #000 !important;
+    text-decoration: none;
+  }
+
+  .log {
+    padding: 4pt 0 0;
+  }
+
+  .entry {
+    grid-template-columns: 78pt 1fr;
+    gap: 0 8pt;
+    break-inside: avoid;
+  }
+
+  .entry .track {
+    display: none;
+  }
+
+  .entry .when {
+    padding-top: 5pt;
+    font-size: 8pt;
+    color: #333;
+  }
+
+  .entry .what {
+    padding: 4pt 0;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .entry h3 {
+    font-size: 10pt;
+  }
+
+  .entry ul {
+    margin-top: 2pt;
+    padding-left: 12pt;
+    max-width: none;
+  }
+
+  .entry li {
+    margin-top: 1pt;
+    font-size: 9pt;
   }
 }
