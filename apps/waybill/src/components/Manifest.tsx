@@ -13,6 +13,8 @@ export interface ManifestRow {
     | { kind: "down" }
     | { kind: "private" };
   preview: { src: string; srcSet?: string };
+  /** Space-separated tech slugs for the stack filter. */
+  tech: string;
 }
 
 const FLOAT_W = 360;
@@ -68,6 +70,7 @@ export default function Manifest({ rows }: { rows: ManifestRow[] }) {
 
   return (
     <>
+      <div className="manifest-wrap" data-xray="Manifest · previews load on demand">
       <table className="manifest">
         <thead>
           <tr>
@@ -85,6 +88,7 @@ export default function Manifest({ rows }: { rows: ManifestRow[] }) {
               <Fragment key={row.title}>
                 <tr
                   className="row"
+                  data-tech={row.tech}
                   data-open={isOpen || undefined}
                   onPointerEnter={(e) => {
                     if (e.pointerType !== "mouse") return;
@@ -116,7 +120,7 @@ export default function Manifest({ rows }: { rows: ManifestRow[] }) {
                     <RowLink link={row.link} />
                   </td>
                 </tr>
-                <tr className="preview-row" id={previewId} hidden={!isOpen}>
+                <tr className="preview-row" id={previewId} hidden={!isOpen} data-tech={row.tech}>
                   <td colSpan={4}>
                     {isOpen && (
                       // eslint-disable-next-line @next/next/no-img-element -- src and srcSet come from next/image's getImageProps
@@ -138,6 +142,7 @@ export default function Manifest({ rows }: { rows: ManifestRow[] }) {
           })}
         </tbody>
       </table>
+      </div>
 
       <div
         ref={floatRef}

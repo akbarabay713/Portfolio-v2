@@ -4,6 +4,7 @@ import { bio, siteConfig } from "@portfolio/content";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
+import XRay from "@/components/XRay";
 import { jsonLd, structuredData } from "@/lib/structured-data";
 
 const archivo = Archivo({
@@ -72,6 +73,7 @@ export default function RootLayout({
           Skip to content
         </a>
         {children}
+        <XRay />
         <Analytics />
       </body>
     </html>

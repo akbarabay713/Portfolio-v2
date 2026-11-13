@@ -10,7 +10,12 @@ import {
 } from "@portfolio/content";
 
 import Manifest, { type ManifestRow } from "@/components/Manifest";
+import Postmark from "@/components/Postmark";
+import StackFilter from "@/components/StackFilter";
+import XRayToggle from "@/components/XRayToggle";
+import { filterCss, stackChips, techAttr } from "@/lib/stack";
 import PrintButton from "@/components/PrintButton";
+import TiltLabel from "@/components/TiltLabel";
 import { checkLive, displayHost } from "@/lib/live";
 import { shortDate, shortStack } from "@/lib/format";
 
@@ -19,6 +24,7 @@ export const revalidate = 86400;
 
 const featured = projects.filter((p) => p.featured);
 const others = projects.filter((p) => !p.featured);
+const chips = stackChips(projects);
 
 /** Frameworks from the shared stack list, in the order they appear there. */
 const headlineStack = ["React", "Next.js", "Vue", "Laravel", "WordPress"].filter(
@@ -31,6 +37,15 @@ export default async function Home() {
   );
   const liveCount = [...live.values()].filter(Boolean).length;
   const isLive = (url?: string) => Boolean(url && live.get(url));
+  // When the live check ran, in Yogyakarta time: "14 NOV 2026".
+  const checked = new Date()
+    .toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+      timeZone: "Asia/Jakarta",
+    })
+    .toUpperCase();
 
   const manifestRows: ManifestRow[] = others.map((project) => {
     const { props } = getImageProps({
@@ -53,12 +68,13 @@ export default async function Home() {
               ? { kind: "down" }
               : { kind: "private" },
       preview: { src: props.src, srcSet: props.srcSet },
+      tech: techAttr(project),
     };
   });
 
   return (
     <div className="wrap">
-      <header className="bar">
+      <header className="bar" data-xray="header · flex">
         <a className="bar-name" href="#main">
           {bio.fullName.toUpperCase()}
         </a>
@@ -66,11 +82,12 @@ export default async function Home() {
           <a href="#work">Work</a>
           {settings.sections.experience && <a href="#experience">Experience</a>}
           <a href="#contact">Contact</a>
+          <XRayToggle />
         </nav>
       </header>
 
       <main id="main">
-        <section className="hero" aria-label="Introduction">
+        <section className="hero" aria-label="Introduction" data-xray="Hero · grid 7fr 5fr">
           <div>
             <h1>
               {bio.fullName.split(" ").map((word, i) => (
@@ -96,13 +113,23 @@ export default async function Home() {
             </p>
           </div>
 
-          <aside className="label" aria-label="Summary">
+          <TiltLabel>
             <div className="label-body">
               <div className="label-head">
                 <span>{bio.fullName.toUpperCase()}</span>
                 <span>REMOTE · UTC+7</span>
               </div>
-              <dl>
+              <div className="label-main" data-xray="next/image · 13 KB WebP">
+                <Image
+                  className="label-photo"
+                  src="/images/akbar-abu.webp"
+                  alt={bio.fullName}
+                  width={400}
+                  height={400}
+                  sizes="112px"
+                  priority
+                />
+                <dl>
                 <div className="field">
                   <dt>FROM</dt>
                   <dd>{profile.based.split(" /")[0]}, Indonesia</dd>
@@ -123,7 +150,8 @@ export default async function Home() {
                   <dt>STATUS</dt>
                   <dd className="status">{profile.status} for work</dd>
                 </div>
-              </dl>
+                </dl>
+              </div>
               <div className="actions">
                 <a className="btn btn-solid" href={`mailto:${siteConfig.email}`}>
                   Email me
@@ -138,19 +166,26 @@ export default async function Home() {
                 </a>
               </div>
             </div>
-          </aside>
+          </TiltLabel>
         </section>
 
-        <section className="sheet" id="work" aria-labelledby="work-title">
+        <section className="sheet work" id="work" aria-labelledby="work-title">
+          <style>{filterCss(chips)}</style>
           <div className="sheet-head">
             <h2 id="work-title">Shipped work</h2>
             <span className="sheet-meta">
               {projects.length} projects · {liveCount} live today
             </span>
           </div>
+          <StackFilter chips={chips} total={projects.length} />
 
           {featured.map((project, i) => (
-            <article className="feature" key={project.title}>
+            <article
+              className="feature"
+              key={project.title}
+              data-tech={techAttr(project)}
+              data-xray="Feature · container query"
+            >
               <a
                 className="shot"
                 href={project.live ?? project.github}
@@ -167,10 +202,14 @@ export default async function Home() {
                   priority={i === 0}
                 />
               </a>
+              {isLive(project.live) && (
+                <div className="postmark-slot" data-xray="Postmark · SVG ink filter" style={{ "--rot": `${[-14, -7, -19][i % 3]}deg` } as React.CSSProperties}>
+                  <Postmark checked={checked} />
+                </div>
+              )}
               <div className="feature-data">
                 <div className="feature-title">
                   <h3>{project.title}</h3>
-                  {isLive(project.live) && <span className="stamp">LIVE</span>}
                 </div>
                 <p>{project.description}</p>
                 <dl className="kv">
@@ -204,7 +243,7 @@ export default async function Home() {
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          {project.github.replace(/^https:\/\//, "")}
+                          {project.github.replace(/^https:\/\/github\.com\//, "")}
                         </a>
                       </dd>
                     </>
@@ -227,7 +266,7 @@ export default async function Home() {
               <h2 id="experience-title">Experience</h2>
               <span className="sheet-meta">Newest first</span>
             </div>
-            <ol className="log">
+            <ol className="log" data-xray="Timeline · scroll-driven CSS">
               {experiences.map((job) => (
                 <li className="entry" key={`${job.subtitle}-${job.date}`}>
                   <div className="when">{shortDate(job.date)}</div>
@@ -250,15 +289,28 @@ export default async function Home() {
       </main>
 
       <footer className="contact" id="contact" aria-labelledby="contact-title">
-        <div>
-          <h2 id="contact-title" className="sr-only">
-            Contact
-          </h2>
-          <p>Hiring, or need a site built? Email is fastest.</p>
-          <a className="big" href={`mailto:${siteConfig.email}`}>
-            {siteConfig.email.split("@")[0]}
-            <wbr />@{siteConfig.email.split("@")[1]}
+        <h2 id="contact-title" className="sr-only">
+          Contact
+        </h2>
+        <div className="post" data-xray="Stamp · CSS mask perforations">
+          <a className="post-stamp" href={`mailto:${siteConfig.email}`}>
+            <span className="post-top">
+              {profile.based.split(" /")[0].toUpperCase()}, INDONESIA
+            </span>
+            <span className="post-ask">Hiring, or need a site built? Email is fastest.</span>
+            <span className="big">
+              {siteConfig.email.split("@")[0]}
+              <wbr />@{siteConfig.email.split("@")[1]}
+            </span>
           </a>
+          <svg className="cancel" viewBox="0 0 220 60" aria-hidden="true">
+            {[10, 22, 34, 46].map((y) => (
+              <path
+                key={y}
+                d={`M0 ${y} q 13.75 -7 27.5 0 t 27.5 0 t 27.5 0 t 27.5 0 t 27.5 0 t 27.5 0 t 27.5 0 t 27.5 0`}
+              />
+            ))}
+          </svg>
         </div>
         <div className="links">
           <a href={siteConfig.links.github} target="_blank" rel="noopener noreferrer">
@@ -271,6 +323,7 @@ export default async function Home() {
             Résumé
           </a>
           <PrintButton />
+          <XRayToggle place="footer" />
         </div>
       </footer>
     </div>
