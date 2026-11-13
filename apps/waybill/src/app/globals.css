@@ -454,10 +454,6 @@ html[data-printed] .label-body {
   font-size: 15px;
 }
 
-.manifest tbody tr:hover {
-  background: var(--paper-hover);
-}
-
 .manifest tbody tr:last-child td {
   border-bottom: 0;
 }
