@@ -10,7 +10,10 @@ import {
 } from "@portfolio/content";
 
 import Manifest, { type ManifestRow } from "@/components/Manifest";
+import CopyEmail from "@/components/CopyEmail";
 import FilterLink from "@/components/FilterLink";
+import Greeting from "@/components/Greeting";
+import Sticker from "@/components/Sticker";
 import HandNote from "@/components/HandNote";
 import { LocalClock, TimeOffset } from "@/components/LocalTime";
 import Postmark from "@/components/Postmark";
@@ -112,6 +115,7 @@ export default async function Home() {
       <main id="main">
         <section className="hero" aria-label="Introduction" data-xray="Hero · grid 7fr 5fr">
           <div>
+            <Greeting />
             {/* Each letter sits slightly off, like hand-set stamp type; hover lines them up. */}
             <h1 className="handset" aria-label={bio.fullName}>
               {bio.fullName.split(" ").map((word, w) => (
@@ -159,11 +163,11 @@ export default async function Home() {
               text="that's me"
               arrow="M8 18 C 40 6, 78 14, 104 52 M104 52 l-14 -4 M104 52 l2 -14"
             />
-            <span className="sticker">
+            <Sticker>
               {profile.status}
               <br />
               for work
-            </span>
+            </Sticker>
             <div className="label-body">
               <div className="label-head">
                 <span>{bio.fullName.toUpperCase()}</span>
@@ -221,7 +225,13 @@ export default async function Home() {
         <section className="sheet work" id="work" aria-labelledby="work-title">
           <style>{filterCss(chips)}</style>
           <div className="sheet-head">
-            <h2 id="work-title">Shipped work</h2>
+            <div>
+              <h2 id="work-title">Shipped work</h2>
+              <p className="sheet-intro">
+                Client sites and products I’ve built, most of them still live. Open a name in the
+                list to see the site.
+              </p>
+            </div>
             <span className="sheet-meta">
               {projects.length} projects · {liveCount} live today
             </span>
@@ -307,7 +317,10 @@ export default async function Home() {
 
         <section className="sheet" id="services" aria-labelledby="services-title">
           <div className="sheet-head">
-            <h2 id="services-title">What I can build</h2>
+            <div>
+              <h2 id="services-title">What I can build</h2>
+              <p className="sheet-intro">If you need one of these, here’s what you get.</p>
+            </div>
             <span className="sheet-meta">For teams and clients</span>
           </div>
           <ul className="services" data-xray="Services · links into the filter">
@@ -325,13 +338,15 @@ export default async function Home() {
 
         {settings.sections.experience && (
           <section
-            className="sheet"
+            className="sheet sheet-open"
             id="experience"
             aria-labelledby="experience-title"
           >
             <div className="sheet-head">
-              <h2 id="experience-title">Experience</h2>
-              <span className="sheet-meta">Newest first</span>
+              <div>
+                <h2 id="experience-title">Experience</h2>
+                <p className="sheet-intro">Where I’ve worked, newest first.</p>
+              </div>
             </div>
             <ol className="log" data-xray="Timeline · scroll-driven CSS">
               {experiences.map((job) => (
@@ -377,16 +392,22 @@ export default async function Home() {
             text="say hi"
             arrow="M14 10 C 30 40, 60 60, 98 64 M98 64 l-12 -8 M98 64 l-13 7"
           />
-          <a className="post-stamp" href={`mailto:${siteConfig.email}`}>
+          <div className="post-stamp">
             <span className="post-top">
               {profile.based.split(" /")[0].toUpperCase()}, INDONESIA
             </span>
             <span className="post-ask">Hiring, or need a site built? Email is fastest.</span>
-            <span className="big">
+            <a className="big" href={`mailto:${siteConfig.email}`}>
               {siteConfig.email.split("@")[0]}
               <wbr />@{siteConfig.email.split("@")[1]}
+            </a>
+            <span className="post-actions">
+              <a className="btn btn-solid" href={`mailto:${siteConfig.email}`}>
+                Write to me
+              </a>
+              <CopyEmail email={siteConfig.email} />
             </span>
-          </a>
+          </div>
           <svg className="cancel" viewBox="0 0 220 60" aria-hidden="true">
             {[10, 22, 34, 46].map((y) => (
               <path

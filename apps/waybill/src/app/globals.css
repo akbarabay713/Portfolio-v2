@@ -419,7 +419,6 @@ html[data-printed] .label-body {
   font-weight: 800;
   font-size: clamp(1.6rem, 3vw, 2.4rem);
   line-height: 1;
-  text-transform: uppercase;
 }
 
 .sheet-meta {
@@ -1142,23 +1141,29 @@ html[data-printed] .label-body {
   pointer-events: none;
 }
 
-.post-stamp:hover {
-  transform: rotate(0deg);
+.post-stamp .big {
+  color: var(--ink);
 }
 
-.post-stamp:hover .big {
+.post-stamp .big:hover {
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 6px;
 }
 
-.post-stamp:focus-visible {
-  outline: none;
+.post-actions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
 }
 
-.post-stamp:focus-visible::before {
-  outline: 2px solid var(--ink);
-  outline-offset: 3px;
+.copy-btn[data-state="copied"] {
+  background: #dcefe3;
+  border-color: var(--stamp);
+  color: var(--stamp);
 }
 
 .post-top {
@@ -1681,9 +1686,21 @@ html[data-xray-scan] .xray-line {
   font-size: 12px;
   line-height: 1.15;
   text-transform: uppercase;
-  transform: rotate(-12deg);
+  transform: translate(var(--dx, 0px), var(--dy, 0px)) rotate(-12deg);
   box-shadow: 2px 3px 0 rgba(27, 26, 23, 0.2);
-  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    transform 300ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.sticker[data-dragging] {
+  cursor: grabbing;
+  transform: translate(var(--dx, 0px), var(--dy, 0px)) rotate(-4deg) scale(1.08);
+  box-shadow: 8px 12px 0 rgba(27, 26, 23, 0.18);
+  transition: box-shadow 150ms ease-out;
 }
 
 /* The corner lifts when you touch it, like a sticker starting to peel. */
@@ -1702,8 +1719,8 @@ html[data-xray-scan] .xray-line {
   transition: transform 260ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.sticker:hover {
-  transform: rotate(-6deg) translateY(-2px);
+.sticker:hover:not([data-dragging]) {
+  transform: translate(var(--dx, 0px), calc(var(--dy, 0px) - 2px)) rotate(-6deg);
 }
 
 .sticker:hover::after {
@@ -1912,6 +1929,143 @@ html[data-xray-scan] .xray-line {
   }
 }
 
+/* ---------- loosening up ---------- */
+
+.hero {
+  position: relative;
+  z-index: 3;
+}
+
+.greeting {
+  min-height: 40px;
+  margin-bottom: 2px;
+  color: var(--pen);
+  font-family: var(--font-hand), cursive;
+  font-size: 36px;
+  line-height: 1.1;
+  transform: rotate(-4deg);
+  transform-origin: left bottom;
+}
+
+.sheet-intro {
+  margin-top: 10px;
+  max-width: 58ch;
+  color: var(--muted-paper);
+  font-size: 16px;
+}
+
+/* Experience sits straight on the kraft, so the page isn't box after box. */
+.sheet-open {
+  background: none;
+  border: 0;
+}
+
+.sheet-open .sheet-head {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.sheet-open .log {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.sheet-open .sheet-intro,
+.sheet-open .entry .when,
+.sheet-open .entry .org {
+  color: var(--muted-kraft);
+}
+
+.sheet-open .entry .what {
+  border-bottom-color: rgba(27, 26, 23, 0.2);
+}
+
+.sheet-open .entry .track::after {
+  background: var(--kraft);
+}
+
+.sheet-open .entry:first-child .track::after {
+  background: var(--ink);
+}
+
+/* Large monitors: scale the whole page instead of floating a narrow strip. */
+@media screen and (min-width: 1800px) {
+  html {
+    zoom: 1.125;
+  }
+}
+
+@media screen and (min-width: 2400px) {
+  html {
+    zoom: 1.4;
+  }
+}
+
+@media screen and (min-width: 3400px) {
+  html {
+    zoom: 1.9;
+  }
+}
+
+@media screen and (max-width: 860px) {
+  .greeting {
+    min-height: 34px;
+    font-size: 30px;
+  }
+
+  .sheet-open .sheet-head {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .sheet-open .log {
+    padding: 4px 0 20px;
+  }
+
+  .post-actions .btn {
+    flex: 1 1 140px;
+  }
+}
+
+/* ---------- in-between and very small screens ---------- */
+
+/* Small laptops: give the label enough room so its values don't wrap word by word. */
+@media screen and (min-width: 861px) and (max-width: 1180px) {
+  .hero {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+
+/* Tablets: the label is a card set to the right, not a full-width form. */
+@media screen and (min-width: 600px) and (max-width: 860px) {
+  .label {
+    width: min(100%, 540px);
+    margin-left: auto;
+    transform: rotate(-1.5deg);
+  }
+
+  .sticker {
+    left: -34px;
+    top: 46%;
+    width: 88px;
+    height: 88px;
+    font-size: 11px;
+  }
+}
+
+/* The smallest phones: keep name and links on one line. */
+@media screen and (max-width: 400px) {
+  .bar nav {
+    gap: 12px;
+  }
+
+  .bar nav a,
+  .bar-name {
+    font-size: 13px;
+  }
+}
+
 /* ---------- print: the page as a CV ---------- */
 
 @media print {
@@ -1983,6 +2137,8 @@ html[data-xray-scan] .xray-line {
   }
 
   #services,
+  .greeting,
+  .post-actions,
   .note .signature,
   .hand-note,
   .sticker,
