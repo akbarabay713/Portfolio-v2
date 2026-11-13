@@ -11,10 +11,10 @@ const GENERIC = new Set([
   "Tailwind CSS",
 ]);
 
-/** The few technologies that tell projects apart, e.g. "WordPress · WooCommerce". */
+/** The few technologies that tell projects apart, e.g. "WordPress, WooCommerce". */
 export function shortStack(tech: string[], max = 3): string {
   const distinctive = tech.filter((t) => !GENERIC.has(t));
-  return (distinctive.length ? distinctive : tech).slice(0, max).join(" · ");
+  return (distinctive.length ? distinctive : tech).slice(0, max).join(", ");
 }
 
 const MONTHS: Record<string, string> = {
