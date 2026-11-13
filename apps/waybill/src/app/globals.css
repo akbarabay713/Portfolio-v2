@@ -10,6 +10,7 @@
   --muted-paper: #5f5b52;
   --rule-soft: #cfcbbf;
   --stamp: #1e7a46;
+  --stamp-visited: #55624b;
   --tape: rgba(233, 223, 196, 0.72);
   --rule: 1.5px solid var(--ink);
 
@@ -396,6 +397,11 @@ html[data-printed] .label-body {
   font-weight: 500;
   text-decoration-thickness: 1.5px;
   text-underline-offset: 3px;
+}
+
+/* Opened sites fade, so a recruiter can see which ones they've already checked. */
+.live:visited {
+  color: var(--stamp-visited);
 }
 
 .down {
