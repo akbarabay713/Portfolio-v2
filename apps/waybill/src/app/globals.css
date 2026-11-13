@@ -1048,6 +1048,11 @@ html[data-printed] .label-body {
     border-bottom: 1px solid var(--rule-soft);
   }
 
+  /* display: block above would otherwise override the hidden attribute. */
+  .manifest tr[hidden] {
+    display: none;
+  }
+
   .preview-float {
     display: none;
   }
@@ -1796,6 +1801,117 @@ html[data-xray-scan] .xray-line {
   }
 }
 
+/* ---------- what I can build ---------- */
+
+.services {
+  list-style: none;
+}
+
+.service {
+  display: grid;
+  grid-template-columns: minmax(200px, 280px) 1fr auto;
+  gap: 8px 32px;
+  align-items: baseline;
+  padding: 22px 28px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.service:last-child {
+  border-bottom: 0;
+}
+
+.service h3 {
+  font-family: var(--display);
+  font-stretch: 112%;
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
+
+.service p {
+  max-width: 62ch;
+}
+
+.filter-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
+}
+
+.filter-link::after {
+  content: "→";
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.filter-link:hover::after {
+  transform: translateX(3px);
+}
+
+/* ---------- a note from me ---------- */
+
+.note {
+  position: relative;
+  max-width: 640px;
+  margin: 0 0 64px auto;
+  padding: 30px 34px 26px;
+  background: var(--paper);
+  border: var(--rule);
+  box-shadow: 4px 5px 0 rgba(27, 26, 23, 0.16);
+  transform: rotate(0.5deg);
+}
+
+.note-head {
+  margin-bottom: 14px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted-paper);
+}
+
+.note p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.note p + p {
+  margin-top: 12px;
+}
+
+.note .signature {
+  margin-top: 10px;
+  color: var(--pen);
+  font-family: var(--font-hand), cursive;
+  font-size: 46px;
+  line-height: 1;
+  transform: rotate(-4deg);
+  transform-origin: left center;
+}
+
+@media screen and (max-width: 860px) {
+  .service {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 18px 16px;
+  }
+
+  .note {
+    margin: 0 0 48px;
+    padding: 24px 20px 20px;
+    transform: none;
+  }
+
+  .note p {
+    font-size: 17px;
+  }
+}
+
 /* ---------- print: the page as a CV ---------- */
 
 @media print {
@@ -1806,6 +1922,33 @@ html[data-xray-scan] .xray-line {
 
   html[data-xray] [data-xray]::after {
     display: none;
+  }
+
+  .note {
+    max-width: none;
+    margin: 10pt 0 0;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+    transform: none;
+    background: none;
+  }
+
+  .note-head {
+    margin: 0 0 4pt;
+    padding-top: 8pt;
+    border-top: 1px solid #000;
+    font-size: 8pt;
+    color: #000;
+  }
+
+  .note p {
+    font-size: 9.5pt;
+    line-height: 1.4;
+  }
+
+  .note p + p {
+    margin-top: 3pt;
   }
 
   /* A CV lists everything, whatever filter was on screen. */
@@ -1839,6 +1982,8 @@ html[data-xray-scan] .xray-line {
     padding: 0;
   }
 
+  #services,
+  .note .signature,
   .hand-note,
   .sticker,
   .xray-line,

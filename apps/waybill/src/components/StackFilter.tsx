@@ -18,7 +18,7 @@ const subscribe = (notify: () => void) => {
 const readParam = () => new URLSearchParams(location.search).get(PARAM);
 const serverParam = () => null;
 
-function setParam(value: string | null) {
+export function setParam(value: string | null) {
   const url = new URL(location.href);
   if (value) url.searchParams.set(PARAM, value);
   else url.searchParams.delete(PARAM);

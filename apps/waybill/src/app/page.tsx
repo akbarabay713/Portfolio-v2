@@ -10,6 +10,7 @@ import {
 } from "@portfolio/content";
 
 import Manifest, { type ManifestRow } from "@/components/Manifest";
+import FilterLink from "@/components/FilterLink";
 import HandNote from "@/components/HandNote";
 import { LocalClock, TimeOffset } from "@/components/LocalTime";
 import Postmark from "@/components/Postmark";
@@ -27,6 +28,26 @@ export const revalidate = 86400;
 const featured = projects.filter((p) => p.featured);
 const others = projects.filter((p) => !p.featured);
 const chips = stackChips(projects);
+const countOf = (s: string) => chips.find((c) => c.slug === s)?.count ?? 0;
+
+/** What a client can hire for, each tied to the projects that prove it. */
+const services = [
+  {
+    name: "Marketing and landing pages",
+    what: "Built from your Figma designs in WordPress or Next.js, responsive on every screen and set up for search from the start.",
+    stack: "elementor",
+  },
+  {
+    name: "Online stores",
+    what: "WooCommerce shops with products, checkout and memberships, made to be easy for your team to run.",
+    stack: "woocommerce",
+  },
+  {
+    name: "Web apps and dashboards",
+    what: "Fullstack apps in Laravel, Vue or React, from the database and API to the interface people use every day.",
+    stack: "typescript",
+  },
+].map((s) => ({ ...s, count: countOf(s.stack) }));
 
 /** Frameworks from the shared stack list, in the order they appear there. */
 const headlineStack = ["React", "Next.js", "Vue", "Laravel", "WordPress"].filter(
@@ -284,6 +305,24 @@ export default async function Home() {
           {manifestRows.length > 0 && <Manifest rows={manifestRows} />}
         </section>
 
+        <section className="sheet" id="services" aria-labelledby="services-title">
+          <div className="sheet-head">
+            <h2 id="services-title">What I can build</h2>
+            <span className="sheet-meta">For teams and clients</span>
+          </div>
+          <ul className="services" data-xray="Services · links into the filter">
+            {services.map((s) => (
+              <li key={s.name} className="service">
+                <h3>{s.name}</h3>
+                <p>{s.what}</p>
+                <FilterLink stack={s.stack}>
+                  See {s.count} {s.count === 1 ? "project" : "projects"}
+                </FilterLink>
+              </li>
+            ))}
+          </ul>
+        </section>
+
         {settings.sections.experience && (
           <section
             className="sheet"
@@ -314,6 +353,18 @@ export default async function Home() {
             </ol>
           </section>
         )}
+
+        <section className="note" aria-labelledby="note-title" data-xray="Note · bio from content">
+          <h2 id="note-title" className="note-head">
+            A note from me
+          </h2>
+          {bio.paragraphs.map((line) => (
+            <p key={line}>{line}</p>
+          ))}
+          <p className="signature" aria-label={`${bio.name}`}>
+            {bio.name}
+          </p>
+        </section>
       </main>
 
       <footer className="contact" id="contact" aria-labelledby="contact-title">
