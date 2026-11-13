@@ -9,6 +9,7 @@
   --muted-kraft: #4a3b27;
   --muted-paper: #5f5b52;
   --rule-soft: #cfcbbf;
+  --shot-bg: #e4e1d7;
   --stamp: #1e7a46;
   --stamp-visited: #55624b;
   --tape: rgba(233, 223, 196, 0.72);
@@ -374,7 +375,7 @@ html[data-printed] .label-body {
   position: relative;
   display: block;
   border-right: var(--rule);
-  background: #e4e1d7;
+  background: var(--shot-bg);
   aspect-ratio: 16 / 10;
   overflow: hidden;
 }
