@@ -165,7 +165,7 @@ export default async function Home() {
           <TiltLabel>
             <HandNote
               className="note-me"
-              text="that's me"
+              text="that’s me"
               arrow="M8 18 C 40 6, 78 14, 104 52 M104 52 l-14 -4 M104 52 l2 -14"
             />
             <Sticker>
