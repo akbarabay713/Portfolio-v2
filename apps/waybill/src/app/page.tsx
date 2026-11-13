@@ -260,8 +260,11 @@ export default async function Home() {
         )}
       </main>
 
-      <footer className="contact" id="contact">
+      <footer className="contact" id="contact" aria-labelledby="contact-title">
         <div>
+          <h2 id="contact-title" className="sr-only">
+            Contact
+          </h2>
           <p>Hiring, or need a site built? Email is fastest.</p>
           <a className="big" href={`mailto:${siteConfig.email}`}>
             {siteConfig.email.split("@")[0]}
