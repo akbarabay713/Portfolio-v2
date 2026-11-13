@@ -120,7 +120,12 @@ export default async function Home() {
             <h1 className="handset" aria-label={bio.fullName}>
               {bio.fullName.split(" ").map((word, w) => (
                 <span key={word} className="word" aria-hidden="true">
-                  {w > 0 && <br />}
+                  {w > 0 && (
+                    <>
+                      {" "}
+                      <br />
+                    </>
+                  )}
                   {[...word].map((ch, i) => {
                     const n = w * 7 + i;
                     return (
