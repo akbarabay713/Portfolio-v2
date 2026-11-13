@@ -39,9 +39,10 @@ Edit content once in `packages/content` and every design picks it up.
 
 ### Waybill notes
 
-- Featured projects get a large screenshot; the rest are listed in a table. Only
-  the featured screenshots are in `apps/waybill/public/projects`, so copy the
-  image there when you feature another project.
+- Featured projects get a large screenshot; the rest are listed in a table.
+- Project screenshots are 1920×1200 WebP captures of each live site's first
+  screen (1440×900 at 1.33× scale). Every app keeps the same set in
+  `public/projects`.
 - Each live URL is checked when the page is generated (and again daily). A site
   that doesn't respond shows "Not responding" instead of a link.
 

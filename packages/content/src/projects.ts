@@ -15,7 +15,7 @@ export const allProjects: Project[] = [
       "Tailwind CSS",
       "Pinia",
     ],
-    image: "/projects/ka.png",
+    image: "/projects/kiriminaja.webp",
     live: "https://kiriminaja.com/",
     visible: true,
     featured: true,
@@ -32,7 +32,7 @@ export const allProjects: Project[] = [
       "Tailwind CSS",
       "Zustand",
     ],
-    image: "/projects/vitalswatch.png",
+    image: "/projects/vitalswatch.webp",
     live: "https://vitalswatch.vercel.app/",
     github: "https://github.com/akbarabay713/vitalswatch",
     visible: true,
@@ -43,7 +43,7 @@ export const allProjects: Project[] = [
     description:
       "WooCommerce site for a Dutch company that runs wine-and-painting team events, where businesses book workshops for their staff and clients.",
     tech: ["JavaScript", "WordPress", "WooCommerce", "PHP", "SCSS", "jQuery"],
-    image: "/projects/artiswine-nl.png",
+    image: "/projects/artiswine.webp",
     live: "https://artiswine.nl/",
     visible: true,
   },
@@ -52,7 +52,7 @@ export const allProjects: Project[] = [
     description:
       "WooCommerce shop for Italian wines imported directly to the Netherlands.",
     tech: ["JavaScript", "WordPress", "WooCommerce", "PHP", "SCSS", "jQuery"],
-    image: "/projects/devinita-nl.png",
+    image: "/projects/devinita.webp",
     live: "https://devinita.nl/",
     visible: true,
   },
@@ -61,7 +61,7 @@ export const allProjects: Project[] = [
     description:
       "Marketing site for Greyrox, a B2B platform for multi-cloud workflows, AI dataflows and low-code integrations.",
     tech: ["JavaScript", "WordPress", "Elementor", "PHP", "SCSS", "jQuery"],
-    image: "/projects/greyrox.png",
+    image: "/projects/greyrox.webp",
     live: "https://www.greyrox.com/",
     visible: true,
     featured: true,
@@ -71,7 +71,7 @@ export const allProjects: Project[] = [
     description:
       "Elementor site for a Dutch-German tax advisory firm whose 40+ specialists handle cross-border accounting and tax.",
     tech: ["JavaScript", "WordPress", "Elementor", "PHP", "SCSS", "jQuery"],
-    image: "/projects/nedtax.png",
+    image: "/projects/nedtax.webp",
     live: "https://nedtax.nl/nl/",
     visible: true,
   },
@@ -80,7 +80,7 @@ export const allProjects: Project[] = [
     description:
       "Elementor site for an environmental research foundation, presenting its biomonitoring studies on dioxins, PFAS and heavy metals across Europe.",
     tech: ["JavaScript", "WordPress", "Elementor", "PHP", "SCSS", "jQuery"],
-    image: "/projects/toxico.png",
+    image: "/projects/toxicowatch.webp",
     live: "https://toxicowatch.org/",
     visible: true,
   },
@@ -89,7 +89,7 @@ export const allProjects: Project[] = [
     description:
       "Elementor site for ToxicoWatch’s consultancy, which offers toxicology research and advisory work on persistent organic pollutants to governments and businesses.",
     tech: ["JavaScript", "WordPress", "Elementor", "PHP", "SCSS", "jQuery"],
-    image: "/projects/tw.png",
+    image: "/projects/toxicowatch-consultancy.webp",
     live: "https://wordpress-663295-5770621.cloudwaysapps.com/",
     visible: true,
   },
@@ -98,7 +98,7 @@ export const allProjects: Project[] = [
     description:
       "Elementor catalog for a maker of handcrafted outdoor furniture, aimed at hotels, resorts and retailers buying wholesale.",
     tech: ["JavaScript", "WordPress", "Elementor", "PHP", "SCSS", "jQuery"],
-    image: "/projects/woven.png",
+    image: "/projects/wovenplus.webp",
     live: "https://wovenplus.com/",
     visible: true,
   },
@@ -107,7 +107,7 @@ export const allProjects: Project[] = [
     description:
       "WooCommerce store for vegan skincare made from unrefined Ghanaian shea butter.",
     tech: ["JavaScript", "WordPress", "WooCommerce", "PHP", "SCSS", "jQuery"],
-    image: "/projects/uan.png",
+    image: "/projects/urban-africa-naturals.webp",
     live: "https://urbanafricanaturals.com/",
     visible: true,
   },
@@ -116,7 +116,7 @@ export const allProjects: Project[] = [
     description:
       "WooCommerce membership site for an Amsterdam club where members rotate designer handbags each month.",
     tech: ["JavaScript", "WordPress", "WooCommerce", "PHP", "SCSS", "jQuery"],
-    image: "/projects/lende.png",
+    image: "/projects/lende.webp",
     live: "https://lendeluxury.com/",
     visible: true,
   },
@@ -125,7 +125,7 @@ export const allProjects: Project[] = [
     description:
       "Landing page template for Gaia Digital, the agency I worked at, built in Elementor to show clients a conversion-focused layout.",
     tech: ["JavaScript", "WordPress", "Elementor", "PHP", "SCSS", "jQuery"],
-    image: "/projects/gaia-landing-page.png",
+    image: "/projects/gaia-digital.webp",
     live: "https://www.gaiadigital.nl/landingspagina-template/",
     visible: true,
   },
@@ -134,7 +134,7 @@ export const allProjects: Project[] = [
     description:
       "WooCommerce store for mineral makeup matched to individual skin tones.",
     tech: ["JavaScript", "WordPress", "WooCommerce", "PHP", "SCSS", "jQuery"],
-    image: "/projects/skin-color.png",
+    image: "/projects/skin-color-cosmetics.webp",
     live: "https://skincolorcosmetics.nl/",
     visible: true,
   },

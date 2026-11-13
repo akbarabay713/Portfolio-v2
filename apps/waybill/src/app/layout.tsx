@@ -4,6 +4,8 @@ import { bio, siteConfig } from "@portfolio/content";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
+import { jsonLd, structuredData } from "@/lib/structured-data";
+
 const archivo = Archivo({
   subsets: ["latin"],
   axes: ["wdth"],
@@ -62,6 +64,10 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: printOnce }} />
       </head>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLd(structuredData()) }}
+        />
         <a href="#main" className="skip">
           Skip to content
         </a>
