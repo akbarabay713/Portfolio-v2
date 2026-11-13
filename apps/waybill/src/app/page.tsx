@@ -137,10 +137,10 @@ export default async function Home() {
                 />
               </a>
               <div className="feature-data">
-                <h3>
-                  {project.title}
+                <div className="feature-title">
+                  <h3>{project.title}</h3>
                   {isLive(project.live) && <span className="stamp">LIVE</span>}
-                </h3>
+                </div>
                 <p>{project.description}</p>
                 <dl className="kv">
                   <dt>STACK</dt>

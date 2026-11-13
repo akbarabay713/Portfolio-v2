@@ -368,16 +368,19 @@ html[data-printed] .label-body {
   gap: 14px;
 }
 
-.feature-data h3 {
+.feature-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.feature-title h3 {
   font-family: var(--display);
   font-stretch: 112%;
   font-weight: 700;
   font-size: 1.5rem;
   line-height: 1.1;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
 }
 
 .feature-data p {
