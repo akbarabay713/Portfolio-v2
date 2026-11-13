@@ -74,7 +74,7 @@ export default function StackFilter({
           </button>
         ))}
       </div>
-      <p className="filter-status" aria-live="polite">
+      <p className={chip ? "filter-status" : "filter-status sr-only"} aria-live="polite">
         {chip
           ? `${chip.count} of ${total} projects use ${chip.label}`
           : `Showing all ${total} projects`}
