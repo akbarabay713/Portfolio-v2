@@ -217,8 +217,10 @@ export default async function Home() {
                         >
                           Code
                         </a>
-                      ) : (
+                      ) : project.live ? (
                         <span className="down">Not responding</span>
+                      ) : (
+                        <span className="down">Private</span>
                       )}
                     </td>
                   </tr>
