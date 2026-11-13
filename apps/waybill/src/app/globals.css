@@ -696,6 +696,14 @@ html[data-printed] .label-body {
     padding: 18px 16px;
   }
 
+  /* Full-size tap targets for the links people open from a phone. */
+  .kv dd a,
+  .manifest .url a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
   .manifest thead {
     display: none;
   }
