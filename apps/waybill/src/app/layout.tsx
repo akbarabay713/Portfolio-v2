@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, JetBrains_Mono } from "next/font/google";
+import { Archivo, JetBrains_Mono, Nanum_Pen_Script } from "next/font/google";
 import { bio, siteConfig } from "@portfolio/content";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
@@ -18,6 +18,13 @@ const mono = JetBrains_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--font-mono",
+  display: "swap",
+});
+
+const hand = Nanum_Pen_Script({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-hand",
   display: "swap",
 });
 
@@ -58,7 +65,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${archivo.variable} ${mono.variable}`}
+      className={`${archivo.variable} ${mono.variable} ${hand.variable}`}
       suppressHydrationWarning
     >
       <head>

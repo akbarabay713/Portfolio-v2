@@ -49,11 +49,11 @@ export default function StackFilter({
   }, [active]);
 
   return (
-    <div className="track" data-xray="StackFilter · CSS attribute selectors">
-      <span className="track-label" id="track-label">
+    <div className="filter-bar" data-xray="StackFilter · CSS attribute selectors">
+      <span className="filter-label" id="filter-label">
         Filter by stack
       </span>
-      <div className="track-chips" role="group" aria-labelledby="track-label">
+      <div className="filter-chips" role="group" aria-labelledby="filter-label">
         <button
           type="button"
           className="chip"
@@ -74,7 +74,7 @@ export default function StackFilter({
           </button>
         ))}
       </div>
-      <p className="track-status" aria-live="polite">
+      <p className="filter-status" aria-live="polite">
         {chip
           ? `${chip.count} of ${total} projects use ${chip.label}`
           : `Showing all ${total} projects`}

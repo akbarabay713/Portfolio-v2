@@ -10,6 +10,8 @@ import {
 } from "@portfolio/content";
 
 import Manifest, { type ManifestRow } from "@/components/Manifest";
+import HandNote from "@/components/HandNote";
+import { LocalClock, TimeOffset } from "@/components/LocalTime";
 import Postmark from "@/components/Postmark";
 import StackFilter from "@/components/StackFilter";
 import XRayToggle from "@/components/XRayToggle";
@@ -89,11 +91,28 @@ export default async function Home() {
       <main id="main">
         <section className="hero" aria-label="Introduction" data-xray="Hero · grid 7fr 5fr">
           <div>
-            <h1>
-              {bio.fullName.split(" ").map((word, i) => (
-                <span key={word}>
-                  {i > 0 && <br />}
-                  {word}
+            {/* Each letter sits slightly off, like hand-set stamp type; hover lines them up. */}
+            <h1 className="handset" aria-label={bio.fullName}>
+              {bio.fullName.split(" ").map((word, w) => (
+                <span key={word} className="word" aria-hidden="true">
+                  {w > 0 && <br />}
+                  {[...word].map((ch, i) => {
+                    const n = w * 7 + i;
+                    return (
+                      <span
+                        key={i}
+                        className="ch"
+                        style={
+                          {
+                            "--r": `${(((n * 37) % 7) - 3) * 1.2}deg`,
+                            "--y": `${(((n * 53) % 5) - 2) * 2}px`,
+                          } as React.CSSProperties
+                        }
+                      >
+                        {ch}
+                      </span>
+                    );
+                  })}
                 </span>
               ))}
             </h1>
@@ -114,10 +133,20 @@ export default async function Home() {
           </div>
 
           <TiltLabel>
+            <HandNote
+              className="note-me"
+              text="that's me"
+              arrow="M8 18 C 40 6, 78 14, 104 52 M104 52 l-14 -4 M104 52 l2 -14"
+            />
+            <span className="sticker">
+              {profile.status}
+              <br />
+              for work
+            </span>
             <div className="label-body">
               <div className="label-head">
                 <span>{bio.fullName.toUpperCase()}</span>
-                <span>REMOTE · UTC+7</span>
+                <LocalClock />
               </div>
               <div className="label-main" data-xray="next/image · 13 KB WebP">
                 <Image
@@ -132,7 +161,10 @@ export default async function Home() {
                 <dl>
                 <div className="field">
                   <dt>FROM</dt>
-                  <dd>{profile.based.split(" /")[0]}, Indonesia</dd>
+                  <dd>
+                    {profile.based.split(" /")[0]}, Indonesia
+                    <TimeOffset />
+                  </dd>
                 </div>
                 <div className="field">
                   <dt>ROLE</dt>
@@ -145,10 +177,6 @@ export default async function Home() {
                 <div className="field">
                   <dt>SINCE</dt>
                   <dd>{profile.since}</dd>
-                </div>
-                <div className="field">
-                  <dt>STATUS</dt>
-                  <dd className="status">{profile.status} for work</dd>
                 </div>
                 </dl>
               </div>
@@ -293,6 +321,11 @@ export default async function Home() {
           Contact
         </h2>
         <div className="post" data-xray="Stamp · CSS mask perforations">
+          <HandNote
+            className="note-hi"
+            text="say hi"
+            arrow="M14 10 C 30 40, 60 60, 98 64 M98 64 l-12 -8 M98 64 l-13 7"
+          />
           <a className="post-stamp" href={`mailto:${siteConfig.email}`}>
             <span className="post-top">
               {profile.based.split(" /")[0].toUpperCase()}, INDONESIA
