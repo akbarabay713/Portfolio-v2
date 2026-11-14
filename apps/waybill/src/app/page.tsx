@@ -39,6 +39,7 @@ const services = [
     name: "Custom web apps",
     what: "Built around how your business works: dashboards, internal tools and customer-facing apps in Laravel, Vue or React, from the database and API to the screens people use every day.",
     stack: "typescript",
+    note: "Most client apps are under NDA, so they aren’t listed. I can walk you through them in a call.",
   },
   {
     name: "Marketing websites",
@@ -50,7 +51,7 @@ const services = [
     what: "WooCommerce shops with products, checkout and memberships, made to be easy for your team to run.",
     stack: "woocommerce",
   },
-].map((s) => ({ ...s, count: countOf(s.stack) }));
+].map((s) => ({ note: "", ...s, count: countOf(s.stack) }));
 
 /** Frameworks from the shared stack list, in the order they appear there. */
 const headlineStack = ["React", "Next.js", "Vue", "Laravel", "WordPress"].filter(
@@ -234,7 +235,7 @@ export default async function Home() {
               <h2 id="work-title">Shipped work</h2>
               <p className="sheet-intro">
                 Client sites and products I’ve built, most of them still live. Open a name in the
-                list to see the site.
+                list to see the site. Client apps under NDA aren’t listed.
               </p>
             </div>
             <span className="sheet-meta">
@@ -334,8 +335,10 @@ export default async function Home() {
                 <h3>{s.name}</h3>
                 <p>{s.what}</p>
                 <FilterLink stack={s.stack}>
-                  See {s.count} {s.count === 1 ? "project" : "projects"}
+                  See {s.count} {s.note ? "public " : ""}
+                  {s.count === 1 ? "project" : "projects"}
                 </FilterLink>
+                {s.note && <p className="service-note">{s.note}</p>}
               </li>
             ))}
           </ul>

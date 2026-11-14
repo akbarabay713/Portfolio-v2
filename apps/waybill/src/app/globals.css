@@ -1849,6 +1849,20 @@ html[data-xray-scan] .xray-line {
   max-width: 62ch;
 }
 
+/* Spans the description and link columns, under them. */
+.service .service-note {
+  grid-column: 2 / -1;
+  margin-top: -2px;
+  color: var(--muted-paper);
+  font-size: 14.5px;
+}
+
+@media screen and (max-width: 860px) {
+  .service .service-note {
+    grid-column: 1;
+  }
+}
+
 .filter-link {
   display: inline-flex;
   align-items: center;

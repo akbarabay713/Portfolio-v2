@@ -72,6 +72,7 @@ export const experiences: Experience[] = [
     date: "December 2024 - Present",
     image: "/images/madeindonesia_logo.png",
     description: [
+      "Build custom web apps for clients, from scoping the features to shipping the finished app.",
       "Build landing pages from Figma designs in Next.js and WordPress, with responsive layouts and SEO handled from the start.",
       "Work directly with European clients to scope each project and choose the right approach.",
       "Maintain existing client codebases, from first handoff through delivery.",
@@ -83,9 +84,10 @@ export const experiences: Experience[] = [
     date: "March 2025 - May 2026",
     image: "/images/gaia.png",
     description: [
+      "Built custom web apps for agency clients alongside their marketing sites.",
       "Built SEO-focused WordPress landing pages from Figma mockups, including the agency’s own landing page template.",
       "Cleaned up older client codebases and improved their performance.",
-      "Worked with international clients to turn their requirements into finished sites.",
+      "Worked with international clients to turn their requirements into finished sites and apps.",
     ],
   },
   {
