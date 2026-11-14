@@ -36,7 +36,12 @@ const countOf = (s: string) => chips.find((c) => c.slug === s)?.count ?? 0;
 /** What a client can hire for, each tied to the projects that prove it. */
 const services = [
   {
-    name: "Marketing and landing pages",
+    name: "Custom web apps",
+    what: "Built around how your business works: dashboards, internal tools and customer-facing apps in Laravel, Vue or React, from the database and API to the screens people use every day.",
+    stack: "typescript",
+  },
+  {
+    name: "Marketing websites",
     what: "Built from your Figma designs in WordPress or Next.js, responsive on every screen and set up for search from the start.",
     stack: "elementor",
   },
@@ -44,11 +49,6 @@ const services = [
     name: "Online stores",
     what: "WooCommerce shops with products, checkout and memberships, made to be easy for your team to run.",
     stack: "woocommerce",
-  },
-  {
-    name: "Web apps and dashboards",
-    what: "Fullstack apps in Laravel, Vue or React, from the database and API to the interface people use every day.",
-    stack: "typescript",
   },
 ].map((s) => ({ ...s, count: countOf(s.stack) }));
 
@@ -151,9 +151,9 @@ export default async function Home() {
               apps and client websites with Next.js, Laravel and WordPress.
             </p>
             <p className="lede-sub">
-              Right now I build landing pages for European clients at
-              MadeIndonesia. Before that I built shipping software at
-              KiriminAja.
+              Right now I build websites and custom web apps for European
+              clients at MadeIndonesia. Before that I built shipping software
+              at KiriminAja.
             </p>
             <p className="print-only print-contact">
               {siteConfig.email} · {siteConfig.url.replace(/^https?:\/\//, "")} ·{" "}
